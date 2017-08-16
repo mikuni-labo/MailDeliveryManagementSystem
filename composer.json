@@ -7,7 +7,15 @@
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.4.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "laravelcollective/html": "^5.2",
+        "laracasts/flash": "^2.0",
+        "intervention/image": "^2.3",
+        "illuminate/html": "5.*",
+        "doctrine/dbal": "~2.3",
+        "mikuni-labo/videocloudy": "^1.0.0",
+        "league/csv": "^8.0",
+        "league/flysystem-aws-s3-v3": "~1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
