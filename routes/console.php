@@ -16,3 +16,10 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('refresh', function () {
+    $this->call('config:cache');
+    $this->call('route:cache');
+    $this->call('view:clear');
+    $this->call('clear-compiled');
+})->describe('Refresh Commands Done!');
