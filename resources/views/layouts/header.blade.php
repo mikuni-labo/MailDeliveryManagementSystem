@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                @if ( Auth::check() )
+                @if( Auth::check() )
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-user"></span>&nbsp;来場者管理&nbsp;<span class="caret"></span>
@@ -48,7 +48,7 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
-                @if ( Auth::guest() )
+                @if( Auth::guest() )
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-th"></span>&nbsp;GUEST <span class="caret"></span>
