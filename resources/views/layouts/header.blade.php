@@ -54,7 +54,7 @@
                             <span class="glyphicon glyphicon-th"></span>&nbsp;GUEST <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-off"></span>&nbsp;ログイン</a></li>
+                            <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;ログイン</a></li>
 
                             @if( App::isLocal() )
                                 <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-plus"></span>&nbsp;登録</a></li>
