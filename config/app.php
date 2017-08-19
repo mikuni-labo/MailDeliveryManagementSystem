@@ -227,6 +227,15 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /**
+         * Add Any Aliases...
+         */
+        'Carbon'    => Carbon\Carbon::class,
+        'Flash'     => Laracasts\Flash\Flash::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
+        'Image'     => Intervention\Image\Facades\Image::class,
+        'Input'     => Illuminate\Support\Facades\Input::class,
     ],
 
 ];
