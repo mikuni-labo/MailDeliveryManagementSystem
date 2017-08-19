@@ -5,7 +5,7 @@
         </span>
 
         <small>
-            &copy;&nbsp;<?= date('Y', time()) ?>&nbsp;
+            &copy;&nbsp;{{ Carbon::now()->format('Y') }}&nbsp;
             <a href="{{ route('home') }}">{{ config('app.name') }}</a>
             &nbsp;All&nbsp;Rights&nbsp;Reserved.
         	</small>
