@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-// use App\Http\Requests\Auth\ModifyRequest;
-use App\User;
+use App\Http\Requests\Auth\ModifyRequest;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 
 class ModifyController extends Controller
 {
     /** @var ModifyRequest */
-//     private $formRequest;
+    private $formRequest;
 
     /**
      * Create a new controller instance.
@@ -18,20 +18,41 @@ class ModifyController extends Controller
      */
     public function __construct()
     {
-//         $this->formRequest = new ModifyRequest();
-
         $this->middleware('auth');
     }
 
     /**
-     * Show form.
+     * Show modify form.
      *
      * @method GET
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
     public function index()
     {
-        return view('auth.modify');
+        return view('auth.modify', [
+            'row' => auth()->user(),
+        ]);
     }
 
+    /**
+     * Update
+     *
+     * @method POST
+     * @param ModifyRequest $formRequest
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     */
+    public function update(ModifyRequest $formRequest)
+    {
+        $User = auth()->user();
+        $User->update(request()->all());
+
+        if( isset(request()->password) ) {
+            $User->password = bcrypt(request()->password);
+            $User->save();
+        }
+
+        \Flash::success('アカウント情報を更新しました。');
+
+        return redirect()->route('modify');
+    }
 }

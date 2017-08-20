@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/',            'HomeController@index')->name('home');
+Route::get( '/',            'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/modify',      'Auth\ModifyController@index')->name('modify');
+Route::get( '/modify',      'Auth\ModifyController@index')->name('modify');
+Route::post('/modify',      'Auth\ModifyController@update');
