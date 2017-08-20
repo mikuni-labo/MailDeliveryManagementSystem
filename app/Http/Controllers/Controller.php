@@ -10,4 +10,31 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected $breadcrumb = [];
+
+    /**
+     * Create a new authentication controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->setBreadcrumb('Home', route('home'));
+    }
+
+    protected function setBreadcrumb($key, $value)
+    {
+        $this->breadcrumb[$key] = $value;
+        return $this->breadcrumb;
+    }
+
+    protected function getBreadcrumb($key = null)
+    {
+        if( is_null($key) ) return $this->breadcrumb;
+
+        if( ! array_key_exists($key, $this->breadcrumb) ) return null;
+
+        return $this->breadcrumb[$key];
+    }
 }

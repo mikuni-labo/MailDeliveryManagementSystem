@@ -16,7 +16,11 @@
         <div id="app">
             @include('layouts.header')
 
-            @yield('content')
+            <div class="container">
+                @include('common.parts.breadcrumb')
+
+                @yield('content')
+            </div>
 
             @include('layouts.footer')
         </div>

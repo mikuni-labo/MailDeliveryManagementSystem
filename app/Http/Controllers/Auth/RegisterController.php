@@ -41,9 +41,26 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->redirectTo = route('home');
-        $this->formRequest = new RegisterRequest();
 
         $this->middleware('guest');
+
+        parent::__construct();
+
+        $this->formRequest = new RegisterRequest();
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        $this->setBreadcrumb('Register', route('register'));
+
+        return view('auth.register')->with([
+            'breadcrumb' => $this->getBreadcrumb(),
+        ]);
     }
 
     /**
