@@ -49,9 +49,9 @@ class LoginController extends Controller
      */
     protected function validateLogin(Request $request)
     {
-        $LoginRequest = new LoginRequest;
+        $formRequest = new LoginRequest;
 
-        $this->validate($request, $LoginRequest->rules(), $LoginRequest->messages(), $LoginRequest->attributes());
+        $this->validate($request, $formRequest->rules(), $formRequest->messages(), $formRequest->attributes());
     }
 
 }
