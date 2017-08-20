@@ -1,11 +1,15 @@
 @extends('layouts.base')
 
+@section('meta')
+    <title>パスワード再設定メール送信｜{{ config('app.name') }}</title>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-warning">
-                <div class="panel-heading"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;パスワードリマインダ</div>
+                <div class="panel-heading"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;パスワード再設定メール送信</div>
                 <div class="panel-body">
                     @if( session('status') )
                         <div class="alert alert-success">{{ session('status') }}</div>
@@ -36,4 +40,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        //
+    </script>
 @endsection

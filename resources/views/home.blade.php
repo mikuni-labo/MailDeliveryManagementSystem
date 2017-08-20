@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@section('meta')
+    <title>ホーム｜{{ config('app.name') }}</title>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -22,3 +26,10 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+    <script type="text/javascript">
+        //
+    </script>
+@endsection
+

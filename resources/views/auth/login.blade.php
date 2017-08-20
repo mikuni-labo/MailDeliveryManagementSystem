@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@section('meta')
+    <title>ログイン｜{{ config('app.name') }}</title>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -54,4 +58,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        //
+    </script>
 @endsection
