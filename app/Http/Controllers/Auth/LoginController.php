@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,9 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    /** @var LoginRequest */
+    private $formRequest;
+
     /**
      * Where to redirect users after login.
      *
@@ -36,8 +40,20 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->redirectTo = route('home');
+        $this->formRequest = new LoginRequest;
 
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, $this->formRequest->rules(), $this->formRequest->messages(), $this->formRequest->attributes());
     }
 
 }
