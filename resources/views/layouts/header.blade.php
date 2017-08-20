@@ -75,7 +75,7 @@
                             <li role="separator" class="divider"></li>
 
                             <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-home"></span>&nbsp;ホーム</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-edit"></span>&nbsp;アカウント情報編集</a></li>
+                            <li><a href="{{ route('modify') }}"><span class="glyphicon glyphicon-edit"></span>&nbsp;アカウント編集</a></li>
 
                             <li role="separator" class="divider"></li>
 
