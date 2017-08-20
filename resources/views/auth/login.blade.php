@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
-                <div class="panel-heading"><span class="glyphicon glyphicon-log-in"></span>&nbsp;ログイン</div>
+                <div class="panel-heading"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;ログイン</div>
                 <div class="panel-body">
                     {!! Form::open(['class' => 'form-horizontal', 'url' => route('login')]) !!}
 
@@ -44,7 +44,7 @@
                                 <button type="submit" class="btn btn-primary">送信</button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    <span class="glyphicon glyphicon-info-sign"></span>&nbsp;パスワードをお忘れの方
+                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;パスワードをお忘れの方
                                 </a>
                             </div>
                         </div>
