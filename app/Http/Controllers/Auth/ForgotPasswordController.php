@@ -22,6 +22,9 @@ class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails;
 
+    /** @var ResendRequest */
+    private $formRequest;
+
     /**
      * Create a new controller instance.
      *
@@ -29,6 +32,8 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
+        $this->formRequest = new ResendRequest;
+
         $this->middleware('guest');
     }
 
@@ -40,9 +45,7 @@ class ForgotPasswordController extends Controller
      */
     protected function validateEmail(Request $request)
     {
-        $formRequest = new ResendRequest;
-
-        $this->validate($request, $formRequest->rules(), $formRequest->messages(), $formRequest->attributes());
+        $this->validate($request, $this->formRequest->rules(), $this->formRequest->messages(), $this->formRequest->attributes());
     }
 
 }

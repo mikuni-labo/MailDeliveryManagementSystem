@@ -22,6 +22,9 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    /** @var LoginRequest */
+    private $formRequest;
+
     /**
      * Where to redirect users after login.
      *
@@ -37,6 +40,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->redirectTo = route('home');
+        $this->formRequest = new LoginRequest;
 
         $this->middleware('guest')->except('logout');
     }
@@ -49,9 +53,7 @@ class LoginController extends Controller
      */
     protected function validateLogin(Request $request)
     {
-        $formRequest = new LoginRequest;
-
-        $this->validate($request, $formRequest->rules(), $formRequest->messages(), $formRequest->attributes());
+        $this->validate($request, $this->formRequest->rules(), $this->formRequest->messages(), $this->formRequest->attributes());
     }
 
 }

@@ -23,6 +23,9 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    /** @var RegisterRequest */
+    private $formRequest;
+
     /**
      * Where to redirect users after registration.
      *
@@ -38,6 +41,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->redirectTo = route('home');
+        $this->formRequest = new RegisterRequest();
 
         $this->middleware('guest');
     }
@@ -50,9 +54,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $formRequest = new RegisterRequest();
-
-        return Validator::make($data, $formRequest->rules(), $formRequest->messages(), $formRequest->attributes());
+        return Validator::make($data, $this->formRequest->rules(), $this->formRequest->messages(), $this->formRequest->attributes());
     }
 
     /**
