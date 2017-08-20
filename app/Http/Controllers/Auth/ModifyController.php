@@ -19,6 +19,8 @@ class ModifyController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        parent::__construct();
     }
 
     /**
@@ -29,8 +31,11 @@ class ModifyController extends Controller
      */
     public function index()
     {
-        return view('auth.modify', [
+        $this->setBreadcrumb('Modify', route('modify'));
+
+        return view('auth.modify')->with([
             'row' => auth()->user(),
+            'breadcrumb' => $this->getBreadcrumb(),
         ]);
     }
 
@@ -43,6 +48,7 @@ class ModifyController extends Controller
      */
     public function update(ModifyRequest $formRequest)
     {
+        /** @var User $User */
         $User = auth()->user();
         $User->update(request()->all());
 

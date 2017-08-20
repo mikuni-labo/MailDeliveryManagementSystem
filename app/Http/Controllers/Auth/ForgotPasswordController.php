@@ -32,9 +32,25 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->formRequest = new ResendRequest;
-
         $this->middleware('guest');
+
+        parent::__construct();
+
+        $this->formRequest = new ResendRequest;
+    }
+
+    /**
+     * Display the form to request a password reset link.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLinkRequestForm()
+    {
+        $this->setBreadcrumb('Resend Password', route('password.email'));
+
+        return view('auth.passwords.email')->with([
+            'breadcrumb' => $this->getBreadcrumb(),
+        ]);
     }
 
     /**

@@ -40,9 +40,26 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->redirectTo = route('home');
-        $this->formRequest = new LoginRequest;
 
         $this->middleware('guest')->except('logout');
+
+        parent::__construct();
+
+        $this->formRequest = new LoginRequest;
+    }
+
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        $this->setBreadcrumb('Login', route('login'));
+
+        return view('auth.login')->with([
+            'breadcrumb' => $this->getBreadcrumb(),
+        ]);
     }
 
     /**
