@@ -1,3 +1,4 @@
+<?= header('X-Frame-Options: SAMEORIGIN')// クリックジャッキング対策(同一生成元のみ許可) ?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
