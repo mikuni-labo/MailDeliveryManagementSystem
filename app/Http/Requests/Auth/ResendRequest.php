@@ -2,8 +2,13 @@
 
 namespace App\Http\Requests\Auth;
 
-class RegisterRequest extends AuthRequest
+class ResendRequest extends AuthRequest
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function authorize()
     {
         return true;
@@ -12,9 +17,7 @@ class RegisterRequest extends AuthRequest
     public function rules()
     {
         return [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|max:16|confirmed',
+            'email' => 'required|email|exists:users|max:255',
         ];
     }
 
