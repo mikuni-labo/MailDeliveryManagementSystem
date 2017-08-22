@@ -11,5 +11,11 @@ let mix = require('laravel-mix');
  |
  */
 
+// コンパイル
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+
+// バージョニング
+if ( mix.inProduction() ) {
+   mix.version();
+}
