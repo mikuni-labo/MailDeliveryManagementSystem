@@ -56,8 +56,8 @@ Route::group([
         Route::get( 'add',             'StoreController@index')->name('mail.add');
         Route::post('add',             'StoreController@store');
 
-        Route::get( 'edit{id}',        'ModifyController@index')->name('mail.edit');
-        Route::put( 'edit{id}',        'ModifyController@update');
+        Route::get( 'edit{id}',        'EditController@index')->name('mail.edit');
+        Route::put( 'edit{id}',        'EditController@update');
 
         Route::delete( 'delete',       'DeleteController@index')->name('mail.delete');
 
