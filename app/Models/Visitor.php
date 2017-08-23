@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Visitor extends Authenticatable
 {
     use Notifiable;
     use SoftDeletes;
@@ -17,8 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
+        //
     ];
 
     /**
@@ -27,8 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        //
     ];
 
     /**
@@ -46,7 +44,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        //
+//         'status'      => 'bool',
     ];
 
     protected $perPage = 20;
