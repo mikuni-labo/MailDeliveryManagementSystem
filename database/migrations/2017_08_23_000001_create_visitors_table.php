@@ -16,28 +16,28 @@ class CreateVisitorsTable extends Migration
         Schema::create('visitors', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('name');
+            $table->string('name')->nullable();
 
             // もしくは以下
-//             $table->string('last_name');
-//             $table->string('first_name');
+//             $table->string('last_name')->nullable();
+//             $table->string('first_name')->nullable();
 
-            $table->string('organization');
-            $table->string('department');
-            $table->string('position');
-            $table->string('email')->unique();// ユニーク？
-            $table->string('tel', 15);
-            $table->string('fax', 15);
-            $table->string('zip_code', 10);
+            $table->string('organization')->nullable();
+            $table->string('department')->nullable();
+            $table->string('position')->nullable();
+            $table->string('email')->unique();// ユニーク？ ユニークでないならnullable追加
+            $table->string('tel', 15)->nullable();
+            $table->string('fax', 15)->nullable();
+            $table->string('zip_code', 10)->nullable();
 
 
-            $table->string('address');
+            $table->string('address')->nullable();
 
             // もしくは以下
-//             $table->tinyInteger('pref_code');
-//             $table->string('address_1');
-//             $table->string('address_2');
-//             $table->string('building_name');
+//             $table->tinyInteger('pref_code')->nullable();
+//             $table->string('address_1')->nullable();
+//             $table->string('address_2')->nullable();
+//             $table->string('building_name')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

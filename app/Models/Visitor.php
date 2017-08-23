@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Visitor extends Authenticatable
+class Visitor extends Model
 {
     use Notifiable;
     use SoftDeletes;
@@ -44,7 +44,7 @@ class Visitor extends Authenticatable
      * @var array
      */
     protected $casts = [
-//         'status'      => 'bool',
+        //
     ];
 
     protected $perPage = 20;
