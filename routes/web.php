@@ -28,7 +28,7 @@ Route::group([
         'namespace'  => 'Auth',
     ], function() {
         Route::get( 'modify',   'ModifyController@index')->name('modify');
-        Route::post('modify',   'ModifyController@update');
+        Route::put( 'modify',   'ModifyController@update');
     });
 
     /**

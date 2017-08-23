@@ -26,6 +26,9 @@ class RegisterController extends Controller
     /** @var RegisterRequest */
     private $formRequest;
 
+    /** @var User */
+    private $User;
+
     /**
      * Where to redirect users after registration.
      *
@@ -38,7 +41,7 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $User)
     {
         $this->redirectTo = route('home');
 
@@ -47,6 +50,7 @@ class RegisterController extends Controller
         parent::__construct();
 
         $this->formRequest = new RegisterRequest();
+        $this->User = $User;
     }
 
     /**
@@ -78,16 +82,17 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
+     * @param  User $User
      * @return User
      */
     protected function create(array $data)
     {
-        $User = User::create($data);
+        $this->User->name     = $data['name'];
+        $this->User->email    = $data['email'];
+        $this->User->password = bcrypt($data['password']);
+        $this->User->save();
 
-        $User->password = bcrypt($data['password']);
-        $User->save();
-
-        return $User;
+        return $this->User;
     }
 
 }

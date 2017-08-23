@@ -13,7 +13,9 @@
                     <div class="panel-body">
                         @include('flash::message')
 
-                        @include('common.form.user', ['mode' => 'register'])
+                        {!! Form::open(['url' => route('register'), 'method' => 'post', 'class' => 'form-horizontal', ]) !!}
+                            @include('common.form.user', ['mode' => 'register'])
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
