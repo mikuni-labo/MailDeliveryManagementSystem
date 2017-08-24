@@ -18,7 +18,6 @@
     <label for="from" class="col-md-2 control-label">差出人</label>
 
     <div class="col-md-9 form-control-static">
-        調整中
         @if(false)
             {!! Form::from('from', isset($row->from) ? $row->from : null, ['required', 'class' => 'form-control', 'id' => 'from', 'maxlength' => '255', 'placeholder' => '']) !!}
         @endif
