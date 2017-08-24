@@ -12,7 +12,9 @@ class StoreRequest extends MailRequest
     public function rules()
     {
         return [
-//             'email'    => 'required|email|max:255',
+            'subject'  => 'required|string|max:255',
+//             'from'     => 'required|numeric|min:1|max:255',
+            'content'  => 'required|string|min:1|max:65535',
         ];
     }
 

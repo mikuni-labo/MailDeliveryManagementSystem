@@ -33,8 +33,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        dd('here');
-        return view('auth.modify')->with([
+        return view('mail.add')->with([
             'breadcrumb' => $this->setBreadcrumb('Add', route('mail.add')),
         ]);
     }
@@ -48,17 +47,11 @@ class StoreController extends Controller
      */
     public function store(StoreRequest $formRequest)
     {
-//         /** @var User $User */
-//         $User = auth()->user();
-//         $User->update(request()->all());
+        /** @var MailTemplate $MailTemplate */
+        $MailTemplate = MailTemplate::create( request()->all() );
 
-//         if( isset(request()->password) ) {
-//             $User->password = bcrypt(request()->password);
-//             $User->save();
-//         }
+        \Flash::success('メールテンプレートを登録しました。');
 
-//         \Flash::success('アカウント情報を更新しました。');
-
-//         return redirect()->route('modify');
+        return redirect()->route('mail');
     }
 }
