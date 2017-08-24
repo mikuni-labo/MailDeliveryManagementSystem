@@ -1,3 +1,7 @@
+@if( $mode === 'edit' )
+    {!! Form::hidden('id', $row->id, ['id' => 'id']) !!}
+@endif
+
 <div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">
     <label for="subject" class="col-md-4 control-label">題名</label>
 

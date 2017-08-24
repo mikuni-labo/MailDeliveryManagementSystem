@@ -23,6 +23,7 @@ class EditController extends Controller
         parent::__construct();
 
         $this->setBreadcrumb('Mail', route('mail'));
+        $this->formRequest = new EditRequest;
     }
 
     /**
@@ -34,9 +35,9 @@ class EditController extends Controller
      */
     public function index($id)
     {
-        dd('here');
-        return view('auth.modify')->with([
-            'breadcrumb' => $this->setBreadcrumb('Edit', route('mail.edit')),
+        return view('mail.edit')->with([
+            'breadcrumb' => $this->setBreadcrumb('Edit', route('mail.edit', [$id])),
+            'row'        => MailTemplate::findOrFail($id),
         ]);
     }
 
@@ -45,21 +46,17 @@ class EditController extends Controller
      *
      * @method POST
      * @param EditRequest $formRequest
+     * @param integer $id
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function update(EditRequest $formRequest)
+    public function update(EditRequest $formRequest, $id)
     {
-//         /** @var User $User */
-//         $User = auth()->user();
-//         $User->update(request()->all());
+        /** @var EditRequest $EditRequest */
+        $EditRequest = MailTemplate::findOrFail($id);
+        $EditRequest->update(request()->all());
 
-//         if( isset(request()->password) ) {
-//             $User->password = bcrypt(request()->password);
-//             $User->save();
-//         }
+        \Flash::success('メールテンプレート情報を更新しました。');
 
-//         \Flash::success('アカウント情報を更新しました。');
-
-//         return redirect()->route('modify');
+        return redirect()->route('mail');
     }
 }
