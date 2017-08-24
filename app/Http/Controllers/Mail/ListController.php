@@ -7,9 +7,6 @@ use App\Http\Controllers\Controller;
 
 class ListController extends Controller
 {
-    /** @var StoreRequest */
-//     private $formRequest;
-
     /**
      * Create a new controller instance.
      *
@@ -32,7 +29,10 @@ class ListController extends Controller
      */
     public function index()
     {
-        dd('未実装');
+        return view('mail.index')->with([
+            'breadcrumb' => $this->getBreadcrumb(),
+            'results'    => MailTemplate::all(),
+        ]);
     }
 
 }
