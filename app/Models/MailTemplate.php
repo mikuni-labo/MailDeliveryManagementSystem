@@ -49,4 +49,33 @@ class MailTemplate extends Model
 
     protected $perPage = 20;
 
+    /**
+     * Search
+     *
+     * @param array $search
+     */
+    public static function search($search)
+    {
+        $query = self::query();
+
+        $query->select( \DB::raw('
+            mail_templates.id,
+            mail_templates.subject,
+            mail_templates.from,
+            mail_templates.content,
+            mail_templates.created_at,
+            mail_templates.updated_at,
+            mail_templates.deleted_at'
+        ));
+
+        // ID
+        if( !empty($search['id']) ) {
+            $query->where('mail_templates.id', '=', $search['id']);
+        }
+
+        // 登録時間の降順
+        $query->orderBy('mail_templates.created_at', 'DESC');
+
+        return $query;
+    }
 }

@@ -14,25 +14,27 @@
 
                 @include('flash::message')
 
-                @if(false){!! $results->render() !!}@endif
+                {!! $results->render() !!}
 
                 @if( $results->count() )
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
-                                <col width="10%">
-                                <col width="20%">
-                                <col width="20%">
-                                <col width="30%">
-                                <col width="10%">
-                                <col width="10%">
+                                <col width="8%">
+                                <col width="25%">
+                                <col width="25%">
+                                <col width="15%">
+                                <col width="15%">
+                                <col width="6%">
+                                <col width="6%">
                             </colgroup>
 
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">題名</th>
                                 <th class="text-center">差出人</th>
-                                <th class="text-center">本文</th>
+                                <th class="text-center">登録日時</th>
+                                <th class="text-center">更新日時</th>
                                 <th class="text-center">編集</th>
                                 <th class="text-center">削除</th>
                             </tr>
@@ -40,9 +42,14 @@
                             @foreach($results as $result)
                                 <tr <?php if( $result->deleted_at ) :?> style="background-color: #bbb;"<?php endif;?>>
                                     <td class="text-center">{{ $result->id }}</td>
-                                    <td class="text-center">{{ $result->subject }}</td>
+                                    <td class="text-center">
+                                        @if( ! $result->deleted_at )
+                                            <a href="{{ route('mail.edit', $result->id) }}">{{ $result->subject }}</a>
+                                        @endif
+                                    </td>
                                     <td class="text-center">{{ $result->from }}</td>
-                                    <td class="text-left">{{ $result->content }}</td>
+                                    <td class="text-center">{{ $result->created_at }}</td>
+                                    <td class="text-center">{{ $result->updated_at }}</td>
                                     <td class="text-center">
                                         @if( ! $result->deleted_at )
                                             <a href="{{ route('mail.edit', $result->id) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
@@ -65,7 +72,7 @@
                     <p>条件に一致するデータがありません...</p>
                 @endif
 
-                @if(false){!! $results->render() !!}@endif
+                {!! $results->render() !!}
             </div>
         </div>
     </div>
