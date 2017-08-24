@@ -14,7 +14,7 @@
                         @include('flash::message')
 
                         {!! Form::open(['url' => route('modify'), 'method' => 'put', 'class' => 'form-horizontal', ]) !!}
-                            @include('common.form.user', ['mode' => 'modify'])
+                            @include('common.form.user', ['mode' => 'edit'])
                         {!! Form::close() !!}
                     </div>
                 </div>
