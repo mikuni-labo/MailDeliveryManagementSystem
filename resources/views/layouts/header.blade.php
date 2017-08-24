@@ -41,8 +41,8 @@
                             <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;メール配信管理&nbsp;<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('mail') }}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;テンプレート一覧</a></li>
-                            <li><a href="{{ route('mail.add') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;テンプレート登録</a></li>
+                            <li><a href="{{ route('mail') }}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;メールテンプレート一覧</a></li>
+                            <li><a href="{{ route('mail.add') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;メールテンプレート登録</a></li>
                         </ul>
                     </li>
                 @endif
