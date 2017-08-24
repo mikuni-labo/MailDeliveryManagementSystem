@@ -38,10 +38,10 @@ Route::group([
         'prefix'     => 'visitor',
         'namespace'  => 'Visitor',
     ], function() {
-        Route::get( '/',          'ListController@index')->name('visitor');
+        Route::get( '/',                'ListController@index')->name('visitor');
 
-        Route::get( 'add',        'StoreController@index')->name('visitor.add');
-        Route::post('add',        'StoreController@store');
+        Route::get( 'add',              'StoreController@index')->name('visitor.add');
+        Route::post('add',              'StoreController@store');
     });
 
     /**
@@ -51,17 +51,17 @@ Route::group([
         'prefix'     => 'mail',
         'namespace'  => 'Mail',
     ], function() {
-        Route::get( '/',               'ListController@index')->name('mail');
+        Route::get( '/',                'ListController@index')->name('mail');
 
-        Route::get( 'add',             'StoreController@index')->name('mail.add');
-        Route::post('add',             'StoreController@store');
+        Route::get( 'add',              'StoreController@index')->name('mail.add');
+        Route::post('add',              'StoreController@store');
 
-        Route::get( 'edit{id}',        'EditController@index')->name('mail.edit');
-        Route::put( 'edit{id}',        'EditController@update');
+        Route::get( 'edit/{id}',        'EditController@index')->name('mail.edit');
+        Route::put( 'edit/{id}',        'EditController@update');
 
-        Route::delete( 'delete',       'DeleteController@index')->name('mail.delete');
+        Route::delete( 'delete/{id}',   'DeleteController@index')->name('mail.delete');
 
-        Route::patch( 'delete',        'RestoreController@index')->name('mail.restore');
+        Route::patch( 'restore/{id}',   'RestoreController@index')->name('mail.restore');
     });
 });
 
