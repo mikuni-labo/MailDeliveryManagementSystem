@@ -2,7 +2,7 @@
     <label for="name" class="col-md-4 control-label">ログイン名</label>
 
     <div class="col-md-6">
-        {!! Form::text('name', isset($row->name) ? $row->name : null, ['required', $mode === 'register' ? 'autofocus' : null, 'class' => 'form-control', 'id' => 'name', 'maxlength' => '255', 'placeholder' => '']) !!}
+        {!! Form::text('name', isset($row->name) ? $row->name : null, ['required', $mode === 'add' ? 'autofocus' : null, 'class' => 'form-control', 'id' => 'name', 'maxlength' => '255', 'placeholder' => '']) !!}
 
         @if( $errors->has('name') )
             <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
@@ -26,7 +26,7 @@
     <label for="password" class="col-md-4 control-label">パスワード</label>
 
     <div class="col-md-6">
-        <input id="password" type="password" class="form-control" name="password" maxlength="255" placeholder="{{ $mode === 'modify' ? '変更する場合のみ入力してください。' : '' }}" {{ $mode === 'register' ? 'required' : '' }} />
+        <input id="password" type="password" class="form-control" name="password" maxlength="255" placeholder="{{ $mode === 'edit' ? '変更する場合のみ入力してください。' : '' }}" {{ $mode === 'add' ? 'required' : '' }} />
 
         @if( $errors->has('password') )
             <span class="help-block"><strong>{{ $errors->first('password') }}</strong></span>
@@ -38,7 +38,7 @@
     <label for="password-confirm" class="col-md-4 control-label">パスワード（確認）</label>
 
     <div class="col-md-6">
-        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" maxlength="255" placeholder="{{ $mode === 'modify' ? '変更する場合のみ入力してください。' : '' }}" {{ $mode === 'register' ? 'required' : '' }} />
+        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" maxlength="255" placeholder="{{ $mode === 'edit' ? '変更する場合のみ入力してください。' : '' }}" {{ $mode === 'add' ? 'required' : '' }} />
 
         @if( $errors->has('password_confirmation') )
             <span class="help-block"><strong>{{ $errors->first('password_confirmation') }}</strong></span>
