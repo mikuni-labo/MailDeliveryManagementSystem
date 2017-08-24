@@ -17,7 +17,7 @@ class CreateMailTemplatesTable extends Migration
             $table->increments('id');
             $table->string('subject');
             $table->text('content');
-            $table->tinyInteger('from');
+            $table->tinyInteger('from')->unsigned()->default(1);
 
             $table->timestamps();
             $table->softDeletes();
