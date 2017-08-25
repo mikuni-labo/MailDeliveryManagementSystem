@@ -6,14 +6,18 @@
 
 @section('content')
     <div class="container">
+        @include('common.parts.breadcrumb', ['width' => 8, 'offset' => 2])
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-info">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;アカウント登録</div>
+                    <div class="panel-heading lead"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;アカウント登録</div>
                     <div class="panel-body">
                         @include('flash::message')
 
-                        @include('common.form.user', ['mode' => 'register'])
+                        {!! Form::open(['url' => route('register'), 'method' => 'post', 'class' => 'form-horizontal', ]) !!}
+                            @include('common.form.user', ['mode' => 'add'])
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

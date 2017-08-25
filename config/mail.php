@@ -120,4 +120,10 @@ return [
         ],
     ],
 
+    'template_tags' => [
+        'name'         => '氏名',
+        'organization' => '組織名',
+        'position'     => '部署名',
+    ],
+
 ];

@@ -31,7 +31,8 @@
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;来場者管理&nbsp;<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;テスト</a></li>
+                            <li><a href="{{ route('visitor') }}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;来場者一覧</a></li>
+                            <li><a href="{{ route('visitor.add') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;来場者登録</a></li>
                         </ul>
                     </li>
 
@@ -40,7 +41,8 @@
                             <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;メール配信管理&nbsp;<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;テスト</a></li>
+                            <li><a href="{{ route('mail') }}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;テンプレート一覧</a></li>
+                            <li><a href="{{ route('mail.add') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;テンプレート登録</a></li>
                         </ul>
                     </li>
                 @endif
@@ -48,8 +50,8 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
-                @if( Auth::guest() )
-                    <li>
+                <li class="dropdown">
+                    @if( Auth::guest() )
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;GUEST <span class="caret"></span>
                         </a>
@@ -60,13 +62,10 @@
                                 <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;登録</a></li>
                             @endif
                         </ul>
-                    </li>
-                @else
-                    <li class="dropdown">
+                    @else
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;{{ Auth::user()->name }}&nbsp;としてログインしています。
@@ -93,8 +92,8 @@
                                 </form>
                             </li>
                         </ul>
-                    </li>
-                @endif
+                    @endif
+                </li>
             </ul>
         </div>
     </div>

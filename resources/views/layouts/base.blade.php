@@ -10,23 +10,19 @@
         @yield('meta')
 
         <!-- Styles -->
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <link type="text/css" href="{{ mix('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">
             @include('layouts.header')
 
-            <div class="container">
-                @include('common.parts.breadcrumb')
-
-                @yield('content')
-            </div>
+            @yield('content')
 
             @include('layouts.footer')
         </div>
 
         <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
         @yield('script')
     </body>
 </html>

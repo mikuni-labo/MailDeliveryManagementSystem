@@ -6,10 +6,12 @@
 
 @section('content')
     <div class="container">
+        @include('common.parts.breadcrumb', ['width' => 8, 'offset' => 2])
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;ログイン</div>
+                    <div class="panel-heading lead"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;ログイン</div>
                     <div class="panel-body">
                         {!! Form::open(['class' => 'form-horizontal', 'url' => route('login')]) !!}
 

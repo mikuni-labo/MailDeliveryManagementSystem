@@ -12,8 +12,10 @@ let mix = require('laravel-mix');
  */
 
 // コンパイル
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix
+    .js('resources/assets/js/app.js', 'public/js')
+    // .js('resources/assets/js/mail.js', 'public/js')
+    .sass('resources/assets/sass/app.scss', 'public/css');
 
 // バージョニング
 if ( mix.inProduction() ) {
