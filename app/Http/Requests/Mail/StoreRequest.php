@@ -13,7 +13,7 @@ class StoreRequest extends MailRequest
     {
         return [
             'subject'  => 'required|string|max:255',
-//             'from'     => 'required|numeric|min:1|max:255',
+            'from'     => 'required|numeric|min:1|max:255',
             'content'  => 'required|string|min:1|max:65535',
         ];
     }

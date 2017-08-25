@@ -18,8 +18,15 @@
     <label for="from" class="col-md-2 control-label">差出人</label>
 
     <div class="col-md-9 form-control-static">
+        <select name="from" class="form-control" id="from">
+            <option value="1"<?php if($mode === 'edit'): ?> selected="selected"<?php endif; ?>>
+                <code>{{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;</code>
+            </option>
+        </select>
+
         @if(false)
-            {!! Form::from('from', isset($row->from) ? $row->from : null, ['required', 'class' => 'form-control', 'id' => 'from', 'maxlength' => '255', 'placeholder' => '']) !!}
+            // 調整中
+            {!! Form::select('from', isset($row->from) ? $row->from : null, ['required', 'class' => 'form-control', 'id' => 'from', 'maxlength' => '255', 'placeholder' => '']) !!}
         @endif
 
         @if( $errors->has('from') )
