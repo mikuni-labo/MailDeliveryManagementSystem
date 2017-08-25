@@ -3,7 +3,7 @@
 @endif
 
 <div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">
-    <label for="subject" class="col-md-2 control-label">題名</label>
+    <label for="subject" class="col-md-2 control-label">題名<span class="attention">*</span></label>
 
     <div class="col-md-9 form-control-static">
         {!! Form::textarea('subject', isset($row->subject) ? $row->subject : null, ['required', $mode === 'add' ? 'autofocus' : null, 'class' => 'form-control', 'id' => 'subject', 'maxlength' => '255', 'placeholder' => '', 'rows' => '1']) !!}
@@ -15,7 +15,7 @@
 </div>
 
 <div class="form-group{{ $errors->has('from') ? ' has-error' : '' }}">
-    <label for="from" class="col-md-2 control-label">差出人</label>
+    <label for="from" class="col-md-2 control-label">差出人<span class="attention">*</span></label>
 
     <div class="col-md-9 form-control-static">
         <select name="from" class="form-control" id="from">
@@ -36,12 +36,14 @@
 </div>
 
 <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-    <label for="content" class="col-md-2 control-label">本文</label>
+    <label for="content" class="col-md-2 control-label">本文<span class="attention">*</span></label>
 
     <div class="col-md-9 form-control-static">
         @foreach( $MailComposer['template_tags'] as $key => $val )
             <button type="button" class="btn btn-light btn-xs" id="{{ $key }}" onclick="insertTemplateTag('content', '[##{{ $key }}##]');">[##{{ $val }}##]</button>
         @endforeach
+
+        <span class="glyphicon glyphicon-question-sign text-warning" data-toggle="tooltip" title="挿入タグはメール送信時に来場者情報に置き替わります。<br>未設定の場合は表示されません。"></span>
 
         {!! Form::textarea('content', isset($row->content) ? $row->content : null, ['required', $mode === 'add' ? 'autofocus' : null, 'class' => 'form-control mt-5', 'id' => 'content', 'maxlength' => '255', 'placeholder' => '', 'rows' => '9']) !!}
 

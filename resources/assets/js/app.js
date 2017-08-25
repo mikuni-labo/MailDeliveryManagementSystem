@@ -20,3 +20,22 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+/**
+ *ツールチップ
+ */
+$(function () {
+    $('[data-toggle="tooltip"]')
+    .tooltip({
+        html: true,
+        container: 'body'
+    })
+    .on("show.bs.tooltip", function() {
+        setTimeout(function () {
+            $(".tooltip").fadeOut('fast', function() {
+                $(this).remove();
+            });
+        }, 8000);
+    })
+    $("[data-toggle=tooltip]").tooltip();
+});
