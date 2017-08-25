@@ -39,7 +39,11 @@
     <label for="content" class="col-md-2 control-label">本文</label>
 
     <div class="col-md-9 form-control-static">
-        {!! Form::textarea('content', isset($row->content) ? $row->content : null, ['required', $mode === 'add' ? 'autofocus' : null, 'class' => 'form-control', 'id' => 'content', 'maxlength' => '255', 'placeholder' => '', 'rows' => '9']) !!}
+        @foreach( $MailComposer['template_tags'] as $key => $val )
+            <button type="button" class="btn btn-light btn-xs" id="{{ $key }}" onclick="insertTemplateTag('content', '[##{{ $key }}##]');">[##{{ $val }}##]</button>
+        @endforeach
+
+        {!! Form::textarea('content', isset($row->content) ? $row->content : null, ['required', $mode === 'add' ? 'autofocus' : null, 'class' => 'form-control mt-5', 'id' => 'content', 'maxlength' => '255', 'placeholder' => '', 'rows' => '9']) !!}
 
         @if( $errors->has('content') )
             <span class="help-block"><strong>{{ $errors->first('content') }}</strong></span>

@@ -10,7 +10,7 @@
         @yield('meta')
 
         <!-- Styles -->
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <link type="text/css" href="{{ mix('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">
@@ -22,7 +22,7 @@
         </div>
 
         <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
         @yield('script')
     </body>
 </html>
