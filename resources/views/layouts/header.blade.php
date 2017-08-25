@@ -50,8 +50,8 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
-                @if( Auth::guest() )
-                    <li>
+                <li class="dropdown">
+                    @if( Auth::guest() )
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;GUEST <span class="caret"></span>
                         </a>
@@ -62,13 +62,10 @@
                                 <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;登録</a></li>
                             @endif
                         </ul>
-                    </li>
-                @else
-                    <li class="dropdown">
+                    @else
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;{{ Auth::user()->name }}&nbsp;としてログインしています。
@@ -95,8 +92,8 @@
                                 </form>
                             </li>
                         </ul>
-                    </li>
-                @endif
+                    @endif
+                </li>
             </ul>
         </div>
     </div>
