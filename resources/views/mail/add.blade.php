@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-info">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;メールテンプレート登録</div>
+                    <div class="panel-heading lead"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;テンプレート登録</div>
                     <div class="panel-body">
                         @include('flash::message')
 

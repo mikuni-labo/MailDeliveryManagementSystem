@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <h2 class="h2"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;メールテンプレート一覧</h2>
+                <div class="lead"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;テンプレート一覧</div>
 
                 @include('flash::message')
 

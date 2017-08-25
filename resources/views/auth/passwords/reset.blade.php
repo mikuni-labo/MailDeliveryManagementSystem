@@ -11,8 +11,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-danger">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;パスワード再設定</div>
-
+                    <div class="panel-heading lead"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;パスワード再設定</div>
                     <div class="panel-body">
                         @if( session('status') )
                             <div class="alert alert-success">{{ session('status') }}</div>
