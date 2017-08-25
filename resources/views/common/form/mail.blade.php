@@ -42,6 +42,7 @@
         @foreach( $MailComposer['template_tags'] as $key => $val )
             <button type="button" class="btn btn-light btn-xs" id="{{ $key }}" onclick="insertTemplateTag('content', '[##{{ $key }}##]');">[##{{ $val }}##]</button>
         @endforeach
+        <span class="glyphicon glyphicon-question-sign text-warning" data-toggle="tooltip" title="挿入タグはメール送信時に来場者情報に置き替わります。<br>未設定の場合は表示されません。"></span>
 
         {!! Form::textarea('content', isset($row->content) ? $row->content : null, ['required', $mode === 'add' ? 'autofocus' : null, 'class' => 'form-control mt-5', 'id' => 'content', 'maxlength' => '255', 'placeholder' => '', 'rows' => '9']) !!}
 
