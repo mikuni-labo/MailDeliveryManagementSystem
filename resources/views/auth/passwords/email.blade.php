@@ -20,7 +20,7 @@
                         {!! Form::open(['class' => 'form-horizontal', 'url' => route('password.email')]) !!}
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">メールアドレス</label>
+                                <label for="email" class="col-md-4 control-label">メールアドレス<span class="attention">*</span></label>
 
                                 <div class="col-md-6">
                                     {!! Form::email('email', null, ['required', 'autofocus', 'class' => 'form-control', 'id' => 'email', 'maxlength' => '255', 'placeholder' => '']) !!}
