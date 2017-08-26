@@ -51,17 +51,19 @@
                                     <td class="text-center">{{ $result->created_at }}</td>
                                     <td class="text-center">{{ $result->updated_at }}</td>
                                     <td class="text-center">
-                                        @if( ! $result->deleted_at )
+                                        @if( $result->deleted_at )
                                             <a href="{{ route('mail.edit', $result->id) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        @if( $result->deleted_at )
-                                            <a href="{{ route('mail.restore', $result->id) }}" class="btn btn-sm btn-info" data-toggle="confirmation" onclick="if(!confirm('復旧させますか?')) return false;">
-                                            <span class="glyphicon glyphicon-repeat" data-toggle="tooltip" title="復旧"></span></a>
+                                        @if( ! $result->deleted_at )
+                                            <a href="{{ route('mail.restore', $result->id) }}" class="btn btn-sm btn-info" onclick="event.preventDefault(); restoreForm('{{ route('mail.restore', $result->id) }}');">
+                                                <span class="glyphicon glyphicon-repeat" data-toggle="tooltip" title="復旧"></span>
+                                            </a>
                                         @else
-                                            <a href="{{ route('mail.delete', $result->id) }}" class="btn btn-sm btn-danger" data-toggle="confirmation" onclick="if(!confirm('本当に削除しますか?')) return false;">
-                                            <span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="論理削除"></span></a>
+                                            <a href="{{ route('mail.delete', $result->id) }}" class="btn btn-sm btn-danger" onclick="event.preventDefault(); deleteForm('{{ route('mail.delete', $result->id) }}');">
+                                                <span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="削除"></span>
+                                            </a>
                                         @endif
                                     </td>
                                 </tr>
@@ -80,6 +82,26 @@
 
 @section('script')
     <script type="text/javascript">
-        //
+        /**
+         * レコード削除
+         */
+        function deleteForm(url, form, msg){
+            if( confirm('本当に削除しますか？') ) {
+                var form = document.getElementById('');
+                form.action = url;
+                form.submit();
+            }
+        };
+
+        /**
+         * レコード復旧
+         */
+        function restoreForm(url){
+            if( confirm('本当に復旧させますか？') ) {
+                var form = document.getElementById('restore-form');
+                form.action = url;
+                form.submit();
+            }
+        };
     </script>
 @endsection

@@ -26,18 +26,18 @@ const app = new Vue({
  * ログアウト
  */
 (function (){
-    var logout = document.getElementById("logout");
+    var logoutBtn = document.getElementById("logout");
 
-    if(logout) {
-        logout.onclick = function (e) {
+    if(logoutBtn) {
+        logoutBtn.onclick = function (e) {
             e.preventDefault();
+
             if( confirm('ログアウトしますか？') ) {
                 document.getElementById('logout-form').submit();
             }
         }
     }
 })();
-
 
 /**
  * ツールチップ

@@ -79,11 +79,9 @@
                             <li role="separator" class="divider"></li>
 
                             <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); logout();">
+                                <a href="{{ route('logout') }}" id="logout">
                                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;ログアウト
                                 </a>
-
-                                {!! Form::open(['id' => 'logout-form', 'url' => route('logout'), 'method' => 'POST', 'style' => 'display: none;', ]) !!}{!! Form::close() !!}
                             </li>
                         </ul>
                     @endif
