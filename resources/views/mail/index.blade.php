@@ -20,20 +20,18 @@
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
-                                <col width="8%">
-                                <col width="25%">
-                                <col width="25%">
+                                <col width="7%">
+                                <col width="30%">
+                                <col width="38%">
                                 <col width="15%">
-                                <col width="15%">
-                                <col width="6%">
-                                <col width="6%">
+                                <col width="5%">
+                                <col width="5%">
                             </colgroup>
 
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">題名</th>
                                 <th class="text-center">差出人</th>
-                                <th class="text-center">登録日時</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">編集</th>
                                 <th class="text-center">削除</th>
@@ -49,8 +47,11 @@
                                             <a href="{{ route('mail.edit', $result->id) }}">{{ $result->subject }}</a>
                                         @endif
                                     </td>
-                                    <td class="text-center">{{ $result->from }}</td>
-                                    <td class="text-center">{{ $result->created_at }}</td>
+                                    <td class="text-center">
+                                        @if( ! $result->deleted_at ) <code> @endif
+                                            {{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;
+                                        @if( ! $result->deleted_at ) </code> @endif
+                                    </td>
                                     <td class="text-center">{{ $result->updated_at }}</td>
                                     <td class="text-center">
                                         @if( ! $result->deleted_at )

@@ -24,11 +24,6 @@
             </option>
         </select>
 
-        @if(false)
-            // 調整中
-            {!! Form::select('from', isset($row->from) ? $row->from : null, ['required', 'class' => 'form-control', 'id' => 'from', 'maxlength' => '255', 'placeholder' => '']) !!}
-        @endif
-
         @if( $errors->has('from') )
             <span class="help-block"><strong>{{ $errors->first('from') }}</strong></span>
         @endif
