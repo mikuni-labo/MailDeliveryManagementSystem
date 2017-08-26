@@ -42,7 +42,7 @@ class ModifyController extends Controller
     /**
      * Update
      *
-     * @method POST
+     * @method PUT
      * @param ModifyRequest $formRequest
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */

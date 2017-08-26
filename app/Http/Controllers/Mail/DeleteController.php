@@ -27,12 +27,17 @@ class DeleteController extends Controller
     /**
      * Show visitors list.
      *
-     * @method GET
+     * @method DELETE
+     * @param integer $id
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function index()
+    public function index($id)
     {
-        dd('未実装');
+        $MailTemplate = MailTemplate::findOrFail($id);
+        $MailTemplate->delete();
+
+        \Flash::info('テンプレートを1件削除しました。');
+        return redirect()->route('mail');
     }
 
 }

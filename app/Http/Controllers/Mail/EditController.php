@@ -44,7 +44,7 @@ class EditController extends Controller
     /**
      * Update
      *
-     * @method POST
+     * @method PUT
      * @param EditRequest $formRequest
      * @param integer $id
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory

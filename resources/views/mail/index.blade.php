@@ -43,7 +43,9 @@
                                 <tr <?php if( $result->deleted_at ) :?> style="background-color: #bbb;"<?php endif;?>>
                                     <td class="text-center">{{ $result->id }}</td>
                                     <td class="text-center">
-                                        @if( ! $result->deleted_at )
+                                        @if( $result->deleted_at )
+                                            {{ $result->subject }}
+                                        @else
                                             <a href="{{ route('mail.edit', $result->id) }}">{{ $result->subject }}</a>
                                         @endif
                                     </td>
@@ -51,12 +53,12 @@
                                     <td class="text-center">{{ $result->created_at }}</td>
                                     <td class="text-center">{{ $result->updated_at }}</td>
                                     <td class="text-center">
-                                        @if( $result->deleted_at )
+                                        @if( ! $result->deleted_at )
                                             <a href="{{ route('mail.edit', $result->id) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        @if( ! $result->deleted_at )
+                                        @if( $result->deleted_at )
                                             <a href="{{ route('mail.restore', $result->id) }}" class="btn btn-sm btn-info" onclick="event.preventDefault(); restoreForm('{{ route('mail.restore', $result->id) }}');">
                                                 <span class="glyphicon glyphicon-repeat" data-toggle="tooltip" title="復旧"></span>
                                             </a>
@@ -87,7 +89,7 @@
          */
         function deleteForm(url, form, msg){
             if( confirm('本当に削除しますか？') ) {
-                var form = document.getElementById('');
+                var form = document.getElementById('delete-form');
                 form.action = url;
                 form.submit();
             }
