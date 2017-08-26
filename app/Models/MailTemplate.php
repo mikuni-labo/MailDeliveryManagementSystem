@@ -76,6 +76,9 @@ class MailTemplate extends Model
         // 登録時間の降順
         $query->orderBy('mail_templates.created_at', 'DESC');
 
+        // TODO 仮の措置
+        $query->withTrashed();
+
         return $query;
     }
 }

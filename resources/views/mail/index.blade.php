@@ -20,20 +20,18 @@
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
-                                <col width="8%">
-                                <col width="25%">
-                                <col width="25%">
+                                <col width="7%">
+                                <col width="30%">
+                                <col width="38%">
                                 <col width="15%">
-                                <col width="15%">
-                                <col width="6%">
-                                <col width="6%">
+                                <col width="5%">
+                                <col width="5%">
                             </colgroup>
 
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">題名</th>
                                 <th class="text-center">差出人</th>
-                                <th class="text-center">登録日時</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">編集</th>
                                 <th class="text-center">削除</th>
@@ -43,12 +41,17 @@
                                 <tr <?php if( $result->deleted_at ) :?> style="background-color: #bbb;"<?php endif;?>>
                                     <td class="text-center">{{ $result->id }}</td>
                                     <td class="text-center">
-                                        @if( ! $result->deleted_at )
+                                        @if( $result->deleted_at )
+                                            {{ $result->subject }}
+                                        @else
                                             <a href="{{ route('mail.edit', $result->id) }}">{{ $result->subject }}</a>
                                         @endif
                                     </td>
-                                    <td class="text-center">{{ $result->from }}</td>
-                                    <td class="text-center">{{ $result->created_at }}</td>
+                                    <td class="text-center">
+                                        @if( ! $result->deleted_at ) <code> @endif
+                                            {{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;
+                                        @if( ! $result->deleted_at ) </code> @endif
+                                    </td>
                                     <td class="text-center">{{ $result->updated_at }}</td>
                                     <td class="text-center">
                                         @if( ! $result->deleted_at )
@@ -57,11 +60,13 @@
                                     </td>
                                     <td class="text-center">
                                         @if( $result->deleted_at )
-                                            <a href="{{ route('mail.restore', $result->id) }}" class="btn btn-sm btn-info" data-toggle="confirmation" onclick="if(!confirm('復旧させますか?')) return false;">
-                                            <span class="glyphicon glyphicon-repeat" data-toggle="tooltip" title="復旧"></span></a>
+                                            <a href="{{ route('mail.restore', $result->id) }}" class="btn btn-sm btn-info" onclick="event.preventDefault(); restoreForm('{{ route('mail.restore', $result->id) }}');">
+                                                <span class="glyphicon glyphicon-repeat" data-toggle="tooltip" title="復旧"></span>
+                                            </a>
                                         @else
-                                            <a href="{{ route('mail.delete', $result->id) }}" class="btn btn-sm btn-danger" data-toggle="confirmation" onclick="if(!confirm('本当に削除しますか?')) return false;">
-                                            <span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="論理削除"></span></a>
+                                            <a href="{{ route('mail.delete', $result->id) }}" class="btn btn-sm btn-danger" onclick="event.preventDefault(); deleteForm('{{ route('mail.delete', $result->id) }}');">
+                                                <span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="削除"></span>
+                                            </a>
                                         @endif
                                     </td>
                                 </tr>
@@ -80,6 +85,26 @@
 
 @section('script')
     <script type="text/javascript">
-        //
+        /**
+         * レコード削除
+         */
+        function deleteForm(url, form, msg){
+            if( confirm('本当に削除しますか？') ) {
+                var form = document.getElementById('delete-form');
+                form.action = url;
+                form.submit();
+            }
+        };
+
+        /**
+         * レコード復旧
+         */
+        function restoreForm(url){
+            if( confirm('本当に復旧させますか？') ) {
+                var form = document.getElementById('restore-form');
+                form.action = url;
+                form.submit();
+            }
+        };
     </script>
 @endsection

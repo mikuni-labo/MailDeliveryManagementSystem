@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
- require('./bootstrap');
+require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -21,8 +21,26 @@ const app = new Vue({
     el: '#app'
 });
 
+
 /**
- *ツールチップ
+ * ログアウト
+ */
+(function (){
+    var logoutBtn = document.getElementById("logout");
+
+    if(logoutBtn) {
+        logoutBtn.onclick = function (e) {
+            e.preventDefault();
+
+            if( confirm('ログアウトしますか？') ) {
+                document.getElementById('logout-form').submit();
+            }
+        }
+    }
+})();
+
+/**
+ * ツールチップ
  */
 $(function () {
     $('[data-toggle="tooltip"]')

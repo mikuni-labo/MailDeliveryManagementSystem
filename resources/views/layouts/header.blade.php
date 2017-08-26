@@ -79,17 +79,9 @@
                             <li role="separator" class="divider"></li>
 
                             <li>
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                        if( confirm('ログアウトしますか？') ) {
-                                             document.getElementById('logout-form').submit();
-                                        }">
+                                <a href="{{ route('logout') }}" id="logout">
                                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;ログアウト
                                 </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
                             </li>
                         </ul>
                     @endif

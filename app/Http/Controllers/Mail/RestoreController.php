@@ -27,12 +27,17 @@ class RestoreController extends Controller
     /**
      * Show visitors list.
      *
-     * @method GET
+     * @method PATCH
+     * @param integer $id
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function index()
+    public function index($id)
     {
-        dd('未実装');
+        $MailTemplate = MailTemplate::onlyTrashed()->findOrFail($id);
+        $MailTemplate->restore();
+
+        \Flash::success('テンプレートを1件復旧しました。');
+        return redirect()->route('mail');
     }
 
 }

@@ -21,6 +21,8 @@
             @include('layouts.footer')
         </div>
 
+        @include('common.form.common')
+
         <!-- Scripts -->
         <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
         @yield('script')
