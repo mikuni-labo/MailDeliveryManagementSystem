@@ -11,13 +11,20 @@ let mix = require('laravel-mix');
  |
  */
 
-// コンパイル
-mix
-    .js('resources/assets/js/app.js', 'public/js')
-    // .js('resources/assets/js/mail.js', 'public/js')
-    .sass('resources/assets/sass/app.scss', 'public/css');
+// sass
+mix.sass('resources/assets/sass/app.scss', 'public/css');
 
-// バージョニング
+// js
+mix.js('resources/assets/js/app.js', 'public/js')
+    .extract(['vue']);
+
+// mix.js('resources/assets/js/mail.js', 'public/js');
+
+
+
+// Versioning
 if ( mix.inProduction() ) {
-   mix.version();
+    mix.version();
+} else {
+	mix.sourceMaps();
 }

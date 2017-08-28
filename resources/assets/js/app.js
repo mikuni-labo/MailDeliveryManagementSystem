@@ -23,7 +23,7 @@ const app = new Vue({
 
 
 /**
- * ログアウト
+ * Logout
  */
 (function (){
     var logoutBtn = document.getElementById("logout");
@@ -40,9 +40,9 @@ const app = new Vue({
 })();
 
 /**
- * ツールチップ
+ * Bootstrap Tooltip
  */
-$(function () {
+(function (){
     $('[data-toggle="tooltip"]')
     .tooltip({
         html: true,
@@ -56,4 +56,4 @@ $(function () {
         }, 8000);
     })
     $("[data-toggle=tooltip]").tooltip();
-});
+})();

@@ -15,5 +15,7 @@ mix-manifest.json
 /public/hot
 /public/storage
 /public/css/app.css
-/public/js/app.js
 /public/fonts/vendor
+/public/js/manifest.js
+/public/js/vendor.js
+/public/js/app.js
