@@ -60,12 +60,12 @@
                                     </td>
                                     <td class="text-center">
                                         @if( $result->deleted_at )
-                                            <a href="{{ route('mail.restore', $result->id) }}" onclick="event.preventDefault();" class="btn btn-sm btn-info" id="restoreBtn">
-                                                <span class="glyphicon glyphicon-repeat" data-toggle="tooltip" title="復旧"></span>
+                                            <a href="{{ route('mail.restore', $result->id) }}" class="btn btn-sm btn-info" onclick="restoreRecord('{{ route('mail.restore', $result->id) }}'); return false;">
+                                                <span class="glyphicon glyphicon-repeat" aria-hidden="true" data-toggle="tooltip" title="復旧"></span>
                                             </a>
                                         @else
-                                            <a href="{{ route('mail.delete', $result->id) }}" onclick="event.preventDefault();" class="btn btn-sm btn-danger" id="deleteBtn">
-                                                <span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="削除"></span>
+                                            <a href="{{ route('mail.delete', $result->id) }}" class="btn btn-sm btn-danger" onclick="deleteRecord('{{ route('mail.delete', $result->id) }}'); return false;">
+                                                <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="tooltip" title="削除"></span>
                                             </a>
                                         @endif
                                     </td>
@@ -86,6 +86,26 @@
 @section('script')
     @if(false)<script type="text/javascript" src="{{ mix('js/mail.js') }}"></script>@endif
     <script type="text/javascript">
-        //
+        /**
+         * Delete a record.
+         */
+         function deleteRecord(url) {
+             if( confirm('本当に削除しますか？') ) {
+                 var form = document.getElementById('delete-form');
+                 form.action = url;
+                 form.submit();
+             }
+         }
+
+        /**
+         * Restore a record.
+         */
+        function restoreRecord(url) {
+            if( confirm('本当に復旧しますか？') ) {
+                var form = document.getElementById('restore-form');
+                form.action = url;
+                form.submit();
+            }
+        }
     </script>
 @endsection

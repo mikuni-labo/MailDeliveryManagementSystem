@@ -21,7 +21,6 @@ const app = new Vue({
     el: '#app'
 });
 
-
 /**
  * Logout
  */
@@ -34,44 +33,6 @@ const app = new Vue({
 
             if( confirm('ログアウトしますか？') ) {
                 document.getElementById('logout-form').submit();
-            }
-        }
-    }
-})();
-
-/**
- * Delete a record.
- */
-(function (){
-    var deleteBtn = document.getElementById('deleteBtn');
-
-    if(deleteBtn) {
-    	    deleteBtn.onclick = function (e) {
-    	        e.preventDefault();
-
-            if( confirm('本当に削除しますか？') ) {
-                var form = document.getElementById('delete-form');
-                form.action = deleteBtn.href;
-                form.submit();
-            }
-        }
-    }
-})();
-
-/**
- * Restore a record.
- */
-(function (){
-    var restoreBtn = document.getElementById('restoreBtn');
-
-    if(restoreBtn) {
-    	    restoreBtn.onclick = function (e) {
-    	        e.preventDefault();
-
-            if( confirm('本当に復旧しますか？') ) {
-                var form = document.getElementById('restore-form');
-                form.action = restoreBtn.href;
-                form.submit();
             }
         }
     }
