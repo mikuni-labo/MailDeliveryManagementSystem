@@ -19,3 +19,4 @@ mix-manifest.json
 /public/js/manifest.js
 /public/js/vendor.js
 /public/js/app.js
+/public/js/mail.js
