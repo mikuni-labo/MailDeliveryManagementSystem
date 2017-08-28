@@ -33,6 +33,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('visitor') }}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;来場者一覧</a></li>
                             <li><a href="{{ route('visitor.add') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;来場者登録</a></li>
+                            <li><a href="{{ route('visitor.csv') }}"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;CSVアップロード</a></li>
                         </ul>
                     </li>
 

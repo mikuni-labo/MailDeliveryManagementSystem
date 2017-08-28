@@ -43,7 +43,7 @@ class EditController extends Controller
      * @method PUT
      * @param EditRequest $formRequest
      * @param integer $id
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(EditRequest $formRequest, $id)
     {
