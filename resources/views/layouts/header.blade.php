@@ -79,7 +79,7 @@
                             <li role="separator" class="divider"></li>
 
                             <li>
-                                <a href="{{ route('logout') }}" id="logoutBtn">
+                                <a href="{{ route('logout') }}" onclick="return false;" id="logoutBtn">
                                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;ログアウト
                                 </a>
                             </li>
