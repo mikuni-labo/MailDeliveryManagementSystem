@@ -21,12 +21,11 @@ const app = new Vue({
     el: '#app'
 });
 
-
 /**
- * ログアウト
+ * Logout
  */
 (function (){
-    var logoutBtn = document.getElementById("logout");
+    var logoutBtn = document.getElementById('logoutBtn');
 
     if(logoutBtn) {
         logoutBtn.onclick = function (e) {
@@ -40,9 +39,9 @@ const app = new Vue({
 })();
 
 /**
- * ツールチップ
+ * Bootstrap Tooltip
  */
-$(function () {
+(function (){
     $('[data-toggle="tooltip"]')
     .tooltip({
         html: true,
@@ -56,4 +55,4 @@ $(function () {
         }, 8000);
     })
     $("[data-toggle=tooltip]").tooltip();
-});
+})();
