@@ -26,6 +26,7 @@
 @endsection
 
 @section('script')
+    <script type="text/javascript" src="{{ mix('js/mail.js') }}"></script>
     <script type="text/javascript">
         /**
          * メールテンプレートタグを挿入

@@ -26,7 +26,29 @@
 @endsection
 
 @section('script')
+    <script type="text/javascript" src="{{ mix('js/mail.js') }}"></script>
     <script type="text/javascript">
-        //
+        /**
+         * メールテンプレートタグを挿入
+         *
+         * @param string fieldtId
+         * @param string tag
+         */
+        function insertTemplateTag(fieldtId, tag) {
+            	var fieldt   = document.getElementById(fieldtId);
+
+            	var sentence = fieldt.value;
+            	var len      = sentence.length;
+            	var pos      = fieldt.selectionStart;
+
+            	var before   = sentence.substr(0, pos);
+            	var word     = tag;
+            	var after    = sentence.substr(pos, len);
+
+            	sentence     = before + word + after;
+
+            	fieldt.value = sentence;
+            	fieldt.focus();
+        }
     </script>
 @endsection
