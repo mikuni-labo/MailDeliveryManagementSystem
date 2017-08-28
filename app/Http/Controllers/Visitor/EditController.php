@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Visitor;
 
-use App\Http\Requests\Visitor\StoreRequest;
+use App\Http\Requests\Visitor\EditRequest;
 use App\Models\Visitor;
 use App\Http\Controllers\Controller;
 
-class StoreController extends Controller
+class EditController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,31 +23,35 @@ class StoreController extends Controller
     }
 
     /**
-     * Show register form.
+     * Show modify form.
      *
      * @method GET
+     * @param integer $id
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function index()
+    public function index($id)
     {
-        return view('visitor.add')->with([
-            'breadcrumb' => $this->setBreadcrumb('Add', route('visitor.add')),
+        return view('visitor.edit')->with([
+            'breadcrumb' => $this->setBreadcrumb('Edit', route('visitor.edit', [$id])),
+            'row'        => Visitor::findOrFail($id),
         ]);
     }
 
     /**
-     * Store
+     * Update
      *
-     * @method POST
-     * @param StoreRequest $formRequest
+     * @method PUT
+     * @param EditRequest $formRequest
+     * @param integer $id
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function store(StoreRequest $formRequest)
+    public function update(EditRequest $formRequest, $id)
     {
         /** @var Visitor $Visitor */
-        $Visitor = Visitor::create( request()->all() );
+        $Visitor = Visitor::findOrFail($id);
+        $Visitor->update(request()->all());
 
-        \Flash::success('来場者を新規登録しました。');
+        \Flash::success('来場者情報を更新しました。');
 
         return redirect()->route('visitor');
     }
