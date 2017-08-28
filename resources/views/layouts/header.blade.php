@@ -31,8 +31,8 @@
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;来場者管理&nbsp;<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('visitor') }}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;来場者一覧</a></li>
-                            <li><a href="{{ route('visitor.add') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;来場者登録</a></li>
+                            <li class="disabled"><a href="{{ route('visitor') }}" onclick="return false;"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;来場者一覧</a></li>
+                            <li class="disabled"><a href="{{ route('visitor.add') }}" onclick="return false;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;来場者登録</a></li>
                         </ul>
                     </li>
 
