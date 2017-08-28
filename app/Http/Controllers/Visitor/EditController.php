@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Mail;
+namespace App\Http\Controllers\Visitor;
 
-use App\Http\Requests\Mail\EditRequest;
-use App\Models\MailTemplate;
+use App\Http\Requests\Visitor\EditRequest;
+use App\Models\Visitor;
 use App\Http\Controllers\Controller;
 
 class EditController extends Controller
 {
-    /** @var EditRequest */
-    private $formRequest;
-
     /**
      * Create a new controller instance.
      *
@@ -22,8 +19,7 @@ class EditController extends Controller
 
         parent::__construct();
 
-        $this->setBreadcrumb('Mail', route('mail'));
-        $this->formRequest = new EditRequest;
+        $this->setBreadcrumb('Visitor', route('visitor'));
     }
 
     /**
@@ -35,9 +31,9 @@ class EditController extends Controller
      */
     public function index($id)
     {
-        return view('mail.edit')->with([
-            'breadcrumb' => $this->setBreadcrumb('Edit', route('mail.edit', [$id])),
-            'row'        => MailTemplate::findOrFail($id),
+        return view('visitor.edit')->with([
+            'breadcrumb' => $this->setBreadcrumb('Edit', route('visitor.edit', [$id])),
+            'row'        => Visitor::findOrFail($id),
         ]);
     }
 
@@ -51,12 +47,12 @@ class EditController extends Controller
      */
     public function update(EditRequest $formRequest, $id)
     {
-        /** @var MailTemplate $MailTemplate */
-        $MailTemplate = MailTemplate::findOrFail($id);
-        $MailTemplate->update(request()->all());
+        /** @var Visitor $Visitor */
+        $Visitor = Visitor::findOrFail($id);
+        $Visitor->update(request()->all());
 
-        \Flash::success('テンプレート情報を更新しました。');
+        \Flash::success('来場者情報を更新しました。');
 
-        return redirect()->route('mail');
+        return redirect()->route('visitor');
     }
 }

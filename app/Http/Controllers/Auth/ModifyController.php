@@ -8,9 +8,6 @@ use App\Http\Controllers\Controller;
 
 class ModifyController extends Controller
 {
-    /** @var ModifyRequest */
-    private $formRequest;
-
     /**
      * Create a new controller instance.
      *

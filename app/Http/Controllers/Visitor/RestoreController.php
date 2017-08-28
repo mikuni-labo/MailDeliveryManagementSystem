@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Mail;
+namespace App\Http\Controllers\Visitor;
 
-use App\Models\MailTemplate;
+use App\Models\Visitor;
 use App\Http\Controllers\Controller;
 
-class DeleteController extends Controller
+class RestoreController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -22,18 +22,17 @@ class DeleteController extends Controller
     /**
      * Show visitors list.
      *
-     * @method DELETE
+     * @method PATCH
      * @param integer $id
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
     public function index($id)
     {
-        /** @var MailTemplate $MailTemplate */
-        $MailTemplate = MailTemplate::findOrFail($id);
-        $MailTemplate->delete();
+        $Visitor = Visitor::onlyTrashed()->findOrFail($id);
+        $Visitor->restore();
 
-        \Flash::info('テンプレートを1件削除しました。');
-        return redirect()->route('mail');
+        \Flash::success('来場者情報を1件復旧しました。');
+        return redirect()->route('visitor');
     }
 
 }

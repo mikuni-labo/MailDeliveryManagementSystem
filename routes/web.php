@@ -39,9 +39,12 @@ Route::group([
         'namespace'  => 'Visitor',
     ], function() {
         Route::get( '/',                'ListController@index')->name('visitor');
-
         Route::get( 'add',              'StoreController@index')->name('visitor.add');
         Route::post('add',              'StoreController@store');
+        Route::get( 'edit/{id}',        'EditController@index')->name('visitor.edit');
+        Route::put( 'edit/{id}',        'EditController@update');
+        Route::delete('delete/{id}',    'DeleteController@index')->name('visitor.delete');
+        Route::patch( 'restore/{id}',   'RestoreController@index')->name('visitor.restore');
     });
 
     /**
@@ -52,15 +55,11 @@ Route::group([
         'namespace'  => 'Mail',
     ], function() {
         Route::get( '/',                'ListController@index')->name('mail');
-
         Route::get( 'add',              'StoreController@index')->name('mail.add');
         Route::post('add',              'StoreController@store');
-
         Route::get( 'edit/{id}',        'EditController@index')->name('mail.edit');
         Route::put( 'edit/{id}',        'EditController@update');
-
-        Route::delete( 'delete/{id}',   'DeleteController@index')->name('mail.delete');
-
+        Route::delete('delete/{id}',    'DeleteController@index')->name('mail.delete');
         Route::patch( 'restore/{id}',   'RestoreController@index')->name('mail.restore');
     });
 });

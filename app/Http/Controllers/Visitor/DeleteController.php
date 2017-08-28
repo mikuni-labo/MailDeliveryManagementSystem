@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Mail;
+namespace App\Http\Controllers\Visitor;
 
-use App\Models\MailTemplate;
+use App\Models\Visitor;
 use App\Http\Controllers\Controller;
 
 class DeleteController extends Controller
@@ -28,12 +28,11 @@ class DeleteController extends Controller
      */
     public function index($id)
     {
-        /** @var MailTemplate $MailTemplate */
-        $MailTemplate = MailTemplate::findOrFail($id);
-        $MailTemplate->delete();
+        $Visitor = Visitor::findOrFail($id);
+        $Visitor->delete();
 
-        \Flash::info('テンプレートを1件削除しました。');
-        return redirect()->route('mail');
+        \Flash::info('来場者を1件削除しました。');
+        return redirect()->route('visitor');
     }
 
 }

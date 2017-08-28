@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Visitor;
 
-use App\Http\Requests\Mail\StoreRequest;
+use App\Http\Requests\Visitor\StoreRequest;
+use App\Models\Visitor;
 use App\Http\Controllers\Controller;
 
 class StoreController extends Controller
 {
-    /** @var StoreRequest */
-//     private $formRequest;
-
     /**
      * Create a new controller instance.
      *
@@ -32,10 +30,9 @@ class StoreController extends Controller
      */
     public function index()
     {
-        dd('未実装');
-//         return view('auth.modify')->with([
-//             'breadcrumb' => $this->setBreadcrumb('Add', route('visitor.add')),
-//         ]);
+        return view('visitor.add')->with([
+            'breadcrumb' => $this->setBreadcrumb('Add', route('visitor.add')),
+        ]);
     }
 
     /**
@@ -47,17 +44,11 @@ class StoreController extends Controller
      */
     public function store(StoreRequest $formRequest)
     {
-//         /** @var User $User */
-//         $User = auth()->user();
-//         $User->update(request()->all());
+        /** @var Visitor $Visitor */
+        $Visitor = Visitor::create( request()->all() );
 
-//         if( isset(request()->password) ) {
-//             $User->password = bcrypt(request()->password);
-//             $User->save();
-//         }
+        \Flash::success('来場者を新規登録しました。');
 
-//         \Flash::success('アカウント情報を更新しました。');
-
-//         return redirect()->route('modify');
+        return redirect()->route('visitor');
     }
 }

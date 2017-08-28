@@ -54,7 +54,7 @@ class MailTemplate extends Model
      *
      * @param array $search
      */
-    public static function search($search)
+    public static function search($search = [])
     {
         $query = self::query();
 
@@ -65,8 +65,8 @@ class MailTemplate extends Model
             mail_templates.content,
             mail_templates.created_at,
             mail_templates.updated_at,
-            mail_templates.deleted_at'
-        ));
+            mail_templates.deleted_at
+        '));
 
         // ID
         if( !empty($search['id']) ) {

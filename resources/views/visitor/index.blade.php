@@ -1,16 +1,16 @@
 @extends('layouts.base')
 
 @section('meta')
-    <title>テンプレート一覧｜{{ config('app.name') }}</title>
+    <title>来場者一覧｜{{ config('app.name') }}</title>
 @endsection
 
 @section('content')
     <div class="container">
-        @include('common.parts.breadcrumb', ['width' => 10, 'offset' => 1])
+        @include('common.parts.breadcrumb', ['width' => 12, 'offset' => 0])
 
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="lead"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;テンプレート一覧</div>
+            <div class="col-md-12 col-md-offset-0">
+                <div class="lead"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;来場者一覧</div>
 
                 @include('flash::message')
 
@@ -20,9 +20,12 @@
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
-                                <col width="7%">
-                                <col width="30%">
-                                <col width="38%">
+                                <col width="5%">
+                                <col width="23%">
+                                <col width="10%">
+                                <col width="15%">
+                                <col width="11%">
+                                <col width="11%">
                                 <col width="15%">
                                 <col width="5%">
                                 <col width="5%">
@@ -30,8 +33,11 @@
 
                             <tr>
                                 <th class="text-center">ID</th>
-                                <th class="text-center">題名</th>
-                                <th class="text-center">差出人</th>
+                                <th class="text-center">メールアドレス</th>
+                                <th class="text-center">氏名</th>
+                                <th class="text-center">組織名</th>
+                                <th class="text-center">部署名</th>
+                                <th class="text-center">役職</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">編集</th>
                                 <th class="text-center">削除</th>
@@ -42,29 +48,34 @@
                                     <td class="text-center">{{ $result->id }}</td>
                                     <td class="text-center">
                                         @if( $result->deleted_at )
-                                            {{ $result->subject }}
-                                        @else
-                                            <a href="{{ route('mail.edit', $result->id) }}">{{ $result->subject }}</a>
-                                        @endif
-                                    </td>
-                                    <td class="text-center">
-                                        @if( ! $result->deleted_at ) <code> @endif
-                                            {{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;
-                                        @if( ! $result->deleted_at ) </code> @endif
-                                    </td>
-                                    <td class="text-center">{{ $result->updated_at }}</td>
-                                    <td class="text-center">
-                                        @if( ! $result->deleted_at )
-                                            <a href="{{ route('mail.edit', $result->id) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
+                                            {{ $result->email }}
+                                        @elseif( $result->email )
+                                            <code>{{ $result->email }}</code>
                                         @endif
                                     </td>
                                     <td class="text-center">
                                         @if( $result->deleted_at )
-                                            <a href="{{ route('mail.restore', $result->id) }}" class="btn btn-sm btn-info" onclick="restoreRecord('{{ route('mail.restore', $result->id) }}'); return false;">
+                                            {{ $result->name }}
+                                        @elseif( $result->name )
+                                            <a href="{{ route('visitor.edit', $result->id) }}">{{ $result->name }}</a>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">{{ $result->organization }}</td>
+                                    <td class="text-center">{{ $result->department }}</td>
+                                    <td class="text-center">{{ $result->position }}</td>
+                                    <td class="text-center">{{ $result->updated_at }}</td>
+                                    <td class="text-center">
+                                        @if( ! $result->deleted_at )
+                                            <a href="{{ route('visitor.edit', $result->id) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        @if( $result->deleted_at )
+                                            <a href="{{ route('visitor.restore', $result->id) }}" class="btn btn-sm btn-info" onclick="restoreRecord('{{ route('visitor.restore', $result->id) }}'); return false;">
                                                 <span class="glyphicon glyphicon-repeat" aria-hidden="true" data-toggle="tooltip" title="復旧"></span>
                                             </a>
                                         @else
-                                            <a href="{{ route('mail.delete', $result->id) }}" class="btn btn-sm btn-danger" onclick="deleteRecord('{{ route('mail.delete', $result->id) }}'); return false;">
+                                            <a href="{{ route('visitor.delete', $result->id) }}" class="btn btn-sm btn-danger" onclick="deleteRecord('{{ route('visitor.delete', $result->id) }}'); return false;">
                                                 <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="tooltip" title="削除"></span>
                                             </a>
                                         @endif
@@ -84,7 +95,6 @@
 @endsection
 
 @section('script')
-    @if(false)<script type="text/javascript" src="{{ mix('js/mail.js') }}"></script>@endif
     <script type="text/javascript">
         /**
          * Delete a record.
