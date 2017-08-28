@@ -15,7 +15,7 @@
                     <div class="panel-body">
                         @include('flash::message')
 
-                        {!! Form::open(['url' => route('mail.add'), 'method' => 'post', 'class' => 'form-horizontal', ]) !!}
+                        {!! Form::open(['url' => route('mail.add'), 'method' => 'post', 'class' => 'form-horizontal']) !!}
                             @include('common.form.mail', ['mode' => 'add'])
                         {!! Form::close() !!}
                     </div>
