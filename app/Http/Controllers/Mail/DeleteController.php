@@ -7,9 +7,6 @@ use App\Http\Controllers\Controller;
 
 class DeleteController extends Controller
 {
-    /** @var StoreRequest */
-//     private $formRequest;
-
     /**
      * Create a new controller instance.
      *
@@ -20,8 +17,6 @@ class DeleteController extends Controller
         $this->middleware('auth');
 
         parent::__construct();
-
-        $this->setBreadcrumb('Mail', route('mail'));
     }
 
     /**
@@ -33,6 +28,7 @@ class DeleteController extends Controller
      */
     public function index($id)
     {
+        /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::findOrFail($id);
         $MailTemplate->delete();
 

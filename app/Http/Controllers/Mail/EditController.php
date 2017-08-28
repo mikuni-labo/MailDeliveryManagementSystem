@@ -51,11 +51,11 @@ class EditController extends Controller
      */
     public function update(EditRequest $formRequest, $id)
     {
-        /** @var EditRequest $EditRequest */
-        $EditRequest = MailTemplate::findOrFail($id);
-        $EditRequest->update(request()->all());
+        /** @var MailTemplate $MailTemplate */
+        $MailTemplate = MailTemplate::findOrFail($id);
+        $MailTemplate->update(request()->all());
 
-        \Flash::success('メールテンプレート情報を更新しました。');
+        \Flash::success('テンプレート情報を更新しました。');
 
         return redirect()->route('mail');
     }

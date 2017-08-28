@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('meta')
-    <title>メールテンプレート一覧｜{{ config('app.name') }}</title>
+    <title>テンプレート一覧｜{{ config('app.name') }}</title>
 @endsection
 
 @section('content')

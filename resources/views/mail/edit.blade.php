@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('meta')
-    <title>メールテンプレート編集｜{{ config('app.name') }}</title>
+    <title>テンプレート編集｜{{ config('app.name') }}</title>
 @endsection
 
 @section('content')
@@ -29,7 +29,7 @@
     <script type="text/javascript" src="{{ mix('js/mail.js') }}"></script>
     <script type="text/javascript">
         /**
-         * メールテンプレートタグを挿入
+         * テンプレートタグを挿入
          *
          * @param string fieldtId
          * @param string tag

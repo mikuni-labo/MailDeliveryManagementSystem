@@ -7,9 +7,6 @@ use App\Http\Controllers\Controller;
 
 class RestoreController extends Controller
 {
-    /** @var StoreRequest */
-//     private $formRequest;
-
     /**
      * Create a new controller instance.
      *
@@ -20,8 +17,6 @@ class RestoreController extends Controller
         $this->middleware('auth');
 
         parent::__construct();
-
-        $this->setBreadcrumb('Mail', route('mail'));
     }
 
     /**
@@ -33,6 +28,7 @@ class RestoreController extends Controller
      */
     public function index($id)
     {
+        /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::onlyTrashed()->findOrFail($id);
         $MailTemplate->restore();
 

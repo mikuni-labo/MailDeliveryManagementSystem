@@ -22,7 +22,7 @@ class ListController extends Controller
     }
 
     /**
-     * Show visitors list.
+     * Show mail templatess list.
      *
      * @method GET
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
@@ -31,7 +31,7 @@ class ListController extends Controller
     {
         return view('mail.index')->with([
             'breadcrumb' => $this->getBreadcrumb(),
-            'results'    => MailTemplate::search([])->paginate(),
+            'results'    => MailTemplate::search()->paginate(),
         ]);
     }
 

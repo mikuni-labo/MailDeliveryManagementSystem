@@ -50,7 +50,7 @@ class StoreController extends Controller
         /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::create( request()->all() );
 
-        \Flash::success('メールテンプレートを登録しました。');
+        \Flash::success('テンプレートを新規登録しました。');
 
         return redirect()->route('mail');
     }
