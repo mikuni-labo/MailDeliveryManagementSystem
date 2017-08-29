@@ -182,6 +182,7 @@ return [
         App\Providers\LocalServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Providers\ValidatorServiceProvider::class,
+        App\Providers\CsvServiceProvider::class,
 
     ],
 
