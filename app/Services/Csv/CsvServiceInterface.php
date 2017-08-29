@@ -9,9 +9,9 @@ namespace App\Services\Csv;
  */
 Interface CsvServiceInterface
 {
-	/**
-	 * メイン処理
-	 */
-	public function proccess();
+    /**
+     * メイン処理
+     */
+    public function proccess();
 
 }
