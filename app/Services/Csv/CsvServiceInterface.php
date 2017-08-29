@@ -3,6 +3,7 @@
 namespace App\Services\Csv;
 
 use Illuminate\Support\Collection;
+use Illuminate\Validation\Validator;
 
 /**
  * CSVサービス インターフェース
@@ -12,6 +13,8 @@ use Illuminate\Support\Collection;
 Interface CsvServiceInterface
 {
     public function getCollection(string $path) : Collection;
-    public function isValid(Collection $collection) : bool;
+
+    public function isValid(Collection $collection) : Validator;
+
     public function proccess(Collection $collection);
 }

@@ -38,7 +38,9 @@ class UploadController extends Controller
         if( request()->hasFile('upload_csv') ) {
 
             $result = $this->csvService->getCollection(request()->file('upload_csv')->getRealPath());
-            $this->csvService->isValid($result);
+            $r = $this->csvService->isValid($result);
+            dd($r);
+
             $this->csvService->proccess($result);
 
             \Flash::success('');

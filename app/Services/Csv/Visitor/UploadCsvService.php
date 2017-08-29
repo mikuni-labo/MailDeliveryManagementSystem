@@ -5,6 +5,7 @@ namespace App\Services\Csv\Visitor;
 use Illuminate\Support\Collection;
 use App\Libraries\Csv;
 use App\Services\Csv\CsvServiceInterface;
+use Illuminate\Validation\Validator;
 
 /**
  * 来場者CSVアップロードサービス
@@ -51,9 +52,21 @@ class UploadCsvService implements CsvServiceInterface
      * {@inheritDoc}
      * @see \App\Services\Csv\CsvServiceInterface::isValid()
      */
-    public function isValid(Collection $collection) : bool
+    public function isValid(Collection $collection) : Validator
     {
-        return $this->csv->isValidColumns($collection, $this->columns);
+        return \Validator::make(
+            [
+                'valid_comuns' => $this->csv->isValidColumns($collection, $this->columns),
+            ],
+            [
+                'valid_comuns' => 'required|false',
+            ],
+            [
+                //
+            ],
+            [
+                //
+            ]);
     }
 
     /**
