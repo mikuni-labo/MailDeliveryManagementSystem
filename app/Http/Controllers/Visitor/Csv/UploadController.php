@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Visitor\Csv;
 
-use App\Models\Visitor;
 use App\Http\Requests\Visitor\Csv\UploadRequest;
 use App\Http\Controllers\Controller;
 use App\Services\Csv\CsvServiceInterface;
@@ -37,13 +36,13 @@ class UploadController extends Controller
     {
         if( request()->hasFile('upload_csv') ) {
 
-            $result = $this->csvService->getCollection(request()->file('upload_csv')->getRealPath());
-            $r = $this->csvService->isValid($result);
-            dd($r);
+            $result = $this->csvService->proccess(request()->file('upload_csv'));
 
-            $this->csvService->proccess($result);
+            if( $result->fails() ){
+                return redirect()->back()->withErrors($result);
+            }
 
-            \Flash::success('');
+            \Flash::success('アップロード成功しました。');
         }
 
         return redirect()->route('visitor.csv');

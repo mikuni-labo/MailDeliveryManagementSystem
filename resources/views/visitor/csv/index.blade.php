@@ -15,6 +15,14 @@
                     <div class="panel-body">
                         @include('flash::message')
 
+                        @if( $errors->count() )
+                            <div class="alert alert-danger">
+                                @foreach( $errors->all() as $key => $error )
+                                    <strong>{{ $key + 1 }}行目の{{ $error }}</strong><br>
+                                @endforeach
+                            </div>
+                        @endif
+
                         {!! Form::open(['url' => route('visitor.csv.upload'), 'files' => true, 'method' => 'post', 'class' => 'form-horizontal']) !!}
                             <div class="form-group{{ $errors->has('upload_csv') ? ' has-error' : '' }}">
                                 <label for="upload_csv" class="col-md-4 control-label">一括登録用CSV<span class="attention">*</span></label>

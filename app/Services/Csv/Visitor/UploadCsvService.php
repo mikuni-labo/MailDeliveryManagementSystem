@@ -2,9 +2,11 @@
 
 namespace App\Services\Csv\Visitor;
 
-use Illuminate\Support\Collection;
+use App\Http\Requests\Visitor\EditRequest;
 use App\Libraries\Csv;
+use App\Models\Visitor;
 use App\Services\Csv\CsvServiceInterface;
+use Illuminate\Support\Collection;
 use Illuminate\Validation\Validator;
 
 /**
@@ -14,14 +16,20 @@ use Illuminate\Validation\Validator;
  */
 class UploadCsvService implements CsvServiceInterface
 {
-    private $csv;
+    private $Csv;
     private $columns;
-    private $result;
+    private $Collection;
 
     const CSV_COLUMNS = [
-        'pos_bill_code',
-        'test1',
-        'test2',
+        'name',
+        'organization',
+        'department',
+        'position',
+        'postcode',
+        'address',
+        'email',
+        'tel',
+        'fax',
     ];
 
     /**
@@ -32,79 +40,118 @@ class UploadCsvService implements CsvServiceInterface
      */
     public function __construct(Csv $Csv)
     {
-        $this->csv = $Csv;
+        $this->Csv = $Csv;
         $this->columns = collect(self::CSV_COLUMNS);
-    }
-
-    /**
-     * {@inheritDoc}
-     * @see \App\Services\Csv\CsvServiceInterface::getCollection()
-     */
-    public function getCollection(string $path) : Collection
-    {
-        $this->csv->createReader($path);
-        $this->csv->getReader()->setDelimiter(',');
-
-        return collect($this->csv->getReader()->fetchAll());
-    }
-
-    /**
-     * {@inheritDoc}
-     * @see \App\Services\Csv\CsvServiceInterface::isValid()
-     */
-    public function isValid(Collection $collection) : Validator
-    {
-        return \Validator::make(
-            [
-                'valid_comuns' => $this->csv->isValidColumns($collection, $this->columns),
-            ],
-            [
-                'valid_comuns' => 'required|false',
-            ],
-            [
-                //
-            ],
-            [
-                //
-            ]);
     }
 
     /**
      * {@inheritDoc}
      * @see \App\Services\Csv\CsvServiceInterface::proccess()
      */
-    public function proccess(Collection $collection)
+    public function proccess($file) : Validator
     {
-        if( ! $this->csv->validate() )
-        {
-            \Flash::error('ファイル内にレコードが無いか、列の数が合いません。');
-            return redirect()->back();
-        }
-
-        $result = $this->assignColumns(self::CSV_COLUMNS, true);
-        $csv = $result->groupBy('pos_bill_code');
+        $this->Collection = $this->getCollection($file->getRealPath());
 
         /**
-         * 通貨毎ループ
+         * 取り込み処理前の行・列簡易バリデート
+         *
+         * @var \Illuminate\Validation\Validator $result
          */
-//         foreach ( Currency::all() as $Currency )
-//         {
-//             $price  = 0;
-//             $amount = 0;
+//         $result = $this->makeValidColumns($this->Collection);
 
-//             foreach ( $Currency->bills()->get() as $Bill )
-//             {
-//                 if( $csv->has($Bill->pos_code) )
-//                 {
-//                     $price  += intval( $csv->get($Bill->pos_code)->first()['stock_price'] );               // 期末在庫金額
-//                     $amount += intval( $csv->get($Bill->pos_code)->first()['stock_amount']) * $Bill->value;// 額面合計 = 期末在庫数 * 紙幣の額面
-//                 }
-//             }
-
-//             $Currency->update([
-//                     'cost' => $this->culculateCost($price, $amount),
-//             ]);
+//         if( $result->fails() ) {
+//             return $result;
 //         }
+
+        $this->Collection = $this->Csv->assignColumns($this->Collection, $this->columns, true);
+
+        /**
+         * 厳密な値バリデート
+         */
+        $result = $this->makeValidParams($this->Collection);
+
+        $this->getVisitorAttributes();
+
+        if( $result->fails() ) {
+            return $result;
+        }
+
+        /**
+         * TODO DB登録処理
+         */
+    }
+
+    /**
+     *
+     */
+    private function getCollection(string $path) : Collection
+    {
+        $this->Csv->createReader($path);
+        $this->Csv->getReader()->setDelimiter(',');
+
+        return collect($this->Csv->getReader()->fetchAll());
+    }
+
+    /**
+     *
+     */
+    private function makeValidColumns(Collection $Collection) : Validator
+    {
+        return \Validator::make(
+            [
+                'valid_comuns' => $this->Csv->isValidColumns($Collection, $this->columns),
+            ],
+            [
+                'valid_comuns' => 'false',
+            ],
+            [
+                'valid_comuns.false' => 'アップロードされたファイルの列数が合わないか、データが不正です。',
+            ],
+            [
+                //
+            ]
+        );
+    }
+
+    /**
+     *
+     */
+    private function makeValidParams(Collection $Collection) : Validator
+    {
+        return \Validator::make(
+            $Collection->toArray(),
+            [
+                '*.name'         => 'nullable',
+                '*.organization' => 'nullable',
+                '*.department'   => 'nullable',
+                '*.position'     => 'nullable',
+                '*.postcode'     => 'nullable',
+                '*.address'      => 'nullable',
+                '*.email'        => 'required|string|email|max:255|unique:visitors',
+                '*.tel'          => 'nullable',
+                '*.fax'          => 'nullable',
+            ],
+            [
+                //
+            ],
+            $this->getVisitorAttributes()
+        );
+    }
+
+    /**
+     *
+     * @return array
+     */
+    private function getVisitorAttributes() : array
+    {
+        $arr = ((new EditRequest)->attributes());
+
+        foreach ($arr as $key => $val) {
+            $arr["*.$key"] = $val;
+            unset($arr[$key]);
+        }
+
+        return $arr;
     }
 
 }
