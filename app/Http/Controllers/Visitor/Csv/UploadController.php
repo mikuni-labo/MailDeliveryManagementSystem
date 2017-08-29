@@ -35,29 +35,16 @@ class UploadController extends Controller
      */
     public function upload(UploadRequest $UploadRequest)
     {
-        dd( $this->csvService );
+        if( request()->hasFile('upload_csv') ) {
 
+            $result = $this->csvService->getCollection(request()->file('upload_csv')->getRealPath());
+            $this->csvService->isValid($result);
+            $this->csvService->proccess($result);
 
-// 		\Flash::error('店舗レートCSVの取り込みに失敗しました。');
+            \Flash::success('');
+        }
 
-// 		if(request()->hasFile('store_rate_csv'))
-// 		{
-// 			$CsvServiceInterface->createReader( request()->file('store_rate_csv')->getRealPath() );
-// 			$CsvServiceInterface->getReader()->setDelimiter(',');
-// 			$CsvServiceInterface->setCsv( $CsvServiceInterface->getReader()->fetchAll() );
-
-// 			if( ! $CsvServiceInterface->validate() )
-// 			{
-// 				\Flash::error('ファイル内にレコードが無いか、列の数が合いません。');
-// 				return redirect()->back();
-// 			}
-
-// 			$CsvServiceInterface->proccess();
-
-// 			\Flash::success('店舗レートCSVを取り込みました。');
-// 		}
-
-// 		return redirect()->route('admin.csv.store_rate');
+        return redirect()->route('visitor.csv');
     }
 
 }

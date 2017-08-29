@@ -2,6 +2,8 @@
 
 namespace App\Services\Csv;
 
+use Illuminate\Support\Collection;
+
 /**
  * CSVサービス インターフェース
  *
@@ -9,9 +11,7 @@ namespace App\Services\Csv;
  */
 Interface CsvServiceInterface
 {
-    /**
-     * メイン処理
-     */
-    public function proccess();
-
+    public function getCollection(string $path) : Collection;
+    public function isValid(Collection $collection) : bool;
+    public function proccess(Collection $collection);
 }

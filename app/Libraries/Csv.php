@@ -13,9 +13,8 @@ use League\Csv\Writer;
  */
 class Csv
 {
-    protected $Reader;
-    protected $Writer;
-    protected $Csv;
+    private $Reader;
+    private $Writer;
 
     public function __construct()
     {
@@ -49,13 +48,13 @@ class Csv
     /**
      * レコード有無、列数の正当性チェック
      *
-     * @param  array $columns
+     * @param Collection $collection
+     * @param Collection $columns
      * @return bool
      */
-    protected function validColumns($columns)
+    public function isValidColumns(Collection $collection, Collection $columns)
     {
-        if( count($this->Csv) && count($this->Csv[0]) === count($columns) )
-        {
+        if( ! $collection->count() || count($collection->first()) !== $columns->count() ) {
             return true;
         }
 
@@ -69,10 +68,10 @@ class Csv
      * @param  bool $isSkip
      * @return Collection
      */
-    protected function assignColumns($columns, $isSkip = false)
+    public function assignColumns($columns, $isSkip = false)
     {
         $result = [];
-        foreach ($this->Csv as $key => $row)
+        foreach ($this->csv as $key => $row)
         {
             // インデックス行はスキップ
             if( $key === 0 && $isSkip ) continue;
@@ -93,11 +92,11 @@ class Csv
     /**
      * Setter...
      */
-    public function setCsv($csv)
-    {
-        $this->Csv = $csv;
-        return $this;
-    }
+//     public function setCsv($csv)
+//     {
+//         $this->csv = $csv;
+//         return $this;
+//     }
 
     /**
      * Getter...
@@ -114,7 +113,7 @@ class Csv
 
     public function getCsv()
     {
-        return $this->Csv;
+        return $this->csv;
     }
 
 }
