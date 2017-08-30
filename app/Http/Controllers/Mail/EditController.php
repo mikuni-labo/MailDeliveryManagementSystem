@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Mail;
 
 use App\Http\Requests\Mail\EditRequest;
-use App\Models\MailTemplate;
 use App\Http\Controllers\Controller;
+use App\Models\MailTemplate;
+use Illuminate\View\View;
 
 class EditController extends Controller
 {
@@ -30,10 +31,10 @@ class EditController extends Controller
      * Show modify form.
      *
      * @method GET
-     * @param integer $id
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     * @param int $id
+     * @return View
      */
-    public function index($id)
+    public function index(int $id) : View
     {
         return view('mail.edit')->with([
             'breadcrumb' => $this->setBreadcrumb('Edit', route('mail.edit', [$id])),

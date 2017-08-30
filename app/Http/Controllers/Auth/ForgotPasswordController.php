@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ResendRequest;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ForgotPasswordController extends Controller
 {
@@ -42,9 +43,10 @@ class ForgotPasswordController extends Controller
     /**
      * Display the form to request a password reset link.
      *
-     * @return \Illuminate\Http\Response
+     * @method GET
+     * @return View
      */
-    public function showLinkRequestForm()
+    public function showLinkRequestForm() : View
     {
         $this->setBreadcrumb('Resend Password', route('password.email'));
 

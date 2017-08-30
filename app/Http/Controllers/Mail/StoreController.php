@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Mail;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Mail\StoreRequest;
 use App\Models\MailTemplate;
-use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 
 class StoreController extends Controller
 {
@@ -29,9 +30,9 @@ class StoreController extends Controller
      * Show register form.
      *
      * @method GET
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     * @return View
      */
-    public function index()
+    public function index() : View
     {
         return view('mail.add')->with([
             'breadcrumb' => $this->setBreadcrumb('Add', route('mail.add')),

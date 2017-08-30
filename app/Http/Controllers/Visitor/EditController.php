@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Visitor;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Visitor\EditRequest;
 use App\Models\Visitor;
-use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 
 class EditController extends Controller
 {
@@ -26,10 +27,10 @@ class EditController extends Controller
      * Show modify form.
      *
      * @method GET
-     * @param integer $id
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     * @param int $id
+     * @return View
      */
-    public function index($id)
+    public function index(int $id) : View
     {
         return view('visitor.edit')->with([
             'breadcrumb' => $this->setBreadcrumb('Edit', route('visitor.edit', [$id])),

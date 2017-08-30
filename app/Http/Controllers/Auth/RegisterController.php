@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\View\View;
 
 class RegisterController extends Controller
 {
@@ -56,9 +57,10 @@ class RegisterController extends Controller
     /**
      * Show the application registration form.
      *
-     * @return \Illuminate\Http\Response
+     * @method GET
+     * @return View
      */
-    public function showRegistrationForm()
+    public function showRegistrationForm() : View
     {
         $this->setBreadcrumb('Register', route('register'));
 

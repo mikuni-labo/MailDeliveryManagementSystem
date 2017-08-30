@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Mail;
 
-use App\Models\MailTemplate;
 use App\Http\Controllers\Controller;
+use App\Models\MailTemplate;
+use Illuminate\View\View;
 
 class ListController extends Controller
 {
@@ -25,9 +26,9 @@ class ListController extends Controller
      * Show mail templatess list.
      *
      * @method GET
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     * @return View
      */
-    public function index()
+    public function index() : View
     {
         return view('mail.index')->with([
             'breadcrumb' => $this->getBreadcrumb(),
