@@ -22,15 +22,26 @@ class Csv
     }
 
     /**
-     * Readerインスタンスをセット
+     * ファイルパスからReaderインスタンスをセット
      *
      * @param  string $path
      * @param  string $open_mode
      * @return void
      */
-    public function createReader(string $path, string $open_mode = 'r+')
+    public function createReaderFromPath(string $path, string $open_mode = 'r+')
     {
-        $this->Reader = Reader::createFromPath($path);
+        $this->Reader = Reader::createFromPath($path, $open_mode);
+    }
+
+    /**
+     * ファイルオブジェクトからReaderインスタンスをセット
+     *
+     * @param \SplTempFileObject $file
+     * @return void
+     */
+    public function createReaderFromFileObject(\SplTempFileObject $file)
+    {
+        $this->Reader = Reader::createFromFileObject($file);
     }
 
     /**
@@ -40,9 +51,20 @@ class Csv
      * @param  string $open_mode
      * @return void
      */
-    public function createWriter(string $path, string $open_mode = 'r+')
+    public function createWriterFromPath(string $path, string $open_mode = 'r+')
     {
-        $this->Writer = Writer::createFromPath($path);
+        $this->Writer = Writer::createFromPath($path, $open_mode);
+    }
+
+    /**
+     * Writerインスタンスをセット
+     *
+     * @param \SplTempFileObject $file
+     * @return void
+     */
+    public function createWriterFromFileObject(\SplTempFileObject $file)
+    {
+        $this->Writer = Writer::createFromFileObject($file);
     }
 
     /**

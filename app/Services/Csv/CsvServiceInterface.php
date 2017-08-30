@@ -11,5 +11,5 @@ use Illuminate\Validation\Validator;
  */
 Interface CsvServiceInterface
 {
-    public function proccess($file) : Validator;
+    public function proccess() : Validator;
 }

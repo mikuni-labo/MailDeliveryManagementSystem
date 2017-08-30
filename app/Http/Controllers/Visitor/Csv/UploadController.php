@@ -36,7 +36,8 @@ class UploadController extends Controller
     {
         if( request()->hasFile('upload_csv') ) {
 
-            $result = $this->csvService->proccess(request()->file('upload_csv'));
+            $this->csvService->setFile(request()->file('upload_csv'));
+            $result = $this->csvService->proccess();
 
             if( $result->fails() ){
                 return redirect()->back()->withErrors($result);

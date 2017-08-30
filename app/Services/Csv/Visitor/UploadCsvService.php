@@ -20,6 +20,7 @@ class UploadCsvService implements CsvServiceInterface
     private $columns;
     private $Collection;
     private $skipHeader = true;
+    private $file;
 
     const CSV_COLUMNS = [
         'name',
@@ -49,20 +50,20 @@ class UploadCsvService implements CsvServiceInterface
      * {@inheritDoc}
      * @see \App\Services\Csv\CsvServiceInterface::proccess()
      */
-    public function proccess($file) : Validator
+    public function proccess() : Validator
     {
-        $this->Collection = $this->getCollection($file->getRealPath());
+        $this->Collection = $this->getCollection($this->file->getRealPath());
 
         /**
          * 取り込み処理前の行・列簡易バリデート
          *
          * @var \Illuminate\Validation\Validator $result
          */
-//         $result = $this->makeValidColumns($this->Collection);
+        $result = $this->makeValidColumns($this->Collection);
 
-//         if( $result->fails() ) {
-//             return $result;
-//         }
+        if( $result->fails() ) {
+            return $result;
+        }
 
         $this->Collection = $this->Csv->assignColumns($this->Collection, $this->columns, $this->skipHeader);
 
@@ -87,7 +88,7 @@ class UploadCsvService implements CsvServiceInterface
      */
     private function getCollection(string $path) : Collection
     {
-        $this->Csv->createReader($path);
+        $this->Csv->createReaderFromPath($path);
         $this->Csv->getReader()->setDelimiter(',');
 
         return collect($this->Csv->getReader()->fetchAll());
@@ -145,7 +146,7 @@ class UploadCsvService implements CsvServiceInterface
      */
     private function getVisitorAttributes() : array
     {
-        $arr = ((new EditRequest)->attributes());
+        $arr = (new EditRequest)->attributes();
 
         foreach ($arr as $key => $val) {
             $arr["*.$key"] = $val;
@@ -153,6 +154,12 @@ class UploadCsvService implements CsvServiceInterface
         }
 
         return $arr;
+    }
+
+    public function setFile($file)
+    {
+        $this->file = $file;
+        return $this;
     }
 
 }

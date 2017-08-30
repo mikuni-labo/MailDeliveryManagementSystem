@@ -51,7 +51,8 @@ Route::group([
             'namespace'  => 'Csv',
         ], function() {
             Route::get( '/',            'IndexController@index')->name('visitor.csv');
-            Route::post('/upload',      'UploadController@upload')->name('visitor.csv.upload');
+            Route::post('upload',       'UploadController@upload')->name('visitor.csv.upload');
+            Route::get( 'download_sample', 'DownloadSampleController@index')->name('visitor.csv.download_sample');
         });
     });
 

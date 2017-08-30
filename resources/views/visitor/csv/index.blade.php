@@ -44,7 +44,7 @@
                                 <div class="col-md-6 col-md-offset-4">
                                     <a href="javascript:history.back();" class="btn btn-default">戻る</a>
                                     <button type="submit" class="btn btn-primary">送信</button>
-                                    @if(false)<button type="button" class="btn btn-warning" id="dl_sample_csv">雛形CSVダウンロード</button>@endif
+                                    <a href="{{ route('visitor.csv.download_sample') }}" class="btn btn-warning">雛形CSVダウンロード</a>
                                 </div>
                             </div>
 

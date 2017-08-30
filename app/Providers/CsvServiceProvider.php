@@ -24,10 +24,17 @@ class CsvServiceProvider extends ServiceProvider
     public function register()
     {
         /**
-         * Visitor
+         * Upload visitor csv.
          */
         $this->app->when(\App\Http\Controllers\Visitor\Csv\UploadController::class)
             ->needs(\App\Services\Csv\CsvServiceInterface::class)
             ->give(\App\Services\Csv\Visitor\UploadCsvService::class);
+
+        /**
+         * Download sample visitor csv.
+         */
+        $this->app->when(\App\Http\Controllers\Visitor\Csv\DownloadSampleController::class)
+            ->needs(\App\Services\Csv\CsvServiceInterface::class)
+            ->give(\App\Services\Csv\Visitor\DownloadSampleCsvService::class);
     }
 }
