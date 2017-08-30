@@ -53,7 +53,7 @@ class EditController extends Controller
     {
         /** @var Visitor $Visitor */
         $Visitor = Visitor::findOrFail($id);
-        $Visitor->update(request()->all());
+        $Visitor->update($request->all());
 
         \Flash::success('来場者情報を更新しました。');
 

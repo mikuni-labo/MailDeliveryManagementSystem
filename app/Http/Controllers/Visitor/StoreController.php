@@ -49,7 +49,7 @@ class StoreController extends Controller
     public function store(Request $request, StoreRequest $formRequest)
     {
         /** @var Visitor $Visitor */
-        $Visitor = Visitor::create( request()->all() );
+        $Visitor = Visitor::create($request->all());
 
         \Flash::success('来場者を新規登録しました。');
 

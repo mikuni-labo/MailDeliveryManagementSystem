@@ -50,10 +50,10 @@ class ModifyController extends Controller
     {
         /** @var User $User */
         $User = auth()->user();
-        $User->update(request()->all());
+        $User->update($request->all());
 
-        if( isset(request()->password) ) {
-            $User->password = bcrypt(request()->password);
+        if( isset($request->password) ) {
+            $User->password = bcrypt($request->password);
             $User->save();
         }
 

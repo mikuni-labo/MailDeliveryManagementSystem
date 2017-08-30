@@ -57,7 +57,7 @@ class EditController extends Controller
     {
         /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::findOrFail($id);
-        $MailTemplate->update(request()->all());
+        $MailTemplate->update($request->all());
 
         \Flash::success('テンプレート情報を更新しました。');
 

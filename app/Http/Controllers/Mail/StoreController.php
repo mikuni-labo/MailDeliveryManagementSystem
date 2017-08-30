@@ -52,7 +52,7 @@ class StoreController extends Controller
     public function store(Request $request, StoreRequest $formRequest)
     {
         /** @var MailTemplate $MailTemplate */
-        $MailTemplate = MailTemplate::create( request()->all() );
+        $MailTemplate = MailTemplate::create($request->all());
 
         \Flash::success('テンプレートを新規登録しました。');
 
