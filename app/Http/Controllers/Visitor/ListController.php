@@ -33,7 +33,7 @@ class ListController extends Controller
      */
     public function index(Request $request)
     {
-        if( session()->has('requestUri.visitor.list') ) {
+        if( $request->getRequestUri() === '/visitor' && session()->has('requestUri.visitor.list') ) {
             $request->session()->reflash();
             return redirect(session()->pull('requestUri.visitor.list'));
         }
@@ -44,6 +44,20 @@ class ListController extends Controller
             'breadcrumb' => $this->getBreadcrumb(),
             'results'    => Visitor::search($request)->paginate(),
         ]);
+    }
+
+    /**
+     * Reset requirements of search.
+     *
+     * @method GET
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function reset(Request $request) : RedirectResponse
+    {
+        session()->forget('requestUri.visitor.list');
+
+        return redirect()->route('visitor');
     }
 
 }
