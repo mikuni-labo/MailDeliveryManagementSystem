@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Visitor\Csv;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Visitor\Csv\UploadRequest;
 use App\Services\Csv\CsvServiceInterface;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class UploadController extends Controller
@@ -32,9 +33,9 @@ class UploadController extends Controller
      * @method POST
      * @param Request $request
      * @param UploadRequest $UploadRequest
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function upload(Request $request, UploadRequest $UploadRequest)
+    public function upload(Request $request, UploadRequest $UploadRequest) : RedirectResponse
     {
         if( $request->hasFile('upload_csv') ) {
 

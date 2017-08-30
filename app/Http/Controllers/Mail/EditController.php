@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Mail;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Mail\EditRequest;
 use App\Models\MailTemplate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -51,9 +52,9 @@ class EditController extends Controller
      * @param Request $request
      * @param EditRequest $formRequest
      * @param integer $id
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     * @return RedirectResponse
      */
-    public function update(Request $request, EditRequest $formRequest, $id)
+    public function update(Request $request, EditRequest $formRequest, $id) : RedirectResponse
     {
         /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::findOrFail($id);

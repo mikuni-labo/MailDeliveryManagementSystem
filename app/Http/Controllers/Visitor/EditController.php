@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Visitor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Visitor\EditRequest;
 use App\Models\Visitor;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -47,9 +48,9 @@ class EditController extends Controller
      * @param Request $request
      * @param EditRequest $formRequest
      * @param integer int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function update(Request $request, EditRequest $formRequest, int $id)
+    public function update(Request $request, EditRequest $formRequest, int $id) : RedirectResponse
     {
         /** @var Visitor $Visitor */
         $Visitor = Visitor::findOrFail($id);

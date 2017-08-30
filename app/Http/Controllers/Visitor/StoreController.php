@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Visitor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Visitor\StoreRequest;
 use App\Models\Visitor;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -44,9 +45,9 @@ class StoreController extends Controller
      * @method POST
      * @param Request $request
      * @param StoreRequest $formRequest
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     * @return RedirectResponse
      */
-    public function store(Request $request, StoreRequest $formRequest)
+    public function store(Request $request, StoreRequest $formRequest) : RedirectResponse
     {
         /** @var Visitor $Visitor */
         $Visitor = Visitor::create($request->all());

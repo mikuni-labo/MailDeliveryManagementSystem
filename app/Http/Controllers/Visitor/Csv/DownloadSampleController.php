@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Visitor\Csv;
 
 use App\Http\Controllers\Controller;
 use App\Services\Csv\CsvServiceInterface;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class DownloadSampleController extends Controller
 {
@@ -29,7 +31,7 @@ class DownloadSampleController extends Controller
      *
      * @method GET
      * @param Request $request
-     * @return
+     * @return Response|RedirectResponse
      */
     public function index(Request $request)
     {
@@ -38,6 +40,7 @@ class DownloadSampleController extends Controller
         }
 
         \Flash::error('CSVダウンロード時にエラーが発生しました。');
+
         return redirect()->route('visitor.csv');
     }
 
