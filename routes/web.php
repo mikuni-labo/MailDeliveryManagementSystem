@@ -39,6 +39,7 @@ Route::group([
         'namespace'  => 'Visitor',
     ], function() {
         Route::get( '/',                'ListController@index')->name('visitor');
+        Route::get( 'reset_search',     'ListController@reset')->name('visitor.search.reset');
         Route::get( 'add',              'StoreController@index')->name('visitor.add');
         Route::post('add',              'StoreController@store');
         Route::get( 'edit/{id}',        'EditController@index')->name('visitor.edit');

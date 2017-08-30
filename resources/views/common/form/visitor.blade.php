@@ -128,5 +128,9 @@
     <div class="col-md-9 col-md-offset-2">
         <a href="javascript:history.back();" class="btn btn-default">戻る</a>
         <button type="submit" class="btn btn-primary">送信</button>
+
+        @if( $mode === 'search' )
+            <a href="{{ route('visitor.search.reset') }}" class="btn btn-danger" data-toggle="confirmation" onclick="if(!confirm('検索条件をリセットしますか?')) return false;">検索条件リセット</a>
+        @endif
     </div>
 </div>
