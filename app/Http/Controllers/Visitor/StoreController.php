@@ -54,6 +54,6 @@ class StoreController extends Controller
 
         \Flash::success('来場者を新規登録しました。');
 
-        return redirect()->route('visitor');
+        return session()->has('requestUri.visitor.list') ? redirect(session()->get('requestUri.visitor.list')) : redirect()->route('visitor');
     }
 }

@@ -58,6 +58,6 @@ class EditController extends Controller
 
         \Flash::success('来場者情報を更新しました。');
 
-        return redirect()->route('visitor');
+        return session()->has('requestUri.visitor.list') ? redirect(session()->get('requestUri.visitor.list')) : redirect()->route('visitor');
     }
 }

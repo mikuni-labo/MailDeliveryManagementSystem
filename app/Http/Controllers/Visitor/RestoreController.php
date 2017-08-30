@@ -36,7 +36,7 @@ class RestoreController extends Controller
 
         \Flash::success('来場者情報を1件復旧しました。');
 
-        return redirect()->route('visitor');
+        return session()->has('requestUri.visitor.list') ? redirect(session()->get('requestUri.visitor.list')) : redirect()->route('visitor');
     }
 
 }

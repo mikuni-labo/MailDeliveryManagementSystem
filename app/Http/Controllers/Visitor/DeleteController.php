@@ -36,7 +36,7 @@ class DeleteController extends Controller
 
         \Flash::info('来場者を1件削除しました。');
 
-        return redirect()->route('visitor');
+        return session()->has('requestUri.visitor.list') ? redirect(session()->get('requestUri.visitor.list')) : redirect()->route('visitor');
     }
 
 }
