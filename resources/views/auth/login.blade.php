@@ -41,7 +41,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4 form-control-static">
-                                    <label>{!! Form::checkbox('remember', 1, []) !!} ログイン状態を保存する</label>
+                                    <label>{!! Form::checkbox('remember', 1, null, []) !!} ログイン状態を保存する</label>
                                 </div>
                             </div>
 

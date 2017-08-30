@@ -14,6 +14,15 @@
 
                 @include('flash::message')
 
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;検索</div>
+                    <div class="panel-body">
+                        {!! Form::open(['url' => route('visitor'), 'method' => 'get', 'class' => 'form-horizontal']) !!}
+                            @include('common.form.visitor', ['mode' => 'search'])
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+
                 {!! $results->render() !!}
 
                 @if( $results->count() )
