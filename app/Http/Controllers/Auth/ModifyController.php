@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\Auth\ModifyRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ModifyController extends Controller
@@ -24,9 +25,10 @@ class ModifyController extends Controller
      * Show modify form.
      *
      * @method GET
+     * @param Request $request
      * @return View
      */
-    public function index() : View
+    public function index(Request $request) : View
     {
         $this->setBreadcrumb('Modify', route('modify'));
 
@@ -40,10 +42,11 @@ class ModifyController extends Controller
      * Update
      *
      * @method PUT
+     * @param Request $request
      * @param ModifyRequest $formRequest
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function update(ModifyRequest $formRequest)
+    public function update(Request $request, ModifyRequest $formRequest)
     {
         /** @var User $User */
         $User = auth()->user();

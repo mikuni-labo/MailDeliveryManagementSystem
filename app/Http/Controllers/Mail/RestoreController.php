@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mail;
 
 use App\Models\MailTemplate;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class RestoreController extends Controller
 {
@@ -23,10 +24,11 @@ class RestoreController extends Controller
      * Show visitors list.
      *
      * @method PATCH
-     * @param integer $id
+     * @param Request $request
+     * @param int $id
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function index($id)
+    public function index(Request $request, int $id)
     {
         /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::onlyTrashed()->findOrFail($id);

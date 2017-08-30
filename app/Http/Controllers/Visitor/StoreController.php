@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Visitor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Visitor\StoreRequest;
 use App\Models\Visitor;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class StoreController extends Controller
@@ -27,9 +28,10 @@ class StoreController extends Controller
      * Show register form.
      *
      * @method GET
+     * @param Request $request
      * @return View
      */
-    public function index() : View
+    public function index(Request $request) : View
     {
         return view('visitor.add')->with([
             'breadcrumb' => $this->setBreadcrumb('Add', route('visitor.add')),
@@ -40,10 +42,11 @@ class StoreController extends Controller
      * Store
      *
      * @method POST
+     * @param Request $request
      * @param StoreRequest $formRequest
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function store(StoreRequest $formRequest)
+    public function store(Request $request, StoreRequest $formRequest)
     {
         /** @var Visitor $Visitor */
         $Visitor = Visitor::create( request()->all() );

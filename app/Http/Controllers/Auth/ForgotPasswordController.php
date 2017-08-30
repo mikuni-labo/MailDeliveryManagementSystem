@@ -44,9 +44,10 @@ class ForgotPasswordController extends Controller
      * Display the form to request a password reset link.
      *
      * @method GET
+     * @param Request $request
      * @return View
      */
-    public function showLinkRequestForm() : View
+    public function showLinkRequestForm(Request $request) : View
     {
         $this->setBreadcrumb('Resend Password', route('password.email'));
 

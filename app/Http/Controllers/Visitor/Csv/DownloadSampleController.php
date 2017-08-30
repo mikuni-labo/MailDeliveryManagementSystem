@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Visitor\Csv;
 
 use App\Http\Controllers\Controller;
 use App\Services\Csv\CsvServiceInterface;
+use Illuminate\Http\Request;
 
 class DownloadSampleController extends Controller
 {
@@ -27,9 +28,10 @@ class DownloadSampleController extends Controller
      * Download sample CSV.
      *
      * @method GET
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     * @param Request $request
+     * @return
      */
-    public function index()
+    public function index(Request $request)
     {
         if( ! $this->csvService->proccess()->fails() ) {
             return $this->csvService->download();

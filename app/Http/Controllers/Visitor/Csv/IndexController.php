@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Visitor\Csv;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class IndexController extends Controller
@@ -26,9 +27,10 @@ class IndexController extends Controller
      * Show view.
      *
      * @method GET
+     * @param Request $request
      * @return View
      */
-    public function index() : View
+    public function index(Request $request) : View
     {
         return view('visitor.csv.index')->with([
             'breadcrumb' => $this->getBreadcrumb(),

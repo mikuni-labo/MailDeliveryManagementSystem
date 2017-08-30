@@ -53,9 +53,10 @@ class LoginController extends Controller
      * Show the application's login form.
      *
      * @method GET
+     * @param Request $request
      * @return View
      */
-    public function showLoginForm() : View
+    public function showLoginForm(Request $request) : View
     {
         $this->setBreadcrumb('Login', route('login'));
 
@@ -67,7 +68,7 @@ class LoginController extends Controller
     /**
      * Validate the user login request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return void
      */
     protected function validateLogin(Request $request)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mail;
 
 use App\Models\MailTemplate;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class DeleteController extends Controller
 {
@@ -23,10 +24,11 @@ class DeleteController extends Controller
      * Show visitors list.
      *
      * @method DELETE
-     * @param integer $id
+     * @param Request $request
+     * @param int $id
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function index($id)
+    public function index(Request $request, int $id)
     {
         /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::findOrFail($id);

@@ -23,9 +23,10 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @method GET
+     * @param Request $request
      * @return View
      */
-    public function index() : View
+    public function index(Request $request) : View
     {
         return view('home', [
             'breadcrumb' => $this->getBreadcrumb(),

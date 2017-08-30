@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Visitor;
 
-use App\Models\Visitor;
 use App\Http\Controllers\Controller;
+use App\Models\Visitor;
+use Illuminate\Http\Request;
 
 class RestoreController extends Controller
 {
@@ -23,10 +24,11 @@ class RestoreController extends Controller
      * Show visitors list.
      *
      * @method PATCH
-     * @param integer $id
+     * @param Request $request
+     * @param int $id
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function index($id)
+    public function index(Request $request, int $id)
     {
         $Visitor = Visitor::onlyTrashed()->findOrFail($id);
         $Visitor->restore();
