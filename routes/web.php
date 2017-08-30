@@ -45,6 +45,15 @@ Route::group([
         Route::put( 'edit/{id}',        'EditController@update');
         Route::delete('delete/{id}',    'DeleteController@index')->name('visitor.delete');
         Route::patch( 'restore/{id}',   'RestoreController@index')->name('visitor.restore');
+
+        Route::group([
+            'prefix'     => 'csv',
+            'namespace'  => 'Csv',
+        ], function() {
+            Route::get( '/',            'IndexController@index')->name('visitor.csv');
+            Route::post('upload',       'UploadController@upload')->name('visitor.csv.upload');
+            Route::get( 'download_sample', 'DownloadSampleController@index')->name('visitor.csv.download_sample');
+        });
     });
 
     /**
