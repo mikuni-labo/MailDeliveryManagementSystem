@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\Auth\ModifyRequest;
-use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ModifyController extends Controller
 {
@@ -24,9 +26,10 @@ class ModifyController extends Controller
      * Show modify form.
      *
      * @method GET
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     * @param Request $request
+     * @return View
      */
-    public function index()
+    public function index(Request $request) : View
     {
         $this->setBreadcrumb('Modify', route('modify'));
 
@@ -40,17 +43,18 @@ class ModifyController extends Controller
      * Update
      *
      * @method PUT
+     * @param Request $request
      * @param ModifyRequest $formRequest
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     * @return RedirectResponse
      */
-    public function update(ModifyRequest $formRequest)
+    public function update(Request $request, ModifyRequest $formRequest) : RedirectResponse
     {
         /** @var User $User */
         $User = auth()->user();
-        $User->update(request()->all());
+        $User->update($request->all());
 
-        if( isset(request()->password) ) {
-            $User->password = bcrypt(request()->password);
+        if( isset($request->password) ) {
+            $User->password = bcrypt($request->password);
             $User->save();
         }
 

@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\ResetRequest;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use Illuminate\View\View;
 
 class ResetPasswordController extends Controller
 {
@@ -56,9 +57,9 @@ class ResetPasswordController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  string|null  $token
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return View
      */
-    public function showResetForm(Request $request, $token = null)
+    public function showResetForm(Request $request, $token = null) : View
     {
         $this->setBreadcrumb('Reset Password', route('password.reset', [$token]));
 

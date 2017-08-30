@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Mail;
 
-use App\Models\MailTemplate;
 use App\Http\Controllers\Controller;
+use App\Models\MailTemplate;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class DeleteController extends Controller
 {
@@ -23,10 +25,11 @@ class DeleteController extends Controller
      * Show visitors list.
      *
      * @method DELETE
-     * @param integer $id
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function index($id)
+    public function index(Request $request, int $id) : RedirectResponse
     {
         /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::findOrFail($id);

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class RegisterController extends Controller
 {
@@ -56,9 +58,11 @@ class RegisterController extends Controller
     /**
      * Show the application registration form.
      *
-     * @return \Illuminate\Http\Response
+     * @method GET
+     * @param Request $request
+     * @return View
      */
-    public function showRegistrationForm()
+    public function showRegistrationForm(Request $request) : View
     {
         $this->setBreadcrumb('Register', route('register'));
 
@@ -71,11 +75,11 @@ class RegisterController extends Controller
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data) : Validator
     {
-        return Validator::make($data, $this->formRequest->rules(), $this->formRequest->messages(), $this->formRequest->attributes());
+        return \Validator::make($data, $this->formRequest->rules(), $this->formRequest->messages(), $this->formRequest->attributes());
     }
 
     /**
@@ -85,7 +89,7 @@ class RegisterController extends Controller
      * @param  User $User
      * @return User
      */
-    protected function create(array $data)
+    protected function create(array $data) : User
     {
         $this->User->name     = $data['name'];
         $this->User->email    = $data['email'];

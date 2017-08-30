@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class LoginController extends Controller
 {
@@ -51,9 +52,11 @@ class LoginController extends Controller
     /**
      * Show the application's login form.
      *
-     * @return \Illuminate\Http\Response
+     * @method GET
+     * @param Request $request
+     * @return View
      */
-    public function showLoginForm()
+    public function showLoginForm(Request $request) : View
     {
         $this->setBreadcrumb('Login', route('login'));
 
@@ -65,7 +68,7 @@ class LoginController extends Controller
     /**
      * Validate the user login request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return void
      */
     protected function validateLogin(Request $request)
