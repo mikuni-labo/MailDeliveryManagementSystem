@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 
 class Visitor extends Model
@@ -60,9 +61,9 @@ class Visitor extends Model
     /**
      * Search
      *
-     * @param array $search
+     * @param Request $request
      */
-    public static function search($search = [])
+    public static function search(Request $request)
     {
         $query = self::query();
 
@@ -82,16 +83,51 @@ class Visitor extends Model
             visitors.deleted_at
         '));
 
-        // ID
-        if( !empty($search['id']) ) {
-            $query->where('visitors.id', '=', $search['id']);
-        }
+        $query->when($request->has('id'), function($query) use ($request) {
+            $query->where('visitors.id', 'like', "%{$request->get('id')}%");
+        });
 
-        // 登録時間の降順
+        $query->when($request->has('name'), function($query) use ($request) {
+            $query->where('visitors.name', 'like', "%{$request->get('name')}%");
+        });
+
+        $query->when($request->has('organization'), function($query) use ($request) {
+            $query->where('visitors.organization', 'like', "%{$request->get('organization')}%");
+        });
+
+        $query->when($request->has('department'), function($query) use ($request) {
+            $query->where('visitors.department', 'like', "%{$request->get('department')}%");
+        });
+
+        $query->when($request->has('position'), function($query) use ($request) {
+            $query->where('visitors.position', 'like', "%{$request->get('position')}%");
+        });
+
+        $query->when($request->has('postcode'), function($query) use ($request) {
+            $query->where('visitors.postcode', 'like', "%{$request->get('postcode')}%");
+        });
+
+        $query->when($request->has('address'), function($query) use ($request) {
+            $query->where('visitors.address', 'like', "%{$request->get('address')}%");
+        });
+
+        $query->when($request->has('email'), function($query) use ($request) {
+            $query->where('visitors.email', 'like', "%{$request->get('email')}%");
+        });
+
+        $query->when($request->has('tel'), function($query) use ($request) {
+            $query->where('visitors.tel', 'like', "%{$request->get('tel')}%");
+        });
+
+        $query->when($request->has('fax'), function($query) use ($request) {
+            $query->where('visitors.fax', 'like', "%{$request->get('fax')}%");
+        });
+
+        $query->when($request->has('with_trashed'), function($query) use ($request) {
+            $query->withTrashed();
+        });
+
         $query->orderBy('visitors.created_at', 'DESC');
-
-        // TODO 仮の措置
-        $query->withTrashed();
 
         return $query;
     }
