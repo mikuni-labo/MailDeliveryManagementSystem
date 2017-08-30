@@ -19,6 +19,7 @@ class UploadCsvService implements CsvServiceInterface
     private $Csv;
     private $columns;
     private $Collection;
+    private $skipHeader = true;
 
     const CSV_COLUMNS = [
         'name',
@@ -63,7 +64,7 @@ class UploadCsvService implements CsvServiceInterface
 //             return $result;
 //         }
 
-        $this->Collection = $this->Csv->assignColumns($this->Collection, $this->columns, true);
+        $this->Collection = $this->Csv->assignColumns($this->Collection, $this->columns, $this->skipHeader);
 
         /**
          * 厳密な値バリデート

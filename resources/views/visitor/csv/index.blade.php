@@ -15,10 +15,14 @@
                     <div class="panel-body">
                         @include('flash::message')
 
-                        @if( $errors->count() )
+                        @if( $errors->count() && ! $errors->has('upload_csv') )
                             <div class="alert alert-danger">
                                 @foreach( $errors->all() as $key => $error )
-                                    <strong>{{ $key + 1 }}行目の{{ $error }}</strong><br>
+                                    @unless( $errors->has('valid_comuns') )
+                                        <strong>{{ $key + 1 }}行目の{{ $error }}</strong><br>
+                                    @else
+                                        <strong>{{ $error }}</strong><br>
+                                    @endunless
                                 @endforeach
                             </div>
                         @endif
