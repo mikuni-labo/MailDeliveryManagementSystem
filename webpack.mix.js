@@ -19,6 +19,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .extract(['vue']);
 
 mix.js('resources/assets/js/mail.js', 'public/js');
+mix.js('resources/assets/js/visitor.js', 'public/js');
 
 
 

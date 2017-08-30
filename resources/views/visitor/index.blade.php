@@ -15,8 +15,12 @@
                 @include('flash::message')
 
                 <div class="panel panel-default">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;検索</div>
-                    <div class="panel-body">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;検索&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="dummy_link" id="search_toggle"><small><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp;選択エリアを表示する</small></a>
+                    </div>
+
+                    <div class="panel-body" id="search_area">
                         {!! Form::open(['url' => route('visitor'), 'method' => 'get', 'class' => 'form-horizontal']) !!}
                             @include('common.form.visitor', ['mode' => 'search'])
                         {!! Form::close() !!}
@@ -104,6 +108,7 @@
 @endsection
 
 @section('script')
+    <script type="text/javascript" src="{{ mix('js/visitor.js') }}"></script>
     <script type="text/javascript">
         /**
          * Delete a record.
