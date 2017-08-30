@@ -55,8 +55,6 @@ class UploadCsvService implements CsvServiceInterface
         $this->Collection = $this->getCollection($this->file->getRealPath());
 
         /**
-         * 取り込み処理前の行・列簡易バリデート
-         *
          * @var \Illuminate\Validation\Validator $result
          */
         $result = $this->makeValidColumns($this->Collection);
@@ -68,34 +66,48 @@ class UploadCsvService implements CsvServiceInterface
         $this->Collection = $this->Csv->assignColumns($this->Collection, $this->columns, $this->skipHeader);
 
         /**
-         * 厳密な値バリデート
+         * @var \Illuminate\Validation\Validator $result
          */
         $result = $this->makeValidParams($this->Collection);
-
-        $this->getVisitorAttributes();
 
         if( $result->fails() ) {
             return $result;
         }
 
         /**
-         * TODO DB登録処理
+         * @var \Illuminate\Validation\Validator $result
          */
+        $result = $this->makeValidUniqueEmail($this->Collection);
+
+        if( $result->fails() ) {
+            return $result;
+        }
+
+        $this->createVisitors($this->Collection);
+
+        return $result;
     }
 
     /**
+     * アップロードファイルのデータを取得してコレクションを返す
      *
+     * @param string $path
+     * @return Collection
      */
     private function getCollection(string $path) : Collection
     {
         $this->Csv->createReaderFromPath($path);
         $this->Csv->getReader()->setDelimiter(',');
+        $this->Csv->getReader()->setNewline("\r\n");
 
         return collect($this->Csv->getReader()->fetchAll());
     }
 
     /**
+     * 取り込み処理前の行・列簡易バリデート
      *
+     * @param Collection $Collection
+     * @return Validator
      */
     private function makeValidColumns(Collection $Collection) : Validator
     {
@@ -116,7 +128,10 @@ class UploadCsvService implements CsvServiceInterface
     }
 
     /**
+     * 厳密な値の配列バリデート
      *
+     * @param Collection $Collection
+     * @return Validator
      */
     private function makeValidParams(Collection $Collection) : Validator
     {
@@ -141,6 +156,31 @@ class UploadCsvService implements CsvServiceInterface
     }
 
     /**
+     * データ内メールアドレス重複チェック
+     *
+     * @param Collection $Collection
+     * @return Validator
+     */
+    private function makeValidUniqueEmail(Collection $Collection) : Validator
+    {
+        return \Validator::make(
+            [
+                'unique_email' => $Collection->count() === $Collection->uniqueStrict('email')->count(),
+            ],
+            [
+                'unique_email' => 'true',
+            ],
+            [
+                'unique_email.true' => 'メールアドレスが重複しています。'
+            ],
+            [
+                //
+            ]
+            );
+    }
+
+    /**
+     * 来場者属性を取得して配列バリデート用に加工
      *
      * @return array
      */
@@ -155,6 +195,20 @@ class UploadCsvService implements CsvServiceInterface
 
         return $arr;
     }
+
+    /**
+     * 来場者登録
+     *
+     * @param Collection $Collection
+     * @return void
+     */
+    private function createVisitors(Collection $Collection)
+    {
+        foreach ( $Collection as $values ) {
+            Visitor::create($values);
+        }
+    }
+
 
     public function setFile($file)
     {

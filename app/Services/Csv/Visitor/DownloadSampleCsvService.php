@@ -60,6 +60,8 @@ class DownloadSampleCsvService implements CsvServiceInterface
         }
 
         $this->Csv->createWriterFromFileObject(new \SplTempFileObject());
+        $this->Csv->getWriter()->setDelimiter(',');
+        $this->Csv->getWriter()->setNewline("\r\n");
         $this->Csv->getWriter()->insertOne($headers);
 
         return \Validator::make([], [], [], []);

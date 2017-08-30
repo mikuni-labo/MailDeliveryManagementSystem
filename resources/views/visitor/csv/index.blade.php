@@ -18,7 +18,7 @@
                         @if( $errors->count() && ! $errors->has('upload_csv') )
                             <div class="alert alert-danger">
                                 @foreach( $errors->all() as $key => $error )
-                                    @unless( $errors->has('valid_comuns') )
+                                    @unless( $errors->has('valid_comuns') || $errors->has('unique_email') )
                                         <strong>{{ $key + 1 }}行目の{{ $error }}</strong><br>
                                     @else
                                         <strong>{{ $error }}</strong><br>
