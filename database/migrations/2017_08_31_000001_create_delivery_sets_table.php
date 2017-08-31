@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMailTemplatesTable extends Migration
+class CreateDeliverySetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,22 @@ class CreateMailTemplatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('mail_templates', function (Blueprint $table) {
+        Schema::create('delivery_sets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('subject');
-            $table->text('content');
-            $table->tinyInteger('from')->unsigned()->default(1);
+            $table->integer('mail_template_id')->unsigned();
+            $table->string('name')->nullable();
             $table->boolean('status')->unsigned()->default(true);
             $table->timestamps();
             $table->softDeletes();
+
+            /**
+             * 外部キー制約
+             */
+            $table->foreign('mail_template_id')
+                ->references('id')
+                ->on('mail_templates')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
@@ -31,6 +39,6 @@ class CreateMailTemplatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mail_templates');
+        Schema::dropIfExists('delivery_sets');
     }
 }

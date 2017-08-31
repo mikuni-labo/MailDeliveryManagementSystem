@@ -30,10 +30,10 @@ class EditController extends Controller
      *
      * @method GET
      * @param Request $request
-     * @param int $id
+     * @param integer $id
      * @return View
      */
-    public function index(Request $request, int $id) : View
+    public function index(Request $request, $id) : View
     {
         return view('visitor.edit')->with([
             'breadcrumb' => $this->setBreadcrumb('Edit', route('visitor.edit', [$id])),
@@ -42,12 +42,12 @@ class EditController extends Controller
     }
 
     /**
-     * Update
+     * Update a visitor.
      *
      * @method PUT
      * @param Request $request
      * @param EditRequest $formRequest
-     * @param integer int $id
+     * @param integer integer $id
      * @return RedirectResponse
      */
     public function update(Request $request, EditRequest $formRequest, int $id) : RedirectResponse

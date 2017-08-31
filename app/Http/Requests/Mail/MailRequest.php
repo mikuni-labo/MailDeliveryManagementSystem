@@ -14,7 +14,10 @@ class MailRequest extends Request
     public function attributes()
     {
         return [
-//             'name'                  => 'ログイン名',
+            'subject'  => '題名',
+            'from'     => '差出人',
+            'content'  => '本文',
+            'status'   => 'ステータス',
         ];
     }
 

@@ -24,7 +24,7 @@
                                 <label for="email" class="col-md-4 control-label">メールアドレス<span class="attention">*</span></label>
 
                                 <div class="col-md-6">
-                                    {!! Form::email('email', $email or old('email'), ['required', 'autofocus', 'class' => 'form-control', 'id' => 'email', 'maxlength' => '255', 'placeholder' => '']) !!}
+                                    {!! Form::email('email', $email or old('email'), ['required', 'autofocus', 'class' => 'form-control', 'id' => 'email', 'maxlength' => '191', 'placeholder' => '']) !!}
 
                                     @if( $errors->has('email') )
                                         <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>

@@ -43,7 +43,7 @@ class StoreController extends Controller
     }
 
     /**
-     * Store
+     * Store a template.
      *
      * @method POST
      * @param Request $request

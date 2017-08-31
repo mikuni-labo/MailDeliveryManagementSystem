@@ -27,6 +27,10 @@ class Visitor extends Model
         'email',
         'tel',
         'fax',
+        'status',
+        'possible_delivery_flag',
+        'exhibitor_type',
+        'enterprise_type',
     ];
 
     /**
@@ -44,7 +48,7 @@ class Visitor extends Model
      * @var array
      */
     protected $dates = [
-        //
+        'status' => 'bool',
     ];
 
     /**
@@ -53,7 +57,11 @@ class Visitor extends Model
      * @var array
      */
     protected $casts = [
-        //
+        'id'                     => 'integer',
+        'status'                 => 'boolean',
+        'possible_delivery_flag' => 'boolean',
+        'exhibitor_type'         => 'integer',
+        'enterprise_type'        => 'integer',
     ];
 
     protected $perPage = 20;

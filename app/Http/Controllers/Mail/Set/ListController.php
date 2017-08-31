@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Mail;
+namespace App\Http\Controllers\Mail\Set;
 
 use App\Http\Controllers\Controller;
 use App\Models\MailTemplate;
@@ -24,14 +24,19 @@ class ListController extends Controller
     }
 
     /**
-     * Show mail templates list.
+     * Show mail template visitors sets list.
      *
      * @method GET
      * @param Request $request
+     * @param integer $id
      * @return View
      */
-    public function index(Request $request) : View
+    public function index(Request $request, $id) : View
     {
+        $this->setBreadcrumb('Delivery Set', route('mail.set', $id));
+
+        dd('here');
+
         return view('mail.index')->with([
             'breadcrumb' => $this->getBreadcrumb(),
             'results'    => MailTemplate::search()->paginate(),

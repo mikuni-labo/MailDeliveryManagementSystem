@@ -18,6 +18,7 @@ class MailTemplate extends Model
         'subject',
         'content',
         'from',
+        'status',
     ];
 
     /**
@@ -44,7 +45,10 @@ class MailTemplate extends Model
      * @var array
      */
     protected $casts = [
-        //
+        'id'     => 'integer',
+        'from'   => 'integer',
+        'status' => 'boolean',
+
     ];
 
     protected $perPage = 20;

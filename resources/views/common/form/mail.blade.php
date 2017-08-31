@@ -6,7 +6,7 @@
     <label for="subject" class="col-md-2 control-label">題名<span class="attention">*</span></label>
 
     <div class="col-md-9 form-control-static">
-        {!! Form::textarea('subject', isset($row->subject) ? $row->subject : null, ['required', $mode === 'add' ? 'autofocus' : null, 'class' => 'form-control', 'id' => 'subject', 'maxlength' => '255', 'placeholder' => '', 'rows' => '1']) !!}
+        {!! Form::textarea('subject', isset($row->subject) ? $row->subject : null, ['required', $mode === 'add' ? 'autofocus' : null, 'class' => 'form-control', 'id' => 'subject', 'maxlength' => '191', 'placeholder' => '', 'rows' => '1']) !!}
 
         @if( $errors->has('subject') )
             <span class="help-block"><strong>{{ $errors->first('subject') }}</strong></span>
@@ -40,10 +40,25 @@
 
         <span class="glyphicon glyphicon-question-sign text-warning" data-toggle="tooltip" title="挿入タグはメール送信時に来場者情報に置き替わります。<br>未設定の場合は表示されません。"></span>
 
-        {!! Form::textarea('content', isset($row->content) ? $row->content : null, ['required', $mode === 'add' ? 'autofocus' : null, 'class' => 'form-control mt-5', 'id' => 'content', 'maxlength' => '255', 'placeholder' => '', 'rows' => '9']) !!}
+        {!! Form::textarea('content', isset($row->content) ? $row->content : null, ['required', $mode === 'add' ? 'autofocus' : null, 'class' => 'form-control mt-5', 'id' => 'content', 'maxlength' => '191', 'placeholder' => '', 'rows' => '9']) !!}
 
         @if( $errors->has('content') )
             <span class="help-block"><strong>{{ $errors->first('content') }}</strong></span>
+        @endif
+    </div>
+</div>
+
+<div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+    <label for="status" class="col-md-2 control-label">ステータス
+        @if( $mode === 'add' || $mode === 'edit' ) <span class="attention">*</span>@endif
+    </label>
+
+    <div class="col-md-4 form-control-static">
+        <label>{!! Form::radio('status', 1, true, ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-success">有効</span></label>&nbsp;&nbsp;&nbsp;
+        <label>{!! Form::radio('status', 0, isset($row->status) && ! $row->status , ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-danger">無効</span></label>
+
+        @if( $errors->has('status') )
+            <span class="help-block"><strong>{{ $errors->first('status') }}</strong></span>
         @endif
     </div>
 </div>

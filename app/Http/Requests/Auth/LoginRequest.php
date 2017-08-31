@@ -12,8 +12,8 @@ class LoginRequest extends AuthRequest
     public function rules()
     {
         return [
-            'email'    => 'required|email|max:255',
-            'password' => 'required|max:255',
+            'email'    => 'required|email|max:191',
+            'password' => 'required|max:191',
             'remember' => 'boolean',
         ];
     }

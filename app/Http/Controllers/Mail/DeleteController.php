@@ -22,14 +22,14 @@ class DeleteController extends Controller
     }
 
     /**
-     * Show visitors list.
+     * Delete a template.
      *
      * @method DELETE
      * @param Request $request
-     * @param int $id
+     * @param integer $id
      * @return RedirectResponse
      */
-    public function index(Request $request, int $id) : RedirectResponse
+    public function delete(Request $request, int $id) : RedirectResponse
     {
         /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::findOrFail($id);
