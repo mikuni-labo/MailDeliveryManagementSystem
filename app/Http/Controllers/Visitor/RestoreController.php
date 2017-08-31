@@ -22,14 +22,14 @@ class RestoreController extends Controller
     }
 
     /**
-     * Show visitors list.
+     * Restore a visitor.
      *
      * @method PATCH
      * @param Request $request
      * @param int $id
      * @return RedirectResponse
      */
-    public function index(Request $request, int $id) : RedirectResponse
+    public function restore(Request $request, int $id) : RedirectResponse
     {
         $Visitor = Visitor::onlyTrashed()->findOrFail($id);
         $Visitor->restore();

@@ -33,7 +33,7 @@ class DownloadSampleController extends Controller
      * @param Request $request
      * @return Response|RedirectResponse
      */
-    public function index(Request $request)
+    public function download(Request $request)
     {
         if( ! $this->csvService->proccess()->fails() ) {
             return $this->csvService->download();

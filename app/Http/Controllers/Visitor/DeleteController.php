@@ -22,14 +22,14 @@ class DeleteController extends Controller
     }
 
     /**
-     * Show visitors list.
+     * Delete a visitor.
      *
      * @method DELETE
      * @param Request $request
      * @param int $id
      * @return RedirectResponse
      */
-    public function index(Request $request, int $id) : RedirectResponse
+    public function delete(Request $request, int $id) : RedirectResponse
     {
         $Visitor = Visitor::findOrFail($id);
         $Visitor->delete();
