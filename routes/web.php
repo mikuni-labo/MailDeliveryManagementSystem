@@ -43,10 +43,10 @@ Route::group([
         Route::get( 'reset_search',     'ListController@reset')->name('visitor.search.reset');
         Route::get( 'add',              'StoreController@index')->name('visitor.add');
         Route::post('add',              'StoreController@store');
-        Route::get( 'edit/{id}',        'EditController@index')->name('visitor.edit');
-        Route::put( 'edit/{id}',        'EditController@update');
-        Route::delete('delete/{id}',    'DeleteController@index')->name('visitor.delete');
-        Route::patch( 'restore/{id}',   'RestoreController@index')->name('visitor.restore');
+        Route::get( '{id}/edit',        'EditController@index')->name('visitor.edit');
+        Route::put( '{id}/edit',        'EditController@update');
+        Route::delete('{id}/delete',    'DeleteController@index')->name('visitor.delete');
+        Route::patch( '{id}/restore',   'RestoreController@index')->name('visitor.restore');
 
         Route::group([
             'prefix'     => 'csv',
@@ -68,10 +68,23 @@ Route::group([
         Route::get( '/',                'ListController@index')->name('mail');
         Route::get( 'add',              'StoreController@index')->name('mail.add');
         Route::post('add',              'StoreController@store');
-        Route::get( 'edit/{id}',        'EditController@index')->name('mail.edit');
-        Route::put( 'edit/{id}',        'EditController@update');
-        Route::delete('delete/{id}',    'DeleteController@index')->name('mail.delete');
-        Route::patch( 'restore/{id}',   'RestoreController@index')->name('mail.restore');
+        Route::get( '{id}/edit',        'EditController@index')->name('mail.edit');
+        Route::put( '{id}/edit',        'EditController@update');
+        Route::delete('{id}/delete',    'DeleteController@index')->name('mail.delete');
+        Route::patch( '{id}/restore',   'RestoreController@index')->name('mail.restore');
+
+        Route::group([
+            'prefix'     => '{id}/set',
+            'namespace'  => 'Set',
+        ], function() {
+            Route::get( '/',                   'ListController@index')->name('mail.set');
+            Route::get( 'add',                 'StoreController@index')->name('mail.set.add');
+            Route::post('add',                 'StoreController@store');
+            Route::get( '{setId}/edit',        'EditController@index')->name('mail.set.edit');
+            Route::put( '{setId}/edit',        'EditController@update');
+            Route::delete('{setId}/delete',    'DeleteController@index')->name('mail.set.delete');
+            Route::patch( '{setId}/restore',   'RestoreController@index')->name('mail.set.restore');
+        });
     });
 });
 

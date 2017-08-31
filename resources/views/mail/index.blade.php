@@ -23,9 +23,9 @@
                                 <col width="8%">
                                 <col width="29%">
                                 <col width="34%">
-                                <col width="15%">
+                                <col width="17%">
                                 <col width="4%">
-                                <col width="6%">
+                                <col width="4%">
                                 <col width="4%">
                             </colgroup>
 
@@ -35,7 +35,7 @@
                                 <th class="text-center">差出人</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">編集</th>
-                                <th class="text-center">セット</th>
+                                <th class="text-center">配信</th>
                                 <th class="text-center">削除</th>
                             </tr>
 
@@ -62,7 +62,7 @@
                                     </td>
                                     <td class="text-center">
                                         @if( App::isLocal() )
-                                            <a href="#" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-duplicate" data-toggle="tooltip" title="配信セット"></span></a>
+                                            <a href="{{ route('mail.set', $result->id) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-duplicate" data-toggle="tooltip" title="配信セット"></span></a>
                                         @endif
                                     </td>
                                     <td class="text-center">
