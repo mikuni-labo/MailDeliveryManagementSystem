@@ -116,7 +116,7 @@
     </div>
 </div>
 
-@if( $mode === 'search' )
+@if( $mode === 'search' && App::isLocal() )
     <div class="form-group">
         <div class="col-md-4 col-md-offset-2 form-control-static">
             <label>{!! Form::checkbox('with_trashed', 1, isset($row->with_trashed), []) !!} 削除済みデータを表示</label>
