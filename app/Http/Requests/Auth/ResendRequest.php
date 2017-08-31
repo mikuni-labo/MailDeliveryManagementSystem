@@ -17,7 +17,7 @@ class ResendRequest extends AuthRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|exists:users|max:255',
+            'email' => 'required|email|exists:users|max:191',
         ];
     }
 

@@ -6,7 +6,7 @@
     <label for="name" class="col-md-2 control-label">氏名</label>
 
     <div class="col-md-9 form-control-static">
-        {!! Form::text('name', isset($row->name) ? $row->name : null, [$mode === 'add' ? 'autofocus' : null, 'class' => 'form-control', 'id' => 'name', 'maxlength' => '255', 'placeholder' => '']) !!}
+        {!! Form::text('name', isset($row->name) ? $row->name : null, [$mode === 'add' ? 'autofocus' : null, 'class' => 'form-control', 'id' => 'name', 'maxlength' => '191', 'placeholder' => '']) !!}
 
         @if( $errors->has('name') )
             <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
@@ -18,7 +18,7 @@
     <label for="organization" class="col-md-2 control-label">組織名</label>
 
     <div class="col-md-9 form-control-static">
-        {!! Form::textarea('organization', isset($row->organization) ? $row->organization : null, ['class' => 'form-control', 'id' => 'organization', 'maxlength' => '255', 'placeholder' => '', 'rows' => '1']) !!}
+        {!! Form::textarea('organization', isset($row->organization) ? $row->organization : null, ['class' => 'form-control', 'id' => 'organization', 'maxlength' => '191', 'placeholder' => '', 'rows' => '1']) !!}
 
         @if( $errors->has('organization') )
             <span class="help-block"><strong>{{ $errors->first('organization') }}</strong></span>
@@ -30,7 +30,7 @@
     <label for="department" class="col-md-2 control-label">部署名</label>
 
     <div class="col-md-9 form-control-static">
-        {!! Form::text('department', isset($row->department) ? $row->department : null, ['class' => 'form-control', 'id' => 'department', 'maxlength' => '255', 'placeholder' => '']) !!}
+        {!! Form::text('department', isset($row->department) ? $row->department : null, ['class' => 'form-control', 'id' => 'department', 'maxlength' => '191', 'placeholder' => '']) !!}
 
         @if( $errors->has('department') )
             <span class="help-block"><strong>{{ $errors->first('department') }}</strong></span>
@@ -42,7 +42,7 @@
     <label for="position" class="col-md-2 control-label">役職</label>
 
     <div class="col-md-9 form-control-static">
-        {!! Form::text('position', isset($row->position) ? $row->position : null, ['class' => 'form-control', 'id' => 'position', 'maxlength' => '255', 'placeholder' => '']) !!}
+        {!! Form::text('position', isset($row->position) ? $row->position : null, ['class' => 'form-control', 'id' => 'position', 'maxlength' => '191', 'placeholder' => '']) !!}
 
         @if( $errors->has('position') )
             <span class="help-block"><strong>{{ $errors->first('position') }}</strong></span>
@@ -57,9 +57,9 @@
 
     <div class="col-md-9">
         @if( $mode === 'search' )
-            {!! Form::tel('email', isset($row->email) ? $row->email : null, ['class' => 'form-control', 'id' => 'email', 'maxlength' => '255', 'placeholder' => '']) !!}
+            {!! Form::tel('email', isset($row->email) ? $row->email : null, ['class' => 'form-control', 'id' => 'email', 'maxlength' => '191', 'placeholder' => '']) !!}
         @else
-            {!! Form::email('email', isset($row->email) ? $row->email : null, ['required', 'class' => 'form-control', 'id' => 'email', 'maxlength' => '255', 'placeholder' => '']) !!}
+            {!! Form::email('email', isset($row->email) ? $row->email : null, ['required', 'class' => 'form-control', 'id' => 'email', 'maxlength' => '191', 'placeholder' => '']) !!}
         @endif
 
         @if( $errors->has('email') )
@@ -84,7 +84,7 @@
     <label for="address" class="col-md-2 control-label">住所</label>
 
     <div class="col-md-9 form-control-static">
-        {!! Form::textarea('address', isset($row->address) ? $row->address : null, ['class' => 'form-control', 'id' => 'address', 'maxlength' => '255', 'placeholder' => '', 'rows' => '2']) !!}
+        {!! Form::textarea('address', isset($row->address) ? $row->address : null, ['class' => 'form-control', 'id' => 'address', 'maxlength' => '191', 'placeholder' => '', 'rows' => '2']) !!}
 
         @if( $errors->has('address') )
             <span class="help-block"><strong>{{ $errors->first('address') }}</strong></span>

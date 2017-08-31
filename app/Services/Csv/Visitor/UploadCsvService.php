@@ -144,7 +144,7 @@ class UploadCsvService implements CsvServiceInterface
                 '*.position'     => 'nullable',
                 '*.postcode'     => 'nullable',
                 '*.address'      => 'nullable',
-                '*.email'        => 'required|string|email|max:255|unique:visitors',
+                '*.email'        => 'required|string|email|max:191|unique:visitors',
                 '*.tel'          => 'nullable',
                 '*.fax'          => 'nullable',
             ],

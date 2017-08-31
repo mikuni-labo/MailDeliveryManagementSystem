@@ -19,7 +19,7 @@
                                 <label for="email" class="col-md-4 control-label">メールアドレス</label>
 
                                 <div class="col-md-6">
-                                    {!! Form::email('email', null, ['required', 'autofocus', 'class' => 'form-control', 'id' => 'email', 'maxlength' => '255', 'placeholder' => '']) !!}
+                                    {!! Form::email('email', null, ['required', 'autofocus', 'class' => 'form-control', 'id' => 'email', 'maxlength' => '191', 'placeholder' => '']) !!}
 
                                     @if( $errors->has('email') )
                                         <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
@@ -31,7 +31,7 @@
                                 <label for="password" class="col-md-4 control-label">パスワード</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" maxlength="255" placeholder="" required />
+                                    <input id="password" type="password" class="form-control" name="password" maxlength="191" placeholder="" required />
 
                                     @if( $errors->has('password') )
                                         <span class="help-block"><strong>{{ $errors->first('password') }}</strong></span>
