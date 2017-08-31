@@ -47,7 +47,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'status' => 'bool',
+        'id'     => 'integer',
+        'status' => 'boolean',
     ];
 
     protected $perPage = 20;
