@@ -48,6 +48,21 @@
     </div>
 </div>
 
+<div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+    <label for="status" class="col-md-2 control-label">ステータス
+        @if( $mode === 'add' || $mode === 'edit' ) <span class="attention">*</span>@endif
+    </label>
+
+    <div class="col-md-4 form-control-static">
+        <label>{!! Form::radio('status', 1, true, ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-success">有効</span></label>&nbsp;&nbsp;&nbsp;
+        <label>{!! Form::radio('status', 0, isset($row->status) && ! $row->status , ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-danger">無効</span></label>
+
+        @if( $errors->has('status') )
+            <span class="help-block"><strong>{{ $errors->first('status') }}</strong></span>
+        @endif
+    </div>
+</div>
+
 <div class="form-group">
     <div class="col-md-9 col-md-offset-2">
         <a href="javascript:history.back();" class="btn btn-default">戻る</a>
