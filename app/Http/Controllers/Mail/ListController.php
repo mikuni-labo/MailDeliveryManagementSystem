@@ -24,7 +24,7 @@ class ListController extends Controller
     }
 
     /**
-     * Show mail templatess list.
+     * Show mail templates list.
      *
      * @method GET
      * @param Request $request

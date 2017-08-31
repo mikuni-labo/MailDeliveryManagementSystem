@@ -24,11 +24,11 @@ class ListController extends Controller
     }
 
     /**
-     * Show mail templatess list.
+     * Show mail template visitors sets list.
      *
      * @method GET
      * @param Request $request
-     * @param int $id
+     * @param integer $id
      * @return View
      */
     public function index(Request $request, $id) : View

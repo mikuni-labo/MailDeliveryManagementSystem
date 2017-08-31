@@ -34,10 +34,10 @@ class EditController extends Controller
      *
      * @method GET
      * @param Request $request
-     * @param int $id
+     * @param integer $id
      * @return View
      */
-    public function index(Request $request, int $id) : View
+    public function index(Request $request, $id) : View
     {
         return view('mail.edit')->with([
             'breadcrumb' => $this->setBreadcrumb('Edit', route('mail.edit', [$id])),
@@ -46,7 +46,7 @@ class EditController extends Controller
     }
 
     /**
-     * Update
+     * Update a template.
      *
      * @method PUT
      * @param Request $request
@@ -54,7 +54,7 @@ class EditController extends Controller
      * @param integer $id
      * @return RedirectResponse
      */
-    public function update(Request $request, EditRequest $formRequest, $id) : RedirectResponse
+    public function update(Request $request, EditRequest $formRequest, int $id) : RedirectResponse
     {
         /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::findOrFail($id);

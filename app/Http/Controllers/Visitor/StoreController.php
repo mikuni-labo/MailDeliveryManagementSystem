@@ -40,7 +40,7 @@ class StoreController extends Controller
     }
 
     /**
-     * Store
+     * Store a visitor.
      *
      * @method POST
      * @param Request $request

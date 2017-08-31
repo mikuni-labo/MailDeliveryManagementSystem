@@ -26,7 +26,7 @@ class RestoreController extends Controller
      *
      * @method PATCH
      * @param Request $request
-     * @param int $id
+     * @param integer $id
      * @return RedirectResponse
      */
     public function restore(Request $request, int $id) : RedirectResponse
