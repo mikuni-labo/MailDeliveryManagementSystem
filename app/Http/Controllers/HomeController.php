@@ -32,4 +32,16 @@ class HomeController extends Controller
             'breadcrumb' => $this->getBreadcrumb(),
         ]);
     }
+
+    /**
+     * Show phpinfo.
+     *
+     * @method GET
+     * @param Request $request
+     * @return void
+     */
+    public function phpinfo(Request $request)
+    {
+        phpinfo();
+    }
 }

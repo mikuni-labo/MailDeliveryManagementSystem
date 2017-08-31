@@ -77,6 +77,10 @@
                             <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;ホーム</a></li>
                             <li><a href="{{ route('modify') }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;アカウント編集</a></li>
 
+                            @if( App::isLocal() )
+                                <li><a href="{{ route('phpinfo') }}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;phpinfo</a></li>
+                            @endif
+
                             <li role="separator" class="divider"></li>
 
                             <li>

@@ -29,9 +29,10 @@
 
                         {!! Form::open(['url' => route('visitor.csv.upload'), 'files' => true, 'method' => 'post', 'class' => 'form-horizontal']) !!}
                             <div class="form-group{{ $errors->has('upload_csv') ? ' has-error' : '' }}">
-                                <label for="upload_csv" class="col-md-4 control-label">一括登録用CSV<span class="attention">*</span></label>
+                                <label for="upload_csv" class="col-md-4 control-label">一括登録用CSV<span class="attention">*</span>（1MBまで）</label>
 
                                 <div class="col-md-6 form-control-static">
+                                    {!! Form::hidden('MAX_FILE_SIZE', '1048576', []) !!}
                                     {!! Form::file('upload_csv', null, ['required', 'class' => 'form-control', 'id' => 'upload_csv']) !!}
 
                                     @if( $errors->has('upload_csv') )

@@ -16,7 +16,8 @@ Route::group([
         'web',
     ],
 ], function() {
-    Route::get( '/', 'HomeController@index')->name('home');
+    Route::get( '/',       'HomeController@index')->name('home');
+    Route::get( 'phpinfo', 'HomeController@phpinfo')->name('phpinfo');
 
     /**
      * 認証
