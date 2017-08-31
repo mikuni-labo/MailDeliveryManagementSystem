@@ -73,11 +73,11 @@ class MailTemplate extends Model
             $query->where('mail_templates.id', '=', $search['id']);
         }
 
-        // 登録時間の降順
         $query->orderBy('mail_templates.created_at', 'DESC');
 
-        // TODO 仮の措置
-        $query->withTrashed();
+        if( app()->isLocal() ) {
+            $query->withTrashed();
+        }
 
         return $query;
     }
