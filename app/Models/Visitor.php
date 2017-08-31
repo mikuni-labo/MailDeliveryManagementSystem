@@ -27,6 +27,7 @@ class Visitor extends Model
         'email',
         'tel',
         'fax',
+        'status',
     ];
 
     /**
@@ -44,7 +45,7 @@ class Visitor extends Model
      * @var array
      */
     protected $dates = [
-        //
+        'status' => 'bool',
     ];
 
     /**

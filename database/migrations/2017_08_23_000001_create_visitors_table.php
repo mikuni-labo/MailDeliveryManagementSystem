@@ -24,6 +24,7 @@ class CreateVisitorsTable extends Migration
             $table->string('email')->unique();
             $table->string('tel', 15)->nullable();
             $table->string('fax', 15)->nullable();
+            $table->boolean('status')->unsigned()->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

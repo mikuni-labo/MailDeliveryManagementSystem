@@ -16,10 +16,14 @@ class CreateDeliverySetsTable extends Migration
         Schema::create('delivery_sets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('mail_template_id')->unsigned();
-            $table->string('name');
+            $table->string('name')->nullable();
+            $table->boolean('status')->unsigned()->default(true);
             $table->timestamps();
             $table->softDeletes();
 
+            /**
+             * 外部キー制約
+             */
             $table->foreign('mail_template_id')
                 ->references('id')
                 ->on('mail_templates')
