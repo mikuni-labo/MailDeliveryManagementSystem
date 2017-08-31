@@ -52,5 +52,10 @@
     <div class="col-md-9 col-md-offset-2">
         <a href="javascript:history.back();" class="btn btn-default">戻る</a>
         <button type="submit" class="btn btn-primary">送信</button>
+
+        @if( $mode === 'edit' )
+            <a href="#" class="btn btn-success">配信セット一覧</a>
+            <a href="{{ route('mail.delete', $row->id) }}" class="btn btn-danger" onclick="deleteRecord('{{ route('mail.delete', $row->id) }}'); return false;">削除</a>
+        @endif
     </div>
 </div>

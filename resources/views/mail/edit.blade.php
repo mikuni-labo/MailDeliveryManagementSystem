@@ -31,15 +31,15 @@
         /**
          * テンプレートタグを挿入
          *
-         * @param string fieldtId
+         * @param string fieldId
          * @param string tag
          */
-        function insertTemplateTag(fieldtId, tag) {
-            	var fieldt   = document.getElementById(fieldtId);
+        function insertTemplateTag(fieldId, tag) {
+            	var field    = document.getElementById(fieldId);
 
-            	var sentence = fieldt.value;
+            	var sentence = field.value;
             	var len      = sentence.length;
-            	var pos      = fieldt.selectionStart;
+            	var pos      = field.selectionStart;
 
             	var before   = sentence.substr(0, pos);
             	var word     = tag;
@@ -47,8 +47,19 @@
 
             	sentence     = before + word + after;
 
-            	fieldt.value = sentence;
-            	fieldt.focus();
+            	field.value  = sentence;
+            	field.focus();
         }
+
+        /**
+         * Delete a record.
+         */
+         function deleteRecord(url) {
+             if( confirm('本当に削除しますか？') ) {
+                 var form = document.getElementById('delete-form');
+                 form.action = url;
+                 form.submit();
+             }
+         }
     </script>
 @endsection
