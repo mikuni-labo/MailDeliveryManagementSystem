@@ -11,7 +11,7 @@
         @if( $mode === 'search' )
             {!! Form::tel('email', isset($row->email) ? $row->email : null, ['class' => 'form-control', 'id' => 'email', 'maxlength' => '191', 'placeholder' => '']) !!}
         @else
-            {!! Form::email('email', isset($row->email) ? $row->email : null, ['required', 'class' => 'form-control', 'id' => 'email', 'maxlength' => '191', 'placeholder' => '']) !!}
+            {!! Form::email('email', isset($row->email) ? $row->email : null, ['required', $mode === 'add' ? 'autofocus' : null, 'class' => 'form-control', 'id' => 'email', 'maxlength' => '191', 'placeholder' => '']) !!}
         @endif
 
         @if( $errors->has('email') )
@@ -24,7 +24,7 @@
     <label for="name" class="col-md-2 control-label">氏名</label>
 
     <div class="col-md-5 form-control-static">
-        {!! Form::text('name', isset($row->name) ? $row->name : null, [$mode === 'add' ? 'autofocus' : null, 'class' => 'form-control', 'id' => 'name', 'maxlength' => '191', 'placeholder' => '']) !!}
+        {!! Form::text('name', isset($row->name) ? $row->name : null, ['class' => 'form-control', 'id' => 'name', 'maxlength' => '191', 'placeholder' => '']) !!}
 
         @if( $errors->has('name') )
             <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>

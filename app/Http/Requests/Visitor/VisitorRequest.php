@@ -6,9 +6,21 @@ use App\Http\Requests\Request;
 
 class VisitorRequest extends Request
 {
+    /** @var array */
+    protected $exhibitorType;
+
+    /** @var array */
+    protected $enterpriseType;
+
     public function __construct()
     {
         parent::__construct();
+
+        $this->exhibitorType = config('fixture.visitor.exhibitor_type');
+        array_unshift($this->exhibitorType, '');
+
+        $this->enterpriseType = config('fixture.visitor.enterprise_type');
+        array_unshift($this->enterpriseType, '');
     }
 
     public function attributes()

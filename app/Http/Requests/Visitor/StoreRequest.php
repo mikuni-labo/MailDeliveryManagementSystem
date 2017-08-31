@@ -29,13 +29,13 @@ class StoreRequest extends VisitorRequest
                 'nullable',
                 'numeric',
                 'max:65535',
-                Rule::in( array_flip( config('fixture.visitor.exhibitor_type') ) ),
+                Rule::in( array_flip($this->exhibitorType) ),
             ],
             'enterprise_type' => [
                 'nullable',
                 'numeric',
                 'max:65535',
-                Rule::in( array_flip( config('fixture.visitor.enterprise_type') ) ),
+                Rule::in( array_flip($this->enterpriseType) ),
             ],
         ];
     }
