@@ -129,6 +129,11 @@
         <a href="javascript:history.back();" class="btn btn-default">戻る</a>
         <button type="submit" class="btn btn-primary">送信</button>
 
+        @if( $mode === 'edit' )
+            <a href="#" class="btn btn-warning">配信履歴</a>
+            <a href="{{ route('visitor.delete', $row->id) }}" class="btn btn-danger" onclick="deleteRecord('{{ route('visitor.delete', $row->id) }}'); return false;">削除</a>
+        @endif
+
         @if( $mode === 'search' )
             <a href="{{ route('visitor.search.reset') }}" class="btn btn-danger" data-toggle="confirmation" onclick="if(!confirm('検索条件をリセットしますか?')) return false;">検索条件リセット</a>
         @endif

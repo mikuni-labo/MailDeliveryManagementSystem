@@ -20,12 +20,13 @@
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
-                                <col width="7%">
-                                <col width="30%">
-                                <col width="38%">
+                                <col width="8%">
+                                <col width="29%">
+                                <col width="34%">
                                 <col width="15%">
-                                <col width="5%">
-                                <col width="5%">
+                                <col width="4%">
+                                <col width="6%">
+                                <col width="4%">
                             </colgroup>
 
                             <tr>
@@ -34,6 +35,7 @@
                                 <th class="text-center">差出人</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">編集</th>
+                                <th class="text-center">セット</th>
                                 <th class="text-center">削除</th>
                             </tr>
 
@@ -56,6 +58,11 @@
                                     <td class="text-center">
                                         @if( ! $result->deleted_at )
                                             <a href="{{ route('mail.edit', $result->id) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        @if( App::isLocal() )
+                                            <a href="#" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-duplicate" data-toggle="tooltip" title="配信セット"></span></a>
                                         @endif
                                     </td>
                                     <td class="text-center">
@@ -84,7 +91,7 @@
 @endsection
 
 @section('script')
-    @if(false)<script type="text/javascript" src="{{ mix('js/mail.js') }}"></script>@endif
+    <script type="text/javascript" src="{{ mix('js/mail.js') }}"></script>
     <script type="text/javascript">
         /**
          * Delete a record.

@@ -27,6 +27,15 @@
 
 @section('script')
     <script type="text/javascript">
-        //
+        /**
+         * Delete a record.
+         */
+         function deleteRecord(url) {
+             if( confirm('本当に削除しますか？') ) {
+                 var form = document.getElementById('delete-form');
+                 form.action = url;
+                 form.submit();
+             }
+         }
     </script>
 @endsection

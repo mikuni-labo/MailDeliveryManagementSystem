@@ -35,13 +35,14 @@
                             <colgroup>
                                 <col width="5%">
                                 <col width="23%">
-                                <col width="10%">
-                                <col width="15%">
+                                <col width="9%">
+                                <col width="14%">
                                 <col width="11%">
                                 <col width="11%">
                                 <col width="15%">
-                                <col width="5%">
-                                <col width="5%">
+                                <col width="4%">
+                                <col width="4%">
+                                <col width="4%">
                             </colgroup>
 
                             <tr>
@@ -53,6 +54,7 @@
                                 <th class="text-center">役職</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">編集</th>
+                                <th class="text-center">履歴</th>
                                 <th class="text-center">削除</th>
                             </tr>
 
@@ -80,6 +82,11 @@
                                     <td class="text-center">
                                         @if( ! $result->deleted_at )
                                             <a href="{{ route('visitor.edit', $result->id) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        @if( App::isLocal() )
+                                            <a href="#" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-send" data-toggle="tooltip" title="配信履歴"></span></a>
                                         @endif
                                     </td>
                                     <td class="text-center">
