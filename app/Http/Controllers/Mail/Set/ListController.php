@@ -32,7 +32,7 @@ class ListController extends Controller
      * @param integer $id
      * @return View
      */
-    public function index(Request $request, $id) : View
+    public function index(Request $request, int $id) : View
     {
         $MailTemplate = MailTemplate::findOrFail($id);
 

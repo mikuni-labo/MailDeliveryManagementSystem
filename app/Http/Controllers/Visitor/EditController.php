@@ -33,7 +33,7 @@ class EditController extends Controller
      * @param integer $id
      * @return View
      */
-    public function index(Request $request, $id) : View
+    public function index(Request $request, int $id) : View
     {
         return view('visitor.edit')->with([
             'breadcrumb' => $this->setBreadcrumb('Edit', route('visitor.edit', [$id])),
