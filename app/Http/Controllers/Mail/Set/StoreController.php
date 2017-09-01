@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Mail\Set;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Mail\StoreRequest;
+use App\Http\Requests\Mail\Set\StoreRequest;
+use App\Models\DeliverySet;
 use App\Models\MailTemplate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -33,16 +34,18 @@ class StoreController extends Controller
      *
      * @method GET
      * @param Request $request
+     * @param integer $id
      * @return View
      */
-    public function index(Request $request) : View
+    public function index(Request $request, int $id) : View
     {
+        MailTemplate::findOrFail($id);
+
         $this->setBreadcrumb('Delivery Set', route('mail.set', $id));
 
-        dd('add');
-
         return view('mail.set.add')->with([
-            'breadcrumb' => $this->setBreadcrumb('Add', route('mail.set.add')),
+            'breadcrumb' => $this->setBreadcrumb('Add', route('mail.set.add', $id)),
+            'templateId' => $id,
         ]);
     }
 
@@ -52,15 +55,21 @@ class StoreController extends Controller
      * @method POST
      * @param Request $request
      * @param StoreRequest $formRequest
+     * @param integer $id
      * @return RedirectResponse
      */
-    public function store(Request $request, StoreRequest $formRequest) : RedirectResponse
+    public function store(Request $request, StoreRequest $formRequest, int $id) : RedirectResponse
     {
-        /** @var MailTemplate $MailTemplate */
-        $MailTemplate = MailTemplate::create($request->all());
+        MailTemplate::findOrFail($id);
 
-        \Flash::success('テンプレートを新規登録しました。');
+        $inputs = $request->all();
+        $inputs['data'] = [];
 
-        return redirect()->route('mail');
+        /** @var DeliverySet $DeliverySet */
+        DeliverySet::create($inputs);
+
+        \Flash::success('配信セットを新規登録しました。');
+
+        return redirect()->route('mail.set', $id);
     }
 }

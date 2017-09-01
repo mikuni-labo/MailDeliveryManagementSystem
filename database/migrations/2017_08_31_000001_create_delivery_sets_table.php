@@ -17,6 +17,7 @@ class CreateDeliverySetsTable extends Migration
             $table->increments('id');
             $table->integer('mail_template_id')->unsigned();
             $table->string('name')->nullable();
+            $table->text('data');
             $table->boolean('status')->unsigned()->default(true);
             $table->timestamps();
             $table->softDeletes();
