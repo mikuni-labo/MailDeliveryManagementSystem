@@ -21,8 +21,9 @@
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
                                 <col width="8%">
-                                <col width="29%">
-                                <col width="34%">
+                                <col width="13%">
+                                <col width="40%">
+                                <col width="10%">
                                 <col width="17%">
                                 <col width="4%">
                                 <col width="4%">
@@ -31,8 +32,9 @@
 
                             <tr>
                                 <th class="text-center">ID</th>
-                                <th class="text-center">題名</th>
-                                <th class="text-center">差出人</th>
+                                <th class="text-center">テンプレートID</th>
+                                <th class="text-center">名称</th>
+                                <th class="text-center">ステータス</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">編集</th>
                                 <th class="text-center">履歴</th>
@@ -43,16 +45,21 @@
                                 <tr <?php if( $result->deleted_at ) :?> style="background-color: #bbb;"<?php endif;?>>
                                     <td class="text-center">{{ $result->id }}</td>
                                     <td class="text-center">
+                                        {{ $result->mail_template_id }}
+                                    </td>
+                                    <td class="text-center">
                                         @if( $result->deleted_at )
-                                            {{ $result->subject }}
+                                            {{ $result->name }}
                                         @else
-                                            <a href="{{ route('mail.set.edit', [$templateId, $result->id]) }}">{{ $result->subject }}</a>
+                                            <a href="{{ route('mail.set.edit', [$result->mail_template_id, $result->id]) }}">{{ $result->name }}</a>
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        @if( ! $result->deleted_at ) <code> @endif
-                                            {{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;
-                                        @if( ! $result->deleted_at ) </code> @endif
+                                        @if( $result->status )
+                                            <span class="text-success">有効</span>
+                                        @else
+                                            <span class="text-danger">無効</span>
+                                        @endif
                                     </td>
                                     <td class="text-center">{{ $result->updated_at }}</td>
                                     <td class="text-center">

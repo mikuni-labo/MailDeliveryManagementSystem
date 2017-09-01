@@ -36,13 +36,11 @@ class ListController extends Controller
     {
         $MailTemplate = MailTemplate::findOrFail($id);
 
-        dd('list');
-        DeliverySet::all();
-//         dd($MailTemplate->deliverySets()->first()->mailTemplate()->first());
-
-        return view('mail.index')->with([
+        return view('mail.set.index')->with([
             'breadcrumb' => $this->setBreadcrumb('Delivery Set', route('mail.set', $id)),
-            'results'    => MailTemplate::search()->paginate(),
+            'templateId' => $id,
+            'results'    => app()->isLocal() ? $MailTemplate->deliverySets()->withTrashed()->paginate()
+                                                : $MailTemplate->deliverySets()->paginate(),
         ]);
     }
 
