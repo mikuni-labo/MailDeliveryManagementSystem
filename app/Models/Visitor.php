@@ -134,7 +134,31 @@ class Visitor extends Model
             $query->where('visitors.fax', 'like', "%{$request->get('fax')}%");
         });
 
-        $query->when($request->has('with_trashed'), function($query) use ($request) {
+        $query->when($request->has('status_on'), function($query) {
+            $query->where('visitors.status', '=', 1);
+        });
+
+        $query->when($request->has('status_off'), function($query) {
+            $query->where('visitors.status', '=', 0);
+        });
+
+        $query->when($request->has('possible_delivery_flag_on'), function($query) {
+            $query->where('visitors.possible_delivery_flag', '=', 1);
+        });
+
+        $query->when($request->has('possible_delivery_flag_off'), function($query) {
+            $query->where('visitors.possible_delivery_flag', '=', 0);
+        });
+
+        $query->when(!empty($request->get('exhibitor_type')), function($query) use ($request) {
+            $query->where('visitors.exhibitor_type', '=', $request->get('exhibitor_type'));
+        });
+
+        $query->when(!empty($request->get('enterprise_type')), function($query) use ($request) {
+            $query->where('visitors.enterprise_type', '=', $request->get('enterprise_type'));
+        });
+
+        $query->when($request->has('with_trashed'), function($query) {
             $query->withTrashed();
         });
 
