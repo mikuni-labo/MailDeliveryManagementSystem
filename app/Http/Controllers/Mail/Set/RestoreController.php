@@ -34,7 +34,7 @@ class RestoreController extends Controller
     public function restore(Request $request, int $id, int $setId) : RedirectResponse
     {
         /** @var MailTemplate $MailTemplate */
-        $MailTemplate = MailTemplate::onlyTrashed()->findOrFail($id);
+        $MailTemplate = MailTemplate::findOrFail($id);
 
         /** @var DeliverySet $DeliverySet */
         $DeliverySet = DeliverySet::onlyTrashed()->findOrFail($setId);
