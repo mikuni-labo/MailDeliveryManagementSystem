@@ -16,6 +16,8 @@
                         @include('flash::message')
 
                         {!! Form::open(['url' => route('visitor.edit', [$row->id]), 'method' => 'put', 'class' => 'form-horizontal']) !!}
+                            {!! Form::hidden('id', $row->id) !!}
+
                             @include('common.form.visitor', ['mode' => 'edit'])
                         {!! Form::close() !!}
                     </div>

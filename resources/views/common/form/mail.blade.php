@@ -1,7 +1,3 @@
-@if( $mode === 'edit' )
-    {!! Form::hidden('id', $row->id) !!}
-@endif
-
 <div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">
     <label for="subject" class="col-md-2 control-label">題名<span class="attention">*</span></label>
 
