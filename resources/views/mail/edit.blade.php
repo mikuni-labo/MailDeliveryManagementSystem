@@ -16,6 +16,8 @@
                         @include('flash::message')
 
                         {!! Form::open(['url' => route('mail.edit', [$row->id]), 'method' => 'put', 'class' => 'form-horizontal']) !!}
+                            {!! Form::hidden('id', $row->id) !!}
+
                             @include('common.form.mail', ['mode' => 'edit'])
                         {!! Form::close() !!}
                     </div>

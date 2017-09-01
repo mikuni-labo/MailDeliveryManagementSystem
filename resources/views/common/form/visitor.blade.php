@@ -1,7 +1,3 @@
-@if( $mode === 'edit' )
-    {!! Form::hidden('id', $row->id) !!}
-@endif
-
 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
     <label for="email" class="col-md-2 control-label">メールアドレス
         @if( $mode === 'add' || $mode === 'edit' ) <span class="attention">*</span>@endif

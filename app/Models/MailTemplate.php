@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MailTemplate extends Model
 {
@@ -54,11 +56,22 @@ class MailTemplate extends Model
     protected $perPage = 20;
 
     /**
+     * 紐付く配信セットを定義
+     *
+     * @return HasMany
+     */
+    public function deliverySets() : HasMany
+    {
+        return $this->hasMany('App\Models\DeliverySet');
+    }
+
+    /**
      * Search
      *
      * @param array $search
+     * @return Builder
      */
-    public static function search($search = [])
+    public static function search(array $search = []) : Builder
     {
         $query = self::query();
 
@@ -67,6 +80,7 @@ class MailTemplate extends Model
             mail_templates.subject,
             mail_templates.from,
             mail_templates.content,
+            mail_templates.status,
             mail_templates.created_at,
             mail_templates.updated_at,
             mail_templates.deleted_at

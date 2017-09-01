@@ -1,7 +1,3 @@
-@if( $mode === 'edit' )
-    {!! Form::hidden('id', $row->id) !!}
-@endif
-
 <div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">
     <label for="subject" class="col-md-2 control-label">題名<span class="attention">*</span></label>
 
@@ -69,7 +65,7 @@
         <button type="submit" class="btn btn-primary">送信</button>
 
         @if( $mode === 'edit' )
-            <a href="#" class="btn btn-success">配信セット一覧</a>
+            <a href="{{ route('mail.set', $row->id) }}" class="btn btn-success">配信セット一覧</a>
             <a href="{{ route('mail.delete', $row->id) }}" class="btn btn-danger" onclick="deleteRecord('{{ route('mail.delete', $row->id) }}'); return false;">削除</a>
         @endif
     </div>

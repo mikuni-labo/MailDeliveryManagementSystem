@@ -1,24 +1,25 @@
 @extends('layouts.base')
 
 @section('meta')
-    <title>来場者編集｜{{ config('app.name') }}</title>
+    <title>配信セット編集｜{{ config('app.name') }}</title>
 @endsection
 
 @section('content')
     <div class="container">
-        @include('common.parts.breadcrumb', ['width' => 10, 'offset' => 1])
+        @include('common.parts.breadcrumb', ['width' => 8, 'offset' => 2])
 
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-warning">
-                    <div class="panel-heading lead"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;来場者編集</div>
+                    <div class="panel-heading lead"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;配信セット編集</div>
                     <div class="panel-body">
                         @include('flash::message')
 
-                        {!! Form::open(['url' => route('visitor.edit', [$row->id]), 'method' => 'put', 'class' => 'form-horizontal']) !!}
+                        {!! Form::open(['url' => route('mail.set.edit', [$templateId, $row->id]), 'method' => 'put', 'class' => 'form-horizontal']) !!}
+                            {!! Form::hidden('mail_template_id', $templateId) !!}
                             {!! Form::hidden('id', $row->id) !!}
 
-                            @include('common.form.visitor', ['mode' => 'edit'])
+                            @include('common.form.delivery_set', ['mode' => 'edit'])
                         {!! Form::close() !!}
                     </div>
                 </div>
