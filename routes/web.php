@@ -11,11 +11,7 @@
 |
 */
 
-Route::group([
-    'middleware' => [
-        'web',
-    ],
-], function() {
+Route::group([], function() {
     Route::get( '/',       'HomeController@index')->name('home');
     Route::get( 'phpinfo', 'HomeController@phpinfo')->name('phpinfo');
 
