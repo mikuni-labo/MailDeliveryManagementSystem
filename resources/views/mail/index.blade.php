@@ -62,7 +62,7 @@
                                     </td>
                                     <td class="text-center">
                                         @if( App::isLocal() )
-                                            <a href="{{ route('mail.set', $result->id) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-duplicate" data-toggle="tooltip" title="配信セット"></span></a>
+                                            <a href="{{ route('mail.set', $result->id) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-inbox" data-toggle="tooltip" title="配信セット"></span></a>
                                         @endif
                                     </td>
                                     <td class="text-center">

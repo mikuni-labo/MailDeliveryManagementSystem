@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Mail\Set;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Mail\EditRequest;
+use App\Http\Requests\Mail\Set\EditRequest;
+use App\Models\DeliverySet;
 use App\Models\MailTemplate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -35,35 +36,43 @@ class EditController extends Controller
      * @method GET
      * @param Request $request
      * @param integer $id
+     * @param integer $setId
      * @return View
      */
-    public function index(Request $request, $id) : View
+    public function index(Request $request, int $id, int $setId) : View
     {
+        MailTemplate::findOrFail($id);
+
         $this->setBreadcrumb('Delivery Set', route('mail.set', $id));
 
         return view('mail.set.edit')->with([
-            'breadcrumb' => $this->setBreadcrumb('Edit', route('mail.set.edit', [$id])),
-//             'row'        => MailTemplate::findOrFail($id),
+            'breadcrumb' => $this->setBreadcrumb('Edit', route('mail.set.edit', [$id, $setId])),
+            'templateId' => $id,
+            'row'        => DeliverySet::findOrFail($setId),
         ]);
     }
 
     /**
-     * Update a template.
+     * Update a mail template visitors set for delivery.
      *
      * @method PUT
      * @param Request $request
      * @param EditRequest $formRequest
      * @param integer $id
+     * @param integer $setId
      * @return RedirectResponse
      */
-    public function update(Request $request, EditRequest $formRequest, int $id) : RedirectResponse
+    public function update(Request $request, EditRequest $formRequest, int $id, int $setId) : RedirectResponse
     {
         /** @var MailTemplate $MailTemplate */
-        $MailTemplate = MailTemplate::findOrFail($id);
-        $MailTemplate->update($request->all());
+        MailTemplate::findOrFail($id);
 
-        \Flash::success('テンプレート情報を更新しました。');
+        /** @var DeliverySet $DeliverySet */
+        $DeliverySet = DeliverySet::findOrFail($setId);
+        $DeliverySet->update($request->all());
 
-        return redirect()->route('mail');
+        \Flash::success('配信セット情報を更新しました。');
+
+        return redirect()->route('mail.set', $id);
     }
 }
