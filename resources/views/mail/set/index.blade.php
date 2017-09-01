@@ -42,7 +42,7 @@
                             </tr>
 
                             @foreach($results as $result)
-                                <tr <?php if( $result->deleted_at ) :?> style="background-color: #bbb;"<?php endif;?>>
+                                <tr <?php if( $result->deleted_at || ! $result->status ) :?> style="background-color: #bbb;"<?php endif;?>>
                                     <td class="text-center">{{ $result->id }}</td>
                                     <td class="text-center">
                                         {{ $result->mail_template_id }}
