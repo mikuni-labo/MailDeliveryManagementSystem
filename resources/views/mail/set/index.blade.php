@@ -20,9 +20,9 @@
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
-                                <col width="8%">
-                                <col width="17%">
-                                <col width="40%">
+                                <col width="9%">
+                                <col width="12%">
+                                <col width="44%">
                                 <col width="6%">
                                 <col width="17%">
                                 <col width="4%">
@@ -31,7 +31,7 @@
                             </colgroup>
 
                             <tr>
-                                <th class="text-center">ID</th>
+                                <th class="text-center">セットID</th>
                                 <th class="text-center">テンプレートID</th>
                                 <th class="text-center">名称</th>
                                 <th class="text-center">状態</th>

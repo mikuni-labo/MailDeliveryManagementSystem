@@ -20,9 +20,9 @@
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
-                                <col width="8%">
-                                <col width="27%">
-                                <col width="34%">
+                                <col width="10%">
+                                <col width="26%">
+                                <col width="33%">
                                 <col width="4%">
                                 <col width="15%">
                                 <col width="4%">
@@ -31,7 +31,7 @@
                             </colgroup>
 
                             <tr>
-                                <th class="text-center">ID</th>
+                                <th class="text-center">テンプレートID</th>
                                 <th class="text-center">題名</th>
                                 <th class="text-center">差出人</th>
                                 <th class="text-center">状態</th>
@@ -70,7 +70,9 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('mail.set', $result->id) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-inbox" data-toggle="tooltip" title="配信セット"></span></a>
+                                        @if( ! $result->deleted_at )
+                                            <a href="{{ route('mail.set', $result->id) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-inbox" data-toggle="tooltip" title="配信セット"></span></a>
+                                        @endif
                                     </td>
                                     <td class="text-center">
                                         @if( $result->deleted_at )
