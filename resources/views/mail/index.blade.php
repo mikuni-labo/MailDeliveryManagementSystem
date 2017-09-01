@@ -6,10 +6,10 @@
 
 @section('content')
     <div class="container">
-        @include('common.parts.breadcrumb', ['width' => 10, 'offset' => 1])
+        @include('common.parts.breadcrumb', ['width' => 12, 'offset' => 0])
 
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12 col-md-offset-0">
                 <div class="lead"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;テンプレート一覧</div>
 
                 @include('flash::message')
@@ -21,9 +21,10 @@
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
                                 <col width="8%">
-                                <col width="29%">
+                                <col width="27%">
                                 <col width="34%">
-                                <col width="17%">
+                                <col width="4%">
+                                <col width="15%">
                                 <col width="4%">
                                 <col width="4%">
                                 <col width="4%">
@@ -33,6 +34,7 @@
                                 <th class="text-center">ID</th>
                                 <th class="text-center">題名</th>
                                 <th class="text-center">差出人</th>
+                                <th class="text-center">状態</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">編集</th>
                                 <th class="text-center">配信</th>
@@ -53,6 +55,13 @@
                                         @if( ! $result->deleted_at ) <code> @endif
                                             {{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;
                                         @if( ! $result->deleted_at ) </code> @endif
+                                    </td>
+                                    <td class="text-center">
+                                        @if( $result->status )
+                                            <span class="text-success">有効</span>
+                                        @else
+                                            <span class="text-danger">無効</span>
+                                        @endif
                                     </td>
                                     <td class="text-center">{{ $result->updated_at }}</td>
                                     <td class="text-center">

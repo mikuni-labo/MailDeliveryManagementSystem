@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -70,8 +71,9 @@ class Visitor extends Model
      * Search
      *
      * @param Request $request
+     * @return Builder
      */
-    public static function search(Request $request)
+    public static function search(Request $request) : Builder
     {
         $query = self::query();
 
@@ -86,6 +88,7 @@ class Visitor extends Model
             visitors.email,
             visitors.tel,
             visitors.fax,
+            visitors.status,
             visitors.created_at,
             visitors.updated_at,
             visitors.deleted_at

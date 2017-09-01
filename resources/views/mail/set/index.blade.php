@@ -21,9 +21,9 @@
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
                                 <col width="8%">
-                                <col width="13%">
+                                <col width="17%">
                                 <col width="40%">
-                                <col width="10%">
+                                <col width="6%">
                                 <col width="17%">
                                 <col width="4%">
                                 <col width="4%">
@@ -34,7 +34,7 @@
                                 <th class="text-center">ID</th>
                                 <th class="text-center">テンプレートID</th>
                                 <th class="text-center">名称</th>
-                                <th class="text-center">ステータス</th>
+                                <th class="text-center">状態</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">編集</th>
                                 <th class="text-center">履歴</th>
