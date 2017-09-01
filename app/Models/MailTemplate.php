@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MailTemplate extends Model
 {
@@ -52,6 +53,16 @@ class MailTemplate extends Model
     ];
 
     protected $perPage = 20;
+
+    /**
+     * 紐付く配信セットを定義
+     *
+     * @return HasMany
+     */
+    public function deliverySets() : HasMany
+    {
+        return $this->hasMany('App\Models\DeliverySet');
+    }
 
     /**
      * Search
