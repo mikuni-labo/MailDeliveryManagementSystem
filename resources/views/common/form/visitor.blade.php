@@ -1,5 +1,5 @@
 @if( $mode === 'edit' )
-    {!! Form::hidden('id', $row->id, ['id' => 'id']) !!}
+    {!! Form::hidden('id', $row->id) !!}
 @endif
 
 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
