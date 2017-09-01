@@ -33,12 +33,10 @@ class ListController extends Controller
      */
     public function index(Request $request, $id) : View
     {
-        $this->setBreadcrumb('Delivery Set', route('mail.set', $id));
-
         dd('here');
 
         return view('mail.index')->with([
-            'breadcrumb' => $this->getBreadcrumb(),
+            'breadcrumb' => $this->setBreadcrumb('Delivery Set', route('mail.set', $id)),
             'results'    => MailTemplate::search()->paginate(),
         ]);
     }
