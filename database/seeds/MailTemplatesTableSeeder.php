@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UsersTableSeeder extends Seeder
+class MailTemplatesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,21 +13,20 @@ class UsersTableSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
 
-        DB::table('users')->truncate();
+        DB::table('mail_templates')->truncate();
 
         Schema::enableForeignKeyConstraints();
 
-        DB::table('users')->insert([
+        DB::table('mail_templates')->insert([
             [
                 'id'           => 1,
-                'name'         => '管理者',
-                'email'        => 'test@admin.jp',
-                'password'     => Hash::make('p1p1p1p1'),
-//                 'status'       => true,
+                'subject'      => 'テスト題名',
+                'content'      => 'テスト本文',
+                'from'         => 1,
+                'status'       => true,
                 'created_at'   => Carbon::now(),
                 'updated_at'   => Carbon::now(),
 //                 'deleted_at'   => Carbon::now(),
-//                 'confirmed_at' => Carbon::now(),
             ],
         ]);
     }
