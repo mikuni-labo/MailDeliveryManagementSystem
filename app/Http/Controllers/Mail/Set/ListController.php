@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mail\Set;
 
 use App\Http\Controllers\Controller;
+use App\Models\DeliverySet;
 use App\Models\MailTemplate;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -24,7 +25,7 @@ class ListController extends Controller
     }
 
     /**
-     * Show mail template visitors sets list.
+     * Show mail template visitors sets list for delivery.
      *
      * @method GET
      * @param Request $request
@@ -33,7 +34,11 @@ class ListController extends Controller
      */
     public function index(Request $request, $id) : View
     {
-        dd('here');
+        $MailTemplate = MailTemplate::findOrFail($id);
+
+        dd('list');
+        DeliverySet::all();
+//         dd($MailTemplate->deliverySets()->first()->mailTemplate()->first());
 
         return view('mail.index')->with([
             'breadcrumb' => $this->setBreadcrumb('Delivery Set', route('mail.set', $id)),

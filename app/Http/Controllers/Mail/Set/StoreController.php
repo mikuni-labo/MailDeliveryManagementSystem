@@ -50,7 +50,7 @@ class StoreController extends Controller
     }
 
     /**
-     * Store a template.
+     * Store a mail template visitors set for delivery.
      *
      * @method POST
      * @param Request $request
