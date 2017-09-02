@@ -6,10 +6,12 @@
 
 @section('content')
     <div class="container">
-        @include('common.parts.breadcrumb', ['width' => 8, 'offset' => 2])
+        @include('common.parts.breadcrumb', ['width' => 12, 'offset' => 0])
+
+        @include('common.parts.template')
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12 col-md-offset-0">
                 <div class="panel panel-warning">
                     <div class="panel-heading lead"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;配信セット編集</div>
                     <div class="panel-body">
