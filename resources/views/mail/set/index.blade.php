@@ -14,8 +14,8 @@
 
                 @include('flash::message')
 
-                @if( $results->count() )
-                    {!! $results->render() !!}
+                @if( $result->count() )
+                    {!! $result->render() !!}
 
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
@@ -41,42 +41,42 @@
                                 <th class="text-center">削除</th>
                             </tr>
 
-                            @foreach($results as $result)
-                                <tr <?php if( $result->deleted_at || ! $result->status ) :?> style="background-color: #bbb;"<?php endif;?>>
-                                    <td class="text-center">{{ $result->id }}</td>
+                            @foreach( $result as $row )
+                                <tr <?php if( $row->deleted_at || ! $row->status ) :?> style="background-color: #bbb;"<?php endif;?>>
+                                    <td class="text-center">{{ $row->id }}</td>
                                     <td class="text-center">
-                                        {{ $result->mail_template_id }}
+                                        {{ $row->mail_template_id }}
                                     </td>
                                     <td class="text-center">
-                                        @if( $result->deleted_at )
-                                            {{ $result->name }}
+                                        @if( $row->deleted_at )
+                                            {{ $row->name }}
                                         @else
-                                            <a href="{{ route('mail.set.edit', [$result->mail_template_id, $result->id]) }}">{{ $result->name }}</a>
+                                            <a href="{{ route('mail.set.edit', [$row->mail_template_id, $row->id]) }}">{{ $row->name }}</a>
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        @if( $result->status )
+                                        @if( $row->status )
                                             <span class="text-success">有効</span>
                                         @else
                                             <span class="text-danger">無効</span>
                                         @endif
                                     </td>
-                                    <td class="text-center">{{ $result->updated_at }}</td>
+                                    <td class="text-center">{{ $row->updated_at }}</td>
                                     <td class="text-center">
-                                        @if( ! $result->deleted_at )
-                                            <a href="{{ route('mail.set.edit', [$templateId, $result->id]) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
+                                        @if( ! $row->deleted_at )
+                                            <a href="{{ route('mail.set.edit', [$templateId, $row->id]) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
                                         @endif
                                     </td>
                                     <td class="text-center">
                                         <a href="#" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-send" data-toggle="tooltip" title="履歴"></span></a>
                                     </td>
                                     <td class="text-center">
-                                        @if( $result->deleted_at )
-                                            <a href="{{ route('mail.set.restore', [$templateId, $result->id]) }}" class="btn btn-sm btn-info" onclick="restoreRecord('{{ route('mail.set.restore', [$templateId, $result->id]) }}'); return false;">
+                                        @if( $row->deleted_at )
+                                            <a href="{{ route('mail.set.restore', [$templateId, $row->id]) }}" class="btn btn-sm btn-info" onclick="restoreRecord('{{ route('mail.set.restore', [$templateId, $row->id]) }}'); return false;">
                                                 <span class="glyphicon glyphicon-repeat" aria-hidden="true" data-toggle="tooltip" title="復旧"></span>
                                             </a>
                                         @else
-                                            <a href="{{ route('mail.set.delete', [$templateId, $result->id]) }}" class="btn btn-sm btn-danger" onclick="deleteRecord('{{ route('mail.set.delete', [$templateId, $result->id]) }}'); return false;">
+                                            <a href="{{ route('mail.set.delete', [$templateId, $row->id]) }}" class="btn btn-sm btn-danger" onclick="deleteRecord('{{ route('mail.set.delete', [$templateId, $row->id]) }}'); return false;">
                                                 <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="tooltip" title="削除"></span>
                                             </a>
                                         @endif
@@ -86,7 +86,7 @@
                         </table>
                     </div>
 
-                    {!! $results->render() !!}
+                    {!! $result->render() !!}
                 @else
                     <p>条件に一致するデータがありません...</p>
                 @endif

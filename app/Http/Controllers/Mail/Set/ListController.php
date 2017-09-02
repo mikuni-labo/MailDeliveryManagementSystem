@@ -39,7 +39,7 @@ class ListController extends Controller
         return view('mail.set.index')->with([
             'breadcrumb' => $this->setBreadcrumb('Delivery Set', route('mail.set', $id)),
             'templateId' => $id,
-            'results'    => app()->isLocal() ? $MailTemplate->deliverySets()->withTrashed()->paginate()
+            'result'    => app()->isLocal() ? $MailTemplate->deliverySets()->withTrashed()->paginate()
                                                 : $MailTemplate->deliverySets()->paginate(),
         ]);
     }

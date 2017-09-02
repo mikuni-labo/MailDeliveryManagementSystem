@@ -27,8 +27,8 @@
                     </div>
                 </div>
 
-                @if( $results->count() )
-                    {!! $results->render() !!}
+                @if( $result->count() )
+                    {!! $result->render() !!}
 
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
@@ -60,37 +60,37 @@
                                 <th class="text-center">削除</th>
                             </tr>
 
-                            @foreach($results as $result)
-                                <tr <?php if( $result->deleted_at || ! $result->status ) :?> style="background-color: #bbb;"<?php endif;?>>
-                                    <td class="text-center">{{ $result->id }}</td>
+                            @foreach( $result as $row )
+                                <tr <?php if( $row->deleted_at || ! $row->status ) :?> style="background-color: #bbb;"<?php endif;?>>
+                                    <td class="text-center">{{ $row->id }}</td>
                                     <td class="text-center">
-                                        @if( $result->deleted_at || ! $result->status )
-                                            {{ $result->email }}
-                                        @elseif( $result->email )
-                                            <code>{{ $result->email }}</code>
+                                        @if( $row->deleted_at || ! $row->status )
+                                            {{ $row->email }}
+                                        @elseif( $row->email )
+                                            <code>{{ $row->email }}</code>
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        @if( $result->deleted_at )
-                                            {{ $result->name }}
-                                        @elseif( $result->name )
-                                            <a href="{{ route('visitor.edit', $result->id) }}">{{ $result->name }}</a>
+                                        @if( $row->deleted_at )
+                                            {{ $row->name }}
+                                        @elseif( $row->name )
+                                            <a href="{{ route('visitor.edit', $row->id) }}">{{ $row->name }}</a>
                                         @endif
                                     </td>
-                                    <td class="text-center">{{ $result->organization }}</td>
-                                    <td class="text-center">{{ $result->department }}</td>
-                                    <td class="text-center">{{ $result->position }}</td>
+                                    <td class="text-center">{{ $row->organization }}</td>
+                                    <td class="text-center">{{ $row->department }}</td>
+                                    <td class="text-center">{{ $row->position }}</td>
                                     <td class="text-center">
-                                        @if( $result->status )
+                                        @if( $row->status )
                                             <span class="text-success">有効</span>
                                         @else
                                             <span class="text-danger">無効</span>
                                         @endif
                                     </td>
-                                    <td class="text-center">{{ $result->updated_at }}</td>
+                                    <td class="text-center">{{ $row->updated_at }}</td>
                                     <td class="text-center">
-                                        @if( ! $result->deleted_at )
-                                            <a href="{{ route('visitor.edit', $result->id) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
+                                        @if( ! $row->deleted_at )
+                                            <a href="{{ route('visitor.edit', $row->id) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
                                         @endif
                                     </td>
                                     <td class="text-center">
@@ -99,12 +99,12 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        @if( $result->deleted_at )
-                                            <a href="{{ route('visitor.restore', $result->id) }}" class="btn btn-sm btn-info" onclick="restoreRecord('{{ route('visitor.restore', $result->id) }}'); return false;">
+                                        @if( $row->deleted_at )
+                                            <a href="{{ route('visitor.restore', $row->id) }}" class="btn btn-sm btn-info" onclick="restoreRecord('{{ route('visitor.restore', $row->id) }}'); return false;">
                                                 <span class="glyphicon glyphicon-repeat" aria-hidden="true" data-toggle="tooltip" title="復旧"></span>
                                             </a>
                                         @else
-                                            <a href="{{ route('visitor.delete', $result->id) }}" class="btn btn-sm btn-danger" onclick="deleteRecord('{{ route('visitor.delete', $result->id) }}'); return false;">
+                                            <a href="{{ route('visitor.delete', $row->id) }}" class="btn btn-sm btn-danger" onclick="deleteRecord('{{ route('visitor.delete', $row->id) }}'); return false;">
                                                 <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="tooltip" title="削除"></span>
                                             </a>
                                         @endif
@@ -114,7 +114,7 @@
                         </table>
                     </div>
 
-                    {!! $results->render() !!}
+                    {!! $result->render() !!}
                 @else
                     <p>条件に一致するデータがありません...</p>
                 @endif
