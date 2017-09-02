@@ -1,3 +1,25 @@
+@if( $mode === 'search' )
+    <div class="form-group{{ $errors->has('id_s') || $errors->has('id_e') ? ' has-error' : '' }}">
+        <label for="" class="col-md-2 control-label">来場者ID</label>
+
+        <div class="col-md-2 form-control-static">
+            {!! Form::tel('id_s', isset($row->id_s) ? $row->id_s : null, ['class' => 'form-control', 'id' => 'id_s', 'maxlength' => '10', 'placeholder' => '開始ID']) !!}
+
+            @if( $errors->has('id_s') )
+                <span class="help-block"><strong>{{ $errors->first('id_s') }}</strong></span>
+            @endif
+        </div>
+
+        <div class="col-md-2 form-control-static">
+            {!! Form::tel('id_e', isset($row->id_e) ? $row->id_e : null, ['class' => 'form-control', 'id' => 'id_e', 'maxlength' => '10', 'placeholder' => '終了ID']) !!}
+
+            @if( $errors->has('id_e') )
+                <span class="help-block"><strong>{{ $errors->first('id_e') }}</strong></span>
+            @endif
+        </div>
+    </div>
+@endif
+
 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
     <label for="email" class="col-md-2 control-label">メールアドレス
         @if( $mode === 'add' || $mode === 'edit' ) <span class="attention">*</span>@endif
