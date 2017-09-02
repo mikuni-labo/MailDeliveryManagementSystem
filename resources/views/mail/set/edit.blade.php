@@ -15,8 +15,8 @@
                     <div class="panel-body">
                         @include('flash::message')
 
-                        {!! Form::open(['url' => route('mail.set.edit', [$templateId, $row->id]), 'method' => 'put', 'class' => 'form-horizontal']) !!}
-                            {!! Form::hidden('mail_template_id', $templateId) !!}
+                        {!! Form::open(['url' => route('mail.set.edit', [$MailTemplate->id, $row->id]), 'method' => 'put', 'class' => 'form-horizontal']) !!}
+                            {!! Form::hidden('mail_template_id', $MailTemplate->id) !!}
                             {!! Form::hidden('id', $row->id) !!}
 
                             @include('common.form.delivery_set', ['mode' => 'edit'])

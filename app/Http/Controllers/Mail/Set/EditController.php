@@ -41,14 +41,15 @@ class EditController extends Controller
      */
     public function index(Request $request, int $id, int $setId) : View
     {
-        MailTemplate::findOrFail($id);
+        /** @var MailTemplate $MailTemplate */
+        $MailTemplate = MailTemplate::findOrFail($id);
 
         $this->setBreadcrumb('Delivery Set', route('mail.set', $id));
 
         return view('mail.set.edit')->with([
-            'breadcrumb' => $this->setBreadcrumb('Edit', route('mail.set.edit', [$id, $setId])),
-            'templateId' => $id,
-            'row'        => DeliverySet::findOrFail($setId),
+            'breadcrumb'   => $this->setBreadcrumb('Edit', route('mail.set.edit', [$id, $setId])),
+            'MailTemplate' => $MailTemplate,
+            'row'          => DeliverySet::findOrFail($setId),
         ]);
     }
 

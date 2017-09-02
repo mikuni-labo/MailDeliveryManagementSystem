@@ -42,7 +42,7 @@ class ListController extends Controller
 
         return view('visitor.index')->with([
             'breadcrumb' => $this->getBreadcrumb(),
-            'result'    => Visitor::search($request)->paginate(),
+            'result'     => Visitor::search($request)->paginate(),
         ]);
     }
 

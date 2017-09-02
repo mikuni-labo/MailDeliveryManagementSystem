@@ -64,7 +64,7 @@
                                     <td class="text-center">{{ $row->updated_at }}</td>
                                     <td class="text-center">
                                         @if( ! $row->deleted_at )
-                                            <a href="{{ route('mail.set.edit', [$templateId, $row->id]) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
+                                            <a href="{{ route('mail.set.edit', [$MailTemplate->id, $row->id]) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
                                         @endif
                                     </td>
                                     <td class="text-center">
@@ -72,11 +72,11 @@
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at )
-                                            <a href="{{ route('mail.set.restore', [$templateId, $row->id]) }}" class="btn btn-sm btn-info" onclick="restoreRecord('{{ route('mail.set.restore', [$templateId, $row->id]) }}'); return false;">
+                                            <a href="{{ route('mail.set.restore', [$MailTemplate->id, $row->id]) }}" class="btn btn-sm btn-info" onclick="restoreRecord('{{ route('mail.set.restore', [$MailTemplate->id, $row->id]) }}'); return false;">
                                                 <span class="glyphicon glyphicon-repeat" aria-hidden="true" data-toggle="tooltip" title="復旧"></span>
                                             </a>
                                         @else
-                                            <a href="{{ route('mail.set.delete', [$templateId, $row->id]) }}" class="btn btn-sm btn-danger" onclick="deleteRecord('{{ route('mail.set.delete', [$templateId, $row->id]) }}'); return false;">
+                                            <a href="{{ route('mail.set.delete', [$MailTemplate->id, $row->id]) }}" class="btn btn-sm btn-danger" onclick="deleteRecord('{{ route('mail.set.delete', [$MailTemplate->id, $row->id]) }}'); return false;">
                                                 <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="tooltip" title="削除"></span>
                                             </a>
                                         @endif
