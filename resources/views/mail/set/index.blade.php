@@ -53,7 +53,11 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        {{ $row->mail_template_id }}
+                                        @if( $MailTemplate->deleted_at )
+                                            {{ $MailTemplate->id }}
+                                        @else
+                                            <a href="{{ route('mail.edit', $MailTemplate->id) }}">{{ $MailTemplate->id }}</a>
+                                        @endif
                                     </td>
                                     <td class="text-center">{{ $row->name }}</td>
                                     <td class="text-center">

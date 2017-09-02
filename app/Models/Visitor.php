@@ -94,8 +94,12 @@ class Visitor extends Model
             visitors.deleted_at
         '));
 
-        $query->when($request->has('id'), function($query) use ($request) {
-            $query->where('visitors.id', 'like', "%{$request->get('id')}%");
+        $query->when($request->has('id_s'), function($query) use ($request) {
+            $query->where('visitors.id', '>=', $request->get('id_s'));
+        });
+
+        $query->when($request->has('id_e'), function($query) use ($request) {
+            $query->where('visitors.id', '<=', $request->get('id_e'));
         });
 
         $query->when($request->has('name'), function($query) use ($request) {

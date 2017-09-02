@@ -34,11 +34,12 @@
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
                                 <col width="5%">
-                                <col width="22%">
+                                <col width="20%">
                                 <col width="10%">
-                                <col width="13%">
+                                <col width="11%">
                                 <col width="10%">
                                 <col width="10%">
+                                <col width="4%">
                                 <col width="4%">
                                 <col width="14%">
                                 <col width="4%">
@@ -54,6 +55,7 @@
                                 <th class="text-center">部署名</th>
                                 <th class="text-center">役職</th>
                                 <th class="text-center">状態</th>
+                                <th class="text-center">配信</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">編集</th>
                                 <th class="text-center">履歴</th>
@@ -85,6 +87,13 @@
                                             <span class="text-success">有効</span>
                                         @else
                                             <span class="text-danger">無効</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        @if( $row->possible_delivery_flag )
+                                            <span class="text-success">可</span>
+                                        @else
+                                            <span class="text-danger">不可</span>
                                         @endif
                                     </td>
                                     <td class="text-center">{{ $row->updated_at }}</td>
