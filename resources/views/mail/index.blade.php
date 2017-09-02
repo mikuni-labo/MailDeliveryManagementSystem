@@ -66,8 +66,8 @@
                                     <td class="text-center">{{ $row->updated_at }}</td>
                                     <td class="text-center">
                                         @if( ! $row->deleted_at )
-                                            <a href="{{ route('mail.set', $row->id) }}" class="btn btn-sm btn-primary">
-                                                <span class="glyphicon glyphicon-inbox" data-toggle="tooltip" title="配信セット"></span>&nbsp;<span class="badge">{{ $row->deliverySets()->count() }}</span>
+                                            <a href="{{ route('mail.set', $row->id) }}" class="btn btn-sm btn-default">
+                                                </span>&nbsp;<span class="badge">{{ $row->deliverySets()->count() }}</span>&nbsp;セット
                                             </a>
                                         @endif
                                     </td>
