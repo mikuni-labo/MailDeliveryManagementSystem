@@ -34,12 +34,13 @@ class ListController extends Controller
      */
     public function index(Request $request, int $id) : View
     {
+        /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::findOrFail($id);
 
         return view('mail.set.index')->with([
-            'breadcrumb' => $this->setBreadcrumb('Delivery Set', route('mail.set', $id)),
-            'templateId' => $id,
-            'results'    => app()->isLocal() ? $MailTemplate->deliverySets()->withTrashed()->paginate()
+            'breadcrumb'   => $this->setBreadcrumb('Delivery Set', route('mail.set', $id)),
+            'MailTemplate' => $MailTemplate,
+            'result'       => app()->isLocal() ? $MailTemplate->deliverySets()->withTrashed()->paginate()
                                                 : $MailTemplate->deliverySets()->paginate(),
         ]);
     }

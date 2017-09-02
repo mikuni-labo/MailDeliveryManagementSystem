@@ -39,13 +39,13 @@ class StoreController extends Controller
      */
     public function index(Request $request, int $id) : View
     {
-        MailTemplate::findOrFail($id);
+        $MailTemplate = MailTemplate::findOrFail($id);
 
         $this->setBreadcrumb('Delivery Set', route('mail.set', $id));
 
         return view('mail.set.add')->with([
-            'breadcrumb' => $this->setBreadcrumb('Add', route('mail.set.add', $id)),
-            'templateId' => $id,
+            'breadcrumb'   => $this->setBreadcrumb('Add', route('mail.set.add', $id)),
+            'MailTemplate' => $MailTemplate,
         ]);
     }
 

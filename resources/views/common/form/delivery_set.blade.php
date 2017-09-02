@@ -31,7 +31,7 @@
         <button type="submit" class="btn btn-primary">送信</button>
 
         @if( $mode === 'edit' )
-            <a href="{{ route('mail.set.delete', [$templateId, $row->id]) }}" class="btn btn-danger" onclick="deleteRecord('{{ route('mail.set.delete', [$templateId, $row->id]) }}'); return false;">削除</a>
+            <a href="{{ route('mail.set.delete', [$MailTemplate->id, $row->id]) }}" class="btn btn-danger" onclick="deleteRecord('{{ route('mail.set.delete', [$MailTemplate->id, $row->id]) }}'); return false;">削除</a>
         @endif
     </div>
 </div>
