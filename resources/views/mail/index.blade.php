@@ -43,14 +43,14 @@
 
                             @foreach( $result as $row )
                                 <tr <?php if( $row->deleted_at || ! $row->status ) :?> style="background-color: #bbb;"<?php endif;?>>
-                                    <td class="text-center">{{ $row->id }}</td>
                                     <td class="text-center">
                                         @if( $row->deleted_at )
-                                            {{ $row->subject }}
+                                            {{ $row->id }}
                                         @else
-                                            <a href="{{ route('mail.edit', $row->id) }}">{{ $row->subject }}</a>
+                                            <a href="{{ route('mail.edit', $row->id) }}">{{ $row->id }}</a>
                                         @endif
                                     </td>
+                                    <td class="text-center">{{ $row->subject }}</td>
                                     <td class="text-center">
                                         @if( ! $row->deleted_at && $row->status ) <code> @endif
                                             {{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;

@@ -62,7 +62,13 @@
 
                             @foreach( $result as $row )
                                 <tr <?php if( $row->deleted_at || ! $row->status ) :?> style="background-color: #bbb;"<?php endif;?>>
-                                    <td class="text-center">{{ $row->id }}</td>
+                                    <td class="text-center">
+                                        @if( $row->deleted_at )
+                                            {{ $row->id }}
+                                        @elseif( $row->id )
+                                            <a href="{{ route('visitor.edit', $row->id) }}">{{ $row->id }}</a>
+                                        @endif
+                                    </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at || ! $row->status )
                                             {{ $row->email }}
@@ -70,13 +76,7 @@
                                             <code>{{ $row->email }}</code>
                                         @endif
                                     </td>
-                                    <td class="text-center">
-                                        @if( $row->deleted_at )
-                                            {{ $row->name }}
-                                        @elseif( $row->name )
-                                            <a href="{{ route('visitor.edit', $row->id) }}">{{ $row->name }}</a>
-                                        @endif
-                                    </td>
+                                    <td class="text-center">{{ $row->name }}</td>
                                     <td class="text-center">{{ $row->organization }}</td>
                                     <td class="text-center">{{ $row->department }}</td>
                                     <td class="text-center">{{ $row->position }}</td>
