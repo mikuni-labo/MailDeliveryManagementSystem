@@ -14,9 +14,9 @@
 
                 @include('flash::message')
 
-                {!! $results->render() !!}
-
                 @if( $results->count() )
+                    {!! $results->render() !!}
+
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
@@ -85,11 +85,11 @@
                             @endforeach
                         </table>
                     </div>
+
+                    {!! $results->render() !!}
                 @else
                     <p>条件に一致するデータがありません...</p>
                 @endif
-
-                {!! $results->render() !!}
             </div>
         </div>
     </div>
