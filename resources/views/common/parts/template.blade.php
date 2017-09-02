@@ -7,10 +7,11 @@
                     <table class="table table-hover table-striped table-condensed">
                         <colgroup>
                             <col width="10%">
-                            <col width="23%">
-                            <col width="30%">
+                            <col width="27%">
+                            <col width="33%">
                             <col width="4%">
                             <col width="15%">
+                            <col width="11%">
                         </colgroup>
 
                         <tr>
@@ -19,6 +20,7 @@
                             <th class="text-center">差出人</th>
                             <th class="text-center">状態</th>
                             <th class="text-center">更新日時</th>
+                            <th class="text-center">配信セット登録</th>
                         </tr>
 
                         <tr <?php if( $MailTemplate->deleted_at || ! $MailTemplate->status ) :?> style="background-color: #bbb;"<?php endif;?>>
@@ -43,6 +45,9 @@
                                 @endif
                             </td>
                             <td class="text-center">{{ $MailTemplate->updated_at }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('mail.set.add', $MailTemplate->id) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus" data-toggle="tooltip" title="登録"></span></a>
+                            </td>
                         </tr>
                     </table>
                 </div>
