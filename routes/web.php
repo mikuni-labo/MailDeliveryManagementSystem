@@ -88,8 +88,9 @@ Route::group([], function() {
     Route::group([
         'prefix'     => 'test',
     ], function() {
-        Route::get( '/',               'TestController@index')->name('test');
-        Route::get( 'mail',            'TestController@sendTestMail')->name('test.mail');
+        Route::get( '/',                 'TestController@index')->name('test');
+        Route::get( 'facade_mail',       'TestController@sendTestMailViaFacade')->name('test.mail.facade');
+        Route::get( 'notification_mail', 'TestController@sendTestMailViaNotification')->name('test.mail.notification');
     });
 });
 
