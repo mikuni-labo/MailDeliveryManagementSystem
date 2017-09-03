@@ -23,11 +23,16 @@ class UsersTableSeeder extends Seeder
                 'name'         => '管理者',
                 'email'        => 'test@admin.jp',
                 'password'     => Hash::make('p1p1p1p1'),
-//                 'status'       => true,
                 'created_at'   => Carbon::now(),
                 'updated_at'   => Carbon::now(),
-//                 'deleted_at'   => Carbon::now(),
-//                 'confirmed_at' => Carbon::now(),
+            ],
+            [
+                'id'           => 2,
+                'name'         => '和田邦康',
+                'email'        => 'k-wada@mikunilabo.com',
+                'password'     => Hash::make('p1p1p1p1'),
+                'created_at'   => Carbon::now(),
+                'updated_at'   => Carbon::now(),
             ],
         ]);
     }

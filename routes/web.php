@@ -89,6 +89,7 @@ Route::group([], function() {
         'prefix'     => 'test',
     ], function() {
         Route::get( '/',               'TestController@index')->name('test');
+        Route::get( 'mail',            'TestController@sendTestMail')->name('test.mail');
     });
 });
 
