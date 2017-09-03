@@ -16,12 +16,11 @@ Route::group([], function() {
     Route::get( 'phpinfo', 'HomeController@phpinfo')->name('phpinfo');
 
     /**
-     * 認証
+     * Auth
      */
     Auth::routes();
 
     Route::group([
-        'prefix'     => '',
         'namespace'  => 'Auth',
     ], function() {
         Route::get( 'modify',   'ModifyController@index')->name('modify');
@@ -29,7 +28,7 @@ Route::group([], function() {
     });
 
     /**
-     * 来場者管理
+     * Visitors
      */
     Route::group([
         'prefix'     => 'visitor',
@@ -55,7 +54,7 @@ Route::group([], function() {
     });
 
     /**
-     * メール配信管理
+     * Mails
      */
     Route::group([
         'prefix'     => 'mail',
@@ -81,6 +80,15 @@ Route::group([], function() {
             Route::delete('{setId}/delete',    'DeleteController@delete')->name('mail.set.delete');
             Route::patch( '{setId}/restore',   'RestoreController@restore')->name('mail.set.restore');
         });
+    });
+
+    /**
+     * Tests
+     */
+    Route::group([
+        'prefix'     => 'test',
+    ], function() {
+        Route::get( '/',               'TestController@index')->name('test');
     });
 });
 
