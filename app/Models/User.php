@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\ResetUserPasswordNotification;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -52,5 +53,16 @@ class User extends Authenticatable
     ];
 
     protected $perPage = 20;
+
+    /**
+     * パスワードリセット用通知クラスをオーバーライド
+     *
+     * {@inheritDoc}
+     * @see \Illuminate\Contracts\Auth\CanResetPassword::sendPasswordResetNotification()
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetUserPasswordNotification($token));
+    }
 
 }
