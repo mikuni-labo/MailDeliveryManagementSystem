@@ -79,6 +79,7 @@ Route::group([], function() {
             Route::put( '{setId}/edit',        'EditController@update');
             Route::delete('{setId}/delete',    'DeleteController@delete')->name('mail.set.delete');
             Route::patch( '{setId}/restore',   'RestoreController@restore')->name('mail.set.restore');
+            Route::get( '{setId}/visitor',     'VisitorsSetController@index')->name('mail.set.visitor');
         });
     });
 
