@@ -71,7 +71,7 @@ class VisitorsSetController extends Controller
         $MailTemplate = MailTemplate::findOrFail($id);
         $DeliverySet = DeliverySet::findOrFail($setId);
 
-        session()->forget('requestUri.mail.set.visitor.list');
+        session()->forget("requestUri.mail.set.visitor.list.{$setId}");
 
         return redirect()->route('mail.set.visitor', [$id, $setId]);
     }
