@@ -44,12 +44,14 @@ class VisitorsSetController extends Controller
 
         session()->put("requestUri.mail.set.visitor.list.{$setId}", $request->getRequestUri());
 
+        $this->setBreadcrumb('Delivery Set', route('mail.set', $id));
+
         /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::findOrFail($id);
         $DeliverySet = DeliverySet::findOrFail($setId);
 
         return view('mail.set.visitor.index')->with([
-            'breadcrumb'   => $this->setBreadcrumb('Delivery Visitors Set', route('mail.set.visitor', [$id, $setId])),
+            'breadcrumb'   => $this->setBreadcrumb('Visitors', route('mail.set.visitor', [$id, $setId])),
             'MailTemplate' => $MailTemplate,
             'DeliverySet'  => $DeliverySet,
             'result'       => Visitor::search($request)->paginate(),
