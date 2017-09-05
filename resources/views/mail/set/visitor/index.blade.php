@@ -36,11 +36,12 @@
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
                                 <col width="5%">
-                                <col width="20%">
-                                <col width="10%">
+                                <col width="5%">
+                                <col width="23%">
                                 <col width="11%">
-                                <col width="10%">
-                                <col width="10%">
+                                <col width="12%">
+                                <col width="11%">
+                                <col width="11%">
                                 <col width="4%">
                                 <col width="4%">
                                 <col width="14%">
@@ -48,6 +49,7 @@
 
                             <tr>
                                 <th class="text-center">ID</th>
+                                <th class="text-center">配信</th>
                                 <th class="text-center">メールアドレス</th>
                                 <th class="text-center">氏名</th>
                                 <th class="text-center">組織名</th>
@@ -66,6 +68,9 @@
                                         @elseif( $row->id )
                                             <a href="{{ route('visitor.edit', $row->id) }}">{{ $row->id }}</a>
                                         @endif
+                                    </td>
+                                    <td class="text-center">
+                                        {!! Form::checkbox("target[$row->id]", 1, in_array($row->id, $DeliverySet->data), []) !!}
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at || ! $row->status )
