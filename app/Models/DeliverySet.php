@@ -21,7 +21,7 @@ class DeliverySet extends Model
         'mail_template_id',
         'name',
         'data',
-        'status',
+//         'status',
     ];
 
     /**
@@ -50,7 +50,7 @@ class DeliverySet extends Model
     protected $casts = [
         'id'     => 'integer',
         'data'   => 'array',
-        'status' => 'boolean',
+//         'status' => 'boolean',
 
     ];
 

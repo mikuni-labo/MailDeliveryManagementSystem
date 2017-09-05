@@ -34,14 +34,13 @@
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
                                 <col width="5%">
-                                <col width="20%">
-                                <col width="10%">
+                                <col width="21%">
                                 <col width="11%">
+                                <col width="12%">
                                 <col width="10%">
                                 <col width="10%">
                                 <col width="4%">
-                                <col width="4%">
-                                <col width="14%">
+                                <col width="15%">
                                 <col width="4%">
                                 <col width="4%">
                                 <col width="4%">
@@ -54,7 +53,6 @@
                                 <th class="text-center">組織名</th>
                                 <th class="text-center">部署名</th>
                                 <th class="text-center">役職</th>
-                                <th class="text-center">状態</th>
                                 <th class="text-center">配信</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">編集</th>
@@ -63,7 +61,7 @@
                             </tr>
 
                             @foreach( $result as $row )
-                                <tr <?php if( $row->deleted_at || ! $row->status ) :?> style="background-color: #bbb;"<?php endif;?>>
+                                <tr <?php if( $row->deleted_at ) :?> style="background-color: #bbb;"<?php endif;?>>
                                     <td class="text-center">
                                         @if( $row->deleted_at )
                                             {{ $row->id }}
@@ -72,7 +70,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        @if( $row->deleted_at || ! $row->status )
+                                        @if( $row->deleted_at )
                                             {{ $row->email }}
                                         @elseif( $row->email )
                                             <code>{{ $row->email }}</code>
@@ -82,13 +80,15 @@
                                     <td class="text-center">{{ $row->organization }}</td>
                                     <td class="text-center">{{ $row->department }}</td>
                                     <td class="text-center">{{ $row->position }}</td>
-                                    <td class="text-center">
-                                        @if( $row->status )
-                                            <span class="text-success">有効</span>
-                                        @else
-                                            <span class="text-danger">無効</span>
-                                        @endif
-                                    </td>
+                                    @if(false)
+                                        <td class="text-center">
+                                            @if( $row->status )
+                                                <span class="text-success">有効</span>
+                                            @else
+                                                <span class="text-danger">無効</span>
+                                            @endif
+                                        </td>
+                                    @endif
                                     <td class="text-center">
                                         @if( $row->possible_delivery_flag )
                                             <span class="text-success">可</span>

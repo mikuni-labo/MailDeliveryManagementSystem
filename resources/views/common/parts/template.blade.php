@@ -7,23 +7,21 @@
                     <table class="table table-hover table-striped table-condensed">
                         <colgroup>
                             <col width="10%">
-                            <col width="27%">
-                            <col width="33%">
-                            <col width="4%">
-                            <col width="15%">
-                            <col width="11%">
+                            <col width="28%">
+                            <col width="34%">
+                            <col width="16%">
+                            <col width="12%">
                         </colgroup>
 
                         <tr>
                             <th class="text-center">テンプレートID</th>
                             <th class="text-center">題名</th>
                             <th class="text-center">差出人</th>
-                            <th class="text-center">状態</th>
                             <th class="text-center">更新日時</th>
                             <th class="text-center">配信セット登録</th>
                         </tr>
 
-                        <tr <?php if( $MailTemplate->deleted_at || ! $MailTemplate->status ) :?> style="background-color: #bbb;"<?php endif;?>>
+                        <tr <?php if( $MailTemplate->deleted_at ) :?> style="background-color: #bbb;"<?php endif;?>>
                             <td class="text-center">
                                 @if( $MailTemplate->deleted_at )
                                     {{ $MailTemplate->id }}
@@ -33,17 +31,19 @@
                             </td>
                             <td class="text-center">{{ $MailTemplate->subject }}</td>
                             <td class="text-center">
-                                @if( ! $MailTemplate->deleted_at && $MailTemplate->status ) <code> @endif
+                                @if( ! $MailTemplate->deleted_at ) <code> @endif
                                     {{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;
                                 @if( ! $MailTemplate->deleted_at ) </code> @endif
                             </td>
-                            <td class="text-center">
-                                @if( $MailTemplate->status )
-                                    <span class="text-success">有効</span>
-                                @else
-                                    <span class="text-danger">無効</span>
-                                @endif
-                            </td>
+                            @if(false)
+                                <td class="text-center">
+                                    @if( $MailTemplate->status )
+                                        <span class="text-success">有効</span>
+                                    @else
+                                        <span class="text-danger">無効</span>
+                                    @endif
+                                </td>
+                            @endif
                             <td class="text-center">{{ $MailTemplate->updated_at }}</td>
                             <td class="text-center">
                                 <a href="{{ route('mail.set.add', $MailTemplate->id) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus" data-toggle="tooltip" title="登録"></span></a>

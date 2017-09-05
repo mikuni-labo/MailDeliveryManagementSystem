@@ -15,7 +15,7 @@ class DeliverySetRequest extends Request
     {
         return [
             'name'     => '名称',
-            'status'   => 'ステータス',
+//             'status'   => 'ステータス',
         ];
     }
 

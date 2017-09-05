@@ -28,7 +28,7 @@ class Visitor extends Model
         'email',
         'tel',
         'fax',
-        'status',
+//         'status',
         'possible_delivery_flag',
         'exhibitor_type',
         'enterprise_type',
@@ -49,7 +49,7 @@ class Visitor extends Model
      * @var array
      */
     protected $dates = [
-        'status' => 'bool',
+//         'status' => 'bool',
     ];
 
     /**
@@ -59,7 +59,7 @@ class Visitor extends Model
      */
     protected $casts = [
         'id'                     => 'integer',
-        'status'                 => 'boolean',
+//         'status'                 => 'boolean',
         'possible_delivery_flag' => 'boolean',
         'exhibitor_type'         => 'integer',
         'enterprise_type'        => 'integer',
@@ -88,7 +88,6 @@ class Visitor extends Model
             visitors.email,
             visitors.tel,
             visitors.fax,
-            visitors.status,
             visitors.created_at,
             visitors.updated_at,
             visitors.deleted_at
@@ -138,13 +137,13 @@ class Visitor extends Model
             $query->where('visitors.fax', 'like', "%{$request->get('fax')}%");
         });
 
-        $query->when($request->has('status_on'), function($query) {
-            $query->where('visitors.status', '=', 1);
-        });
+//         $query->when($request->has('status_on'), function($query) {
+//             $query->where('visitors.status', '=', 1);
+//         });
 
-        $query->when($request->has('status_off'), function($query) {
-            $query->where('visitors.status', '=', 0);
-        });
+//         $query->when($request->has('status_off'), function($query) {
+//             $query->where('visitors.status', '=', 0);
+//         });
 
         $query->when($request->has('possible_delivery_flag_on'), function($query) {
             $query->where('visitors.possible_delivery_flag', '=', 1);

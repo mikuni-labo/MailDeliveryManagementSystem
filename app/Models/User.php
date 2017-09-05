@@ -20,7 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'status',
+//         'status',
     ];
 
     /**
@@ -49,7 +49,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'id'     => 'integer',
-        'status' => 'boolean',
+//         'status' => 'boolean',
     ];
 
     protected $perPage = 20;

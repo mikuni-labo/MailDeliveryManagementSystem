@@ -21,9 +21,8 @@
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
                                 <col width="10%">
-                                <col width="23%">
-                                <col width="30%">
-                                <col width="4%">
+                                <col width="24%">
+                                <col width="33%">
                                 <col width="15%">
                                 <col width="10%">
                                 <col width="4%">
@@ -34,7 +33,6 @@
                                 <th class="text-center">テンプレートID</th>
                                 <th class="text-center">題名</th>
                                 <th class="text-center">差出人</th>
-                                <th class="text-center">状態</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">配信セット</th>
                                 <th class="text-center">編集</th>
@@ -42,7 +40,7 @@
                             </tr>
 
                             @foreach( $result as $row )
-                                <tr <?php if( $row->deleted_at || ! $row->status ) :?> style="background-color: #bbb;"<?php endif;?>>
+                                <tr <?php if( $row->deleted_at ) :?> style="background-color: #bbb;"<?php endif;?>>
                                     <td class="text-center">
                                         @if( $row->deleted_at )
                                             {{ $row->id }}
@@ -52,17 +50,19 @@
                                     </td>
                                     <td class="text-center">{{ $row->subject }}</td>
                                     <td class="text-center">
-                                        @if( ! $row->deleted_at && $row->status ) <code> @endif
+                                        @if( ! $row->deleted_at ) <code> @endif
                                             {{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;
                                         @if( ! $row->deleted_at ) </code> @endif
                                     </td>
-                                    <td class="text-center">
-                                        @if( $row->status )
-                                            <span class="text-success">有効</span>
-                                        @else
-                                            <span class="text-danger">無効</span>
-                                        @endif
-                                    </td>
+                                    @if(false)
+                                        <td class="text-center">
+                                            @if( $row->status )
+                                                <span class="text-success">有効</span>
+                                            @else
+                                                <span class="text-danger">無効</span>
+                                            @endif
+                                        </td>
+                                    @endif
                                     <td class="text-center">{{ $row->updated_at }}</td>
                                     <td class="text-center">
                                         @if( ! $row->deleted_at )

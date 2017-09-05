@@ -25,7 +25,7 @@ class EditRequest extends VisitorRequest
             'address'                => 'nullable|string|max:65535',
             'tel'                    => 'nullable|numeric|digits_between:1,15',
             'fax'                    => 'nullable|numeric|digits_between:1,15',
-            'status'                 => 'required|boolean',
+//             'status'                 => 'required|boolean',
             'possible_delivery_flag' => 'required|boolean',
             'exhibitor_type' => [
                 'nullable',
