@@ -1,4 +1,4 @@
-@if( $mode === 'search' )
+@if( $mode === 'search' || $mode === 'delivery_set_search' )
     <div class="form-group{{ $errors->has('id_s') || $errors->has('id_e') ? ' has-error' : '' }}">
         <label for="" class="col-md-2 control-label">来場者ID</label>
 
@@ -26,7 +26,7 @@
     </label>
 
     <div class="col-md-9">
-        @if( $mode === 'search' )
+        @if( $mode === 'search' || $mode === 'delivery_set_search' )
             {!! Form::tel('email', isset($row->email) ? $row->email : null, ['class' => 'form-control', 'id' => 'email', 'maxlength' => '191', 'placeholder' => '']) !!}
         @else
             {!! Form::email('email', isset($row->email) ? $row->email : null, ['required', $mode === 'add' ? 'autofocus' : null, 'class' => 'form-control', 'id' => 'email', 'maxlength' => '191', 'placeholder' => '']) !!}
@@ -140,7 +140,7 @@
     </label>
 
     <div class="col-md-4 form-control-static">
-        @if( $mode === 'search' )
+        @if( $mode === 'search' || $mode === 'delivery_set_search' )
             <label for="status_on">{!! Form::checkbox('status_on', 1, isset($row->status_on), ['class' => '', 'id' => 'status_on', 'maxlength' => '1']) !!} <span class="text-success">有効</span></label>&nbsp;&nbsp;&nbsp;
             <label for="status_off">{!! Form::checkbox('status_off', 1, isset($row->status_off), ['class' => '', 'id' => 'status_off', 'maxlength' => '1']) !!} <span class="text-danger">無効</span></label>
         @else
@@ -160,7 +160,7 @@
     </label>
 
     <div class="col-md-4 form-control-static">
-        @if( $mode === 'search' )
+        @if( $mode === 'search' || $mode === 'delivery_set_search' )
             <label for="possible_delivery_flag_on">{!! Form::checkbox('possible_delivery_flag_on', 1, isset($row->possible_delivery_flag_on), ['class' => '', 'id' => 'possible_delivery_flag_on', 'maxlength' => '1']) !!} <span class="text-success">有効</span></label>&nbsp;&nbsp;&nbsp;
             <label for="possible_delivery_flag_off">{!! Form::checkbox('possible_delivery_flag_off', 1, isset($row->possible_delivery_flag_off), ['class' => '', 'id' => 'possible_delivery_flag_off', 'maxlength' => '1']) !!} <span class="text-danger">無効</span></label>
         @else
@@ -200,7 +200,7 @@
     </div>
 </div>
 
-@if( $mode === 'search' && App::isLocal() )
+@if( ($mode === 'search' || $mode === 'delivery_set_search') && App::isLocal() )
     <div class="form-group">
         <div class="col-md-4 col-md-offset-2 form-control-static">
             <label>{!! Form::checkbox('with_trashed', 1, isset($row->with_trashed), []) !!} 削除済みデータを表示</label>
@@ -219,7 +219,9 @@
         @endif
 
         @if( $mode === 'search' )
-            <a href="{{ route('visitor.search.reset') }}" class="btn btn-danger" data-toggle="confirmation" onclick="if(!confirm('検索条件をリセットしますか?')) return false;">検索条件リセット</a>
+            <a href="{{ route('visitor.reset') }}" class="btn btn-danger" data-toggle="confirmation" onclick="if(!confirm('検索条件をリセットしますか?')) return false;">検索条件リセット</a>
+        @elseif( $mode === 'delivery_set_search' )
+            <a href="{{ route('mail.set.visitor.reset', [$MailTemplate->id, $DeliverySet->id]) }}" class="btn btn-danger" data-toggle="confirmation" onclick="if(!confirm('検索条件をリセットしますか?')) return false;">検索条件リセット</a>
         @endif
     </div>
 </div>

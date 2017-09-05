@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Visitor;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -62,6 +64,16 @@ class DeliverySet extends Model
     public function mailTemplate() : BelongsTo
     {
         return $this->belongsTo('App\Models\MailTemplate');
+    }
+
+    /**
+     * 紐付く来場者を定義
+     *
+     * @return Builder
+     */
+    public function visitors() : Builder
+    {
+        return Visitor::whereIn('id', $this->data);
     }
 
 }

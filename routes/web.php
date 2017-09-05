@@ -35,7 +35,7 @@ Route::group([], function() {
         'namespace'  => 'Visitor',
     ], function() {
         Route::get( '/',                'ListController@index')->name('visitor');
-        Route::get( 'reset',            'ListController@reset')->name('visitor.search.reset');
+        Route::get( 'reset',            'ListController@reset')->name('visitor.reset');
         Route::get( 'add',              'StoreController@index')->name('visitor.add');
         Route::post('add',              'StoreController@store');
         Route::get( '{id}/edit',        'EditController@index')->name('visitor.edit');
@@ -72,13 +72,16 @@ Route::group([], function() {
             'prefix'     => '{id}/set',
             'namespace'  => 'Set',
         ], function() {
-            Route::get( '/',                   'ListController@index')->name('mail.set');
-            Route::get( 'add',                 'StoreController@index')->name('mail.set.add');
-            Route::post('add',                 'StoreController@store');
-            Route::get( '{setId}/edit',        'EditController@index')->name('mail.set.edit');
-            Route::put( '{setId}/edit',        'EditController@update');
-            Route::delete('{setId}/delete',    'DeleteController@delete')->name('mail.set.delete');
-            Route::patch( '{setId}/restore',   'RestoreController@restore')->name('mail.set.restore');
+            Route::get( '/',                     'ListController@index')->name('mail.set');
+            Route::get( 'add',                   'StoreController@index')->name('mail.set.add');
+            Route::post('add',                   'StoreController@store');
+            Route::get( '{setId}/edit',          'EditController@index')->name('mail.set.edit');
+            Route::put( '{setId}/edit',          'EditController@update');
+            Route::delete('{setId}/delete',      'DeleteController@delete')->name('mail.set.delete');
+            Route::patch( '{setId}/restore',     'RestoreController@restore')->name('mail.set.restore');
+            Route::get( '{setId}/visitor',       'VisitorsSetController@index')->name('mail.set.visitor');
+            Route::get( '{setId}/visitor/reset', 'VisitorsSetController@reset')->name('mail.set.visitor.reset');
+            Route::put( '{setId}/visitor/ajax',  'VisitorsSetController@ajax');
         });
     });
 

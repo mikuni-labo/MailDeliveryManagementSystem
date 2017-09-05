@@ -24,9 +24,10 @@
                             <colgroup>
                                 <col width="9%">
                                 <col width="12%">
-                                <col width="44%">
+                                <col width="36%">
                                 <col width="6%">
-                                <col width="17%">
+                                <col width="15%">
+                                <col width="10%">
                                 <col width="4%">
                                 <col width="4%">
                                 <col width="4%">
@@ -38,6 +39,7 @@
                                 <th class="text-center">名称</th>
                                 <th class="text-center">状態</th>
                                 <th class="text-center">更新日時</th>
+                                <th class="text-center">来場者</th>
                                 <th class="text-center">編集</th>
                                 <th class="text-center">履歴</th>
                                 <th class="text-center">削除</th>
@@ -68,6 +70,13 @@
                                         @endif
                                     </td>
                                     <td class="text-center">{{ $row->updated_at }}</td>
+                                    <td class="text-center">
+                                        @if( ! $row->deleted_at )
+                                            <a href="{{ route('mail.set.visitor', [$MailTemplate->id, $row->id]) }}" class="btn btn-sm btn-default">
+                                                </span>&nbsp;<span class="badge">{{ $row->visitors()->count() }}</span>&nbsp;名
+                                            </a>
+                                        @endif
+                                    </td>
                                     <td class="text-center">
                                         @if( ! $row->deleted_at )
                                             <a href="{{ route('mail.set.edit', [$MailTemplate->id, $row->id]) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
