@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Mail\Set;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Mail\Set\EditRequest;
 use App\Models\DeliverySet;
 use App\Models\MailTemplate;
 use App\Models\Visitor;
@@ -13,9 +12,6 @@ use Illuminate\View\View;
 
 class VisitorsSetController extends Controller
 {
-    /** @var EditRequest */
-    private $formRequest;
-
     /**
      * Create a new controller instance.
      *
@@ -28,7 +24,6 @@ class VisitorsSetController extends Controller
         parent::__construct();
 
         $this->setBreadcrumb('Mail', route('mail'));
-        $this->formRequest = new EditRequest;
     }
 
     /**
@@ -38,21 +33,47 @@ class VisitorsSetController extends Controller
      * @param Request $request
      * @param integer $id
      * @param integer $setId
-     * @return View
+     * @return mixed
      */
-    public function index(Request $request, int $id, int $setId) : View
+    public function index(Request $request, int $id, int $setId)
+    {
+        if( $request->getRequestUri() === "/mail/{$id}/set/{$setId}/visitor" && session()->has("requestUri.mail.set.visitor.list.{$setId}") ) {
+            $request->session()->reflash();
+            return redirect(session()->pull("requestUri.mail.set.visitor.list.{$setId}"));
+        }
+
+        session()->put("requestUri.mail.set.visitor.list.{$setId}", $request->getRequestUri());
+
+        /** @var MailTemplate $MailTemplate */
+        $MailTemplate = MailTemplate::findOrFail($id);
+        $DeliverySet = DeliverySet::findOrFail($setId);
+
+        return view('mail.set.visitor.index')->with([
+            'breadcrumb'   => $this->setBreadcrumb('Delivery Visitors Set', route('mail.set.visitor', [$id, $setId])),
+            'MailTemplate' => $MailTemplate,
+            'DeliverySet'  => $DeliverySet,
+            'result'       => Visitor::search($request)->paginate(),
+        ]);
+    }
+
+    /**
+     * Reset requirements of search.
+     *
+     * @method GET
+     * @param Request $request
+     * @param integer $id
+     * @param integer $setId
+     * @return RedirectResponse
+     */
+    public function reset(Request $request, int $id, int $setId) : RedirectResponse
     {
         /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::findOrFail($id);
         $DeliverySet = DeliverySet::findOrFail($setId);
 
-        $DeliverySet->visitors()->get()
+        session()->forget('requestUri.mail.set.visitor.list');
 
-        return view('mail.set.visitor')->with([
-            'breadcrumb'   => $this->setBreadcrumb('Delivery Visitors Set', route('mail.set.visitor', [$id, $setId])),
-            'MailTemplate' => $MailTemplate,
-            'DeliverySet'  => $DeliverySet,
-        ]);
+        return redirect()->route('mail.set.visitor', [$id, $setId]);
     }
 
 }

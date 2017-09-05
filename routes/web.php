@@ -35,7 +35,7 @@ Route::group([], function() {
         'namespace'  => 'Visitor',
     ], function() {
         Route::get( '/',                'ListController@index')->name('visitor');
-        Route::get( 'reset',            'ListController@reset')->name('visitor.search.reset');
+        Route::get( 'reset',            'ListController@reset')->name('visitor.reset');
         Route::get( 'add',              'StoreController@index')->name('visitor.add');
         Route::post('add',              'StoreController@store');
         Route::get( '{id}/edit',        'EditController@index')->name('visitor.edit');
@@ -80,6 +80,7 @@ Route::group([], function() {
             Route::delete('{setId}/delete',    'DeleteController@delete')->name('mail.set.delete');
             Route::patch( '{setId}/restore',   'RestoreController@restore')->name('mail.set.restore');
             Route::get( '{setId}/visitor',     'VisitorsSetController@index')->name('mail.set.visitor');
+            Route::get( '{setId}/visitor/reset', 'VisitorsSetController@reset')->name('mail.set.visitor.reset');
         });
     });
 
