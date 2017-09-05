@@ -70,7 +70,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        {!! Form::checkbox("target[$row->id]", 1, in_array($row->id, $DeliverySet->data), []) !!}
+                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ in_array($row->id, $DeliverySet->data) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( in_array($row->id, $DeliverySet->data) ):?>checked="checked" <?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" />
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at || ! $row->status )
@@ -115,6 +115,28 @@
 @section('script')
     <script type="text/javascript" src="{{ mix('js/visitor.js') }}"></script>
     <script type="text/javascript">
-        //
+        function test(templateId, setId, visitorId){
+            var visitor = document.getElementById('visitor_' + visitorId);
+
+            $.ajax({
+                url: '/mail/' + templateId + '/set/' + setId + '/visitor/ajax',
+                type: 'POST',
+                dataType: 'json',
+                data: {_token: "{{ csrf_token() }}", _method: "PUT", visitorId: visitorId, value: visitor.value},
+                timeout: 5000,
+                success: function(res, textStatus){
+//                     console.log(res);
+//                     console.log(textStatus);
+                    visitor.value = visitor.value == 1 ? 0 : 1;
+                },
+                error: function(xhr, textStatus, errorThrown){
+                    alert('Ajaxエラーです。管理者にお問い合わせください。');
+//                     console.log(xhr);
+//                     console.log(textStatus);
+//                     console.log(errorThrown);
+                    visitor.checked = visitor.value == 1 ? true : false;
+                }
+            })
+        }
     </script>
 @endsection

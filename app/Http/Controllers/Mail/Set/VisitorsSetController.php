@@ -8,6 +8,7 @@ use App\Models\MailTemplate;
 use App\Models\Visitor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 
 class VisitorsSetController extends Controller
@@ -76,6 +77,56 @@ class VisitorsSetController extends Controller
         session()->forget("requestUri.mail.set.visitor.list.{$setId}");
 
         return redirect()->route('mail.set.visitor', [$id, $setId]);
+    }
+
+    /**
+     * Change visitor set on Ajax.
+     *
+     * @method PUT
+     * @param Request $request
+     * @param integer $id
+     * @param integer $setId
+     * @return JsonResponse
+     */
+    public function ajax(Request $request, int $id, int $setId) : JsonResponse
+    {
+        $result = true;
+        $message = "";
+
+        if( ! $request->ajax()  ) {
+            $result = false;
+            $message = 'Access only ajax.';
+        }
+
+        $MailTemplate = MailTemplate::find($id);
+        $DeliverySet = DeliverySet::find($setId);
+
+        if( ! $MailTemplate || ! $DeliverySet) {
+            $result = false;
+            $message = 'Resource Not Found.';
+        }
+
+        if( $result ) {
+            $visitors = $DeliverySet->data;
+
+            if( (bool)$request->value ) {
+                if( in_array(intval($request->visitorId), $visitors) ) {
+                    $DeliverySet->data = array_flatten(array_diff($visitors, [intval($request->visitorId)]));
+                }
+            } else {
+                if( ! in_array(intval($request->visitorId), $visitors) ) {
+                    array_push($visitors, intval($request->visitorId));
+                    $DeliverySet->data = $visitors;
+                }
+            }
+
+            $message = $DeliverySet->save() ? 'Success!' : 'Failed.';
+        }
+
+        return response()->json([
+            'result'  => $result,
+            'message' => $message,
+        ]);
     }
 
 }
