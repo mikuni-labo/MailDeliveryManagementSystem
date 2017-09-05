@@ -48,7 +48,7 @@
 
                             <tr>
                                 <th class="text-center">ID</th>
-                                <th class="text-center">配信</th>
+                                <th class="text-center">配信&nbsp;<span class="glyphicon glyphicon-question-sign text-warning" data-toggle="tooltip" title="チェックボックスを切り替えると自動的に反映されます。"></span></th>
                                 <th class="text-center">メールアドレス</th>
                                 <th class="text-center">氏名</th>
                                 <th class="text-center">組織名</th>
