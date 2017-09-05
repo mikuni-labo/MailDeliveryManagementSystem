@@ -24,8 +24,7 @@
                             <colgroup>
                                 <col width="9%">
                                 <col width="12%">
-                                <col width="36%">
-                                <col width="6%">
+                                <col width="42%">
                                 <col width="15%">
                                 <col width="10%">
                                 <col width="4%">
@@ -37,7 +36,6 @@
                                 <th class="text-center">セットID</th>
                                 <th class="text-center">テンプレートID</th>
                                 <th class="text-center">名称</th>
-                                <th class="text-center">状態</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">来場者</th>
                                 <th class="text-center">編集</th>
@@ -46,7 +44,7 @@
                             </tr>
 
                             @foreach( $result as $row )
-                                <tr <?php if( $row->deleted_at || ! $row->status ) :?> style="background-color: #bbb;"<?php endif;?>>
+                                <tr <?php if( $row->deleted_at ) :?> style="background-color: #bbb;"<?php endif;?>>
                                     <td class="text-center">
                                         @if( $row->deleted_at )
                                             {{ $row->id }}
@@ -62,13 +60,15 @@
                                         @endif
                                     </td>
                                     <td class="text-center">{{ $row->name }}</td>
-                                    <td class="text-center">
-                                        @if( $row->status )
-                                            <span class="text-success">有効</span>
-                                        @else
-                                            <span class="text-danger">無効</span>
-                                        @endif
-                                    </td>
+                                    @if(false)
+                                        <td class="text-center">
+                                            @if( $row->status )
+                                                <span class="text-success">有効</span>
+                                            @else
+                                                <span class="text-danger">無効</span>
+                                            @endif
+                                        </td>
+                                    @endif
                                     <td class="text-center">{{ $row->updated_at }}</td>
                                     <td class="text-center">
                                         @if( ! $row->deleted_at )

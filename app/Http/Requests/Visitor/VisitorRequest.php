@@ -35,7 +35,7 @@ class VisitorRequest extends Request
             'address'       => '住所',
             'tel'           => 'TEL',
             'fax'           => 'FAX',
-            'status'        => 'ステータス',
+//             'status'        => 'ステータス',
             'possible_delivery_flag' => '配信可否フラグ',
             'exhibitor_type'         => '出展者タイプ',
             'enterprise_type'        => '企業タイプ',
