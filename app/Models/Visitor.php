@@ -88,6 +88,9 @@ class Visitor extends Model
             visitors.email,
             visitors.tel,
             visitors.fax,
+            visitors.possible_delivery_flag,
+            visitors.exhibitor_type,
+            visitors.enterprise_type,
             visitors.created_at,
             visitors.updated_at,
             visitors.deleted_at
