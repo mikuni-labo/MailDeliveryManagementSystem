@@ -23,10 +23,11 @@
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
                                 <col width="9%">
-                                <col width="12%">
-                                <col width="42%">
+                                <col width="10%">
+                                <col width="40%">
                                 <col width="15%">
                                 <col width="10%">
+                                <col width="4%">
                                 <col width="4%">
                                 <col width="4%">
                                 <col width="4%">
@@ -38,6 +39,7 @@
                                 <th class="text-center">名称</th>
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">来場者</th>
+                                <th class="text-center">配信</th>
                                 <th class="text-center">編集</th>
                                 <th class="text-center">履歴</th>
                                 <th class="text-center">削除</th>
@@ -79,11 +81,18 @@
                                     </td>
                                     <td class="text-center">
                                         @if( ! $row->deleted_at )
+                                            <a href="{{ route('mail.set.delivery', [$MailTemplate->id, $row->id]) }}" class="btn btn-sm btn-primary" onclick="deliveryMail('{{ route('mail.set.delivery', [$MailTemplate->id, $row->id]) }}'); return false;">
+                                                <span class="glyphicon glyphicon-send" data-toggle="tooltip" title="メール配信"></span>
+                                            </a>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        @if( ! $row->deleted_at )
                                             <a href="{{ route('mail.set.edit', [$MailTemplate->id, $row->id]) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-send" data-toggle="tooltip" title="履歴"></span></a>
+                                        <a href="#" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-time" data-toggle="tooltip" title="配信履歴"></span></a>
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at )
@@ -116,6 +125,17 @@
         /**
          * Delete a record.
          */
+         function deliveryMail(url) {
+             if( confirm('本当に送信しますか？') ) {
+                 var form = document.getElementById('post-form');
+                 form.action = url;
+                 form.submit();
+             }
+         }
+
+        /**
+         * Delete a record.
+         */
          function deleteRecord(url) {
              if( confirm('本当に削除しますか？') ) {
                  var form = document.getElementById('delete-form');
@@ -129,7 +149,7 @@
          */
         function restoreRecord(url) {
             if( confirm('本当に復旧しますか？') ) {
-                var form = document.getElementById('restore-form');
+                var form = document.getElementById('patch-form');
                 form.action = url;
                 form.submit();
             }

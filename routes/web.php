@@ -82,6 +82,7 @@ Route::group([], function() {
             Route::get( '{setId}/visitor',       'VisitorsSetController@index')->name('mail.set.visitor');
             Route::get( '{setId}/visitor/reset', 'VisitorsSetController@reset')->name('mail.set.visitor.reset');
             Route::put( '{setId}/visitor/ajax',  'VisitorsSetController@ajax');
+            Route::post('{setId}/delivery',      'DeliveryController@delivery')->name('mail.set.delivery');
         });
     });
 

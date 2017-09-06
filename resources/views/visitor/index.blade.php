@@ -104,7 +104,7 @@
                                     </td>
                                     <td class="text-center">
                                         @if( App::isLocal() )
-                                            <a href="#" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-send" data-toggle="tooltip" title="配信履歴"></span></a>
+                                            <a href="#" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-time" data-toggle="tooltip" title="配信履歴"></span></a>
                                         @endif
                                     </td>
                                     <td class="text-center">
@@ -151,7 +151,7 @@
          */
         function restoreRecord(url) {
             if( confirm('本当に復旧しますか？') ) {
-                var form = document.getElementById('restore-form');
+                var form = document.getElementById('patch-form');
                 form.action = url;
                 form.submit();
             }

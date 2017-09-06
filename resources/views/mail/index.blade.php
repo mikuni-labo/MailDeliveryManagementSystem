@@ -120,7 +120,7 @@
          */
         function restoreRecord(url) {
             if( confirm('本当に復旧しますか？') ) {
-                var form = document.getElementById('restore-form');
+                var form = document.getElementById('patch-form');
                 form.action = url;
                 form.submit();
             }
