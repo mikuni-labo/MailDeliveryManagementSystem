@@ -2,10 +2,8 @@
 
 namespace App\Services\Mail;
 
-use App\Mail\MailableInterface;
 use App\Models\Visitor;
-use Illuminate\Support\Collection;
-use Illuminate\Validation\Validator;
+use Illuminate\Mail\Mailable;
 
 /**
  * メール配信サービス
@@ -25,15 +23,14 @@ class DeliveryMailService
     }
 
     /**
-     * @param MailableInterface $mailable
+     * @param Mailable $mailable
      * @param Visitor $Visitor
      * @return void
      */
-    public function send(MailableInterface $mailable, $target)
+    public function send(Mailable $mailable, $target)
     {
         try {
-            \Mail::to($target)
-                ->send($mailable);
+            \Mail::to($target)->send($mailable);
         } catch (\Exception $e) {
             dd( $e->getMessage() );
         }

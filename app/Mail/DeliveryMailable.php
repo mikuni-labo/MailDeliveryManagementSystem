@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class DeliveryMailable extends Mailable implements MailableInterface
+class DeliveryMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -42,7 +42,23 @@ class DeliveryMailable extends Mailable implements MailableInterface
         return $this->from(config('mail.from.address'))// TODO fromの設定方法を決める
             ->subject($this->MailTemplate->subject)
             ->text('emails.blank', [
-                'content' => $this->MailTemplate->content,
+                'content' => $this->replaceContent(),
             ]);
+    }
+
+    /**
+     * Replace the content.
+     *
+     * @return string
+     */
+    private function replaceContent()
+    {
+        $str = $this->MailTemplate->content;
+
+        /**
+         * TODO ここで置換処理
+         */
+
+        return $str;
     }
 }
