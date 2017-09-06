@@ -31,6 +31,7 @@ class TestNotification extends Notification
     {
         return [
             'mail',
+            'database',
         ];
     }
 
@@ -58,6 +59,19 @@ class TestNotification extends Notification
     {
         return [
             //
+        ];
+    }
+
+    /**
+     * Get the array representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function toDatabase($notifiable)
+    {
+        return [
+            'test' => 'テストです！',
         ];
     }
 }
