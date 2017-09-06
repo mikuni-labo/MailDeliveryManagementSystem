@@ -35,7 +35,7 @@ class DeliveryMailService
             \Mail::to($target)
                 ->send($mailable);
         } catch (\Exception $e) {
-
+            dd( $e->getMessage() );
         }
     }
 

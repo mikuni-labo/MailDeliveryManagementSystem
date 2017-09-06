@@ -39,9 +39,10 @@ class DeliveryMailable extends Mailable implements MailableInterface
      */
     public function build()
     {
-        dd($this->MailTemplate);
-        dd($this->Visitor);
-
-        return $this->view('emails.test');
+        return $this->from(config('mail.from.address'))// TODO fromの設定方法を決める
+            ->subject($this->MailTemplate->subject)
+            ->text('emails.blank', [
+                'content' => $this->MailTemplate->content,
+            ]);
     }
 }

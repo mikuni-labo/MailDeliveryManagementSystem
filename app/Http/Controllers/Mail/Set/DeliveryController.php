@@ -52,8 +52,6 @@ class DeliveryController extends Controller
             $DeliveryMailService->send(new DeliveryMailable($DeliverySetVisitor->mailTemplate, $DeliverySetVisitor->visitor), $DeliverySetVisitor->visitor);
         }
 
-        dd('パス');
-
         \Flash::success('メールを配信しました。');
 
         return redirect()->route('mail.set', $id);
