@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class DeliverySetVisitor extends Model
 {
@@ -54,7 +55,37 @@ class DeliverySetVisitor extends Model
     protected $perPage = 20;
 
     /**
-     * 条件に沿った来場者を返す
+     * テンプレートとのリレーションを定義
+     *
+     * @return BelongsTo
+     */
+    public function mailTemplate() : BelongsTo
+    {
+        return $this->belongsTo('App\Models\MailTemplate');
+    }
+
+    /**
+     * 配信セットとのリレーションを定義
+     *
+     * @return BelongsTo
+     */
+    public function deliverySet() : BelongsTo
+    {
+        return $this->belongsTo('App\Models\DeliverySet');
+    }
+
+    /**
+     * 来場者とのリレーションを定義
+     *
+     * @return BelongsTo
+     */
+    public function visitor() : BelongsTo
+    {
+        return $this->belongsTo('App\Models\Visitor');
+    }
+
+    /**
+     * 条件に沿ったレコードを返す
      *
      * @param integer|null $templateId
      * @param integer|null $setId
