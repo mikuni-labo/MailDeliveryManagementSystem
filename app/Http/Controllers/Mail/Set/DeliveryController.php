@@ -49,7 +49,7 @@ class DeliveryController extends Controller
          * 配信処理
          */
         foreach ($DeliverySet->visitors()->get() as $DeliverySetVisitor) {
-            $DeliveryMailService->send(new DeliveryMailable($DeliverySetVisitor->mailTemplate, $DeliverySetVisitor->visitor), $DeliverySetVisitor->visitor);
+            $DeliveryMailService->send(new DeliveryMailable($DeliverySetVisitor->mailTemplate, $DeliverySetVisitor->visitor));
         }
 
         \Flash::success('メールを配信しました。');

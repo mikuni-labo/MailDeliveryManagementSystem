@@ -39,7 +39,9 @@ class DeliveryMailable extends Mailable
      */
     public function build()
     {
-        return $this->from(config('mail.from.address'))// TODO fromの設定方法を決める
+        return $this
+            ->to($this->Visitor->email, $this->Visitor->name)
+            ->from(config('mail.from.address'), config('mail.from.name'))// TODO fromの設定方法を決める
             ->subject($this->MailTemplate->subject)
             ->text('emails.blank', [
                 'content' => $this->replaceContent(),
