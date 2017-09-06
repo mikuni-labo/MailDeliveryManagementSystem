@@ -44,6 +44,7 @@ class DeliverySetVisitor extends Model
      * @var array
      */
     protected $casts = [
+        'id'               => 'integer',
         'mail_template_id' => 'integer',
         'delivery_set_id'  => 'integer',
         'visitor_id'       => 'integer',
@@ -51,13 +52,6 @@ class DeliverySetVisitor extends Model
     ];
 
     protected $perPage = 20;
-
-    public $primaryKey = [
-        'visitor_id',
-        'delivery_set_id',
-    ];
-
-    public $incrementing = false;
 
     /**
      * 条件に沿った来場者を返す

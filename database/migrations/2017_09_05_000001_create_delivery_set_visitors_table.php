@@ -14,18 +14,20 @@ class CreateDeliverySetVisitorsTable extends Migration
     public function up()
     {
         Schema::create('delivery_set_visitors', function (Blueprint $table) {
+            $table->increments('id');// ※EloquentORMに複合主キーはあまり適さないため、サロゲートキーとして設定しておく
             $table->integer('mail_template_id')->unsigned();
             $table->integer('delivery_set_id')->unsigned();
             $table->integer('visitor_id')->unsigned();
             $table->timestamps();
 
             /**
-             * 複合主キー
+             * 複合ユニークキー
              */
-            $table->primary([
+            $table->unique([
+                'mail_template_id',
                 'delivery_set_id',
                 'visitor_id',
-            ]);
+            ], 'delivery_set_visitors_template_id_set_id_visitor_id_unique');// キーが長く怒られるので少し削って直接指定する
 
             /**
              * 外部キー制約
