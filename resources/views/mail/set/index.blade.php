@@ -81,7 +81,9 @@
                                     </td>
                                     <td class="text-center">
                                         @if( ! $row->deleted_at )
-                                            <a href="#" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-send" data-toggle="tooltip" title="メール配信"></span></a>
+                                            <a href="{{ route('mail.set.delivery', [$MailTemplate->id, $row->id]) }}" class="btn btn-sm btn-primary" onclick="deliveryMail('{{ route('mail.set.delivery', [$MailTemplate->id, $row->id]) }}'); return false;">
+                                                <span class="glyphicon glyphicon-send" data-toggle="tooltip" title="メール配信"></span>
+                                            </a>
                                         @endif
                                     </td>
                                     <td class="text-center">
@@ -120,6 +122,17 @@
 @section('script')
     <script type="text/javascript" src="{{ mix('js/mail.js') }}"></script>
     <script type="text/javascript">
+        /**
+         * Delete a record.
+         */
+         function deliveryMail(url) {
+             if( confirm('本当に送信しますか？') ) {
+                 var form = document.getElementById('post-form');
+                 form.action = url;
+                 form.submit();
+             }
+         }
+
         /**
          * Delete a record.
          */
