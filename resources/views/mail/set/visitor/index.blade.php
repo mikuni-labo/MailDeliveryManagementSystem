@@ -32,6 +32,8 @@
                 @if( $result->count() )
                     {!! $result->render() !!}
 
+                    <?php $visitors = $DeliverySet->visitors()->get()->groupBy('visitor_id'); ?>
+
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
@@ -48,7 +50,7 @@
 
                             <tr>
                                 <th class="text-center">ID</th>
-                                <th class="text-center">配信</th>
+                                <th class="text-center">配信&nbsp;<span class="glyphicon glyphicon-question-sign text-warning" data-toggle="tooltip" title="チェックボックスを切り替えると自動的に反映されます。"></span></th>
                                 <th class="text-center">メールアドレス</th>
                                 <th class="text-center">氏名</th>
                                 <th class="text-center">組織名</th>
@@ -68,7 +70,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ in_array($row->id, $DeliverySet->data) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( in_array($row->id, $DeliverySet->data) ):?>checked="checked" <?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" />
+                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ $visitors->has($row->id) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( $visitors->has($row->id) ):?>checked="checked" <?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" />
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at )
