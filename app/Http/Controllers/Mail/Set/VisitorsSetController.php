@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mail\Set;
 
 use App\Http\Controllers\Controller;
 use App\Models\DeliverySet;
+use App\Models\DeliverySetVisitor;
 use App\Models\MailTemplate;
 use App\Models\Visitor;
 use Illuminate\Http\RedirectResponse;
@@ -98,29 +99,40 @@ class VisitorsSetController extends Controller
             $message = 'Access only ajax.';
         }
 
-        $MailTemplate = MailTemplate::find($id);
-        $DeliverySet = DeliverySet::find($setId);
+        if( ! $request->has('visitorId') || ! $request->has('value')) {
+            $result = false;
+            $message = 'The parameter of visitorId and value are reqired.';
+        }
 
-        if( ! $MailTemplate || ! $DeliverySet) {
+        $MailTemplate = MailTemplate::findorFail($id);
+        $DeliverySet = DeliverySet::findorFail($setId);
+        $Visitor = Visitor::findorFail($request->visitorId);
+
+        if( ! $MailTemplate || ! $DeliverySet || ! $Visitor) {
             $result = false;
             $message = 'Resource Not Found.';
         }
 
         if( $result ) {
-            $visitors = $DeliverySet->data;
+            /** @var DeliverySetVisitor $DeliverySetVisitor */
+            $DeliverySetVisitor = DeliverySetVisitor::exists($id, $setId, $request->visitorId)->first();
 
             if( (bool)$request->value ) {
-                if( in_array(intval($request->visitorId), $visitors) ) {
-                    $DeliverySet->data = array_flatten(array_diff($visitors, [intval($request->visitorId)]));
+                if( ! is_null($DeliverySetVisitor) ) {
+                    \DB::table('delivery_set_visitors')->where('delivery_set_id', '=', $setId)->where('visitor_id', '=', $request->visitorId)->delete();// 複合主キーテーブルはモデルのdeleteが使用出来ないため
+                    $message = 'Deleted.';
                 }
             } else {
-                if( ! in_array(intval($request->visitorId), $visitors) ) {
-                    array_push($visitors, intval($request->visitorId));
-                    $DeliverySet->data = $visitors;
+                if( is_null($DeliverySetVisitor) ) {
+                    $DeliverySetVisitor = DeliverySetVisitor::create([
+                        'mail_template_id' => $id,
+                        'delivery_set_id'  => $setId,
+                        'visitor_id'       => $request->visitorId,
+                    ]);
+
+                    $message = $DeliverySetVisitor->toJson();
                 }
             }
-
-            $message = $DeliverySet->save() ? 'Success!' : 'Failed.';
         }
 
         return response()->json([

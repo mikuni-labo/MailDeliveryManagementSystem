@@ -20,6 +20,14 @@ class CreateDeliverySetVisitorsTable extends Migration
             $table->timestamps();
 
             /**
+             * 複合主キー
+             */
+            $table->primary([
+                'delivery_set_id',
+                'visitor_id',
+            ]);
+
+            /**
              * 外部キー制約
              */
             $table->foreign('mail_template_id')

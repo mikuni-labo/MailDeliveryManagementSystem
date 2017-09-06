@@ -32,6 +32,8 @@
                 @if( $result->count() )
                     {!! $result->render() !!}
 
+                    <?php $visitors = $DeliverySet->visitors()->get()->groupBy('visitor_id'); ?>
+
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
@@ -68,7 +70,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ in_array($row->id, $DeliverySet->data) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( in_array($row->id, $DeliverySet->data) ):?>checked="checked" <?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" />
+                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ $visitors->has($row->id) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( $visitors->has($row->id) ):?>checked="checked" <?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" />
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at )

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Visitor;
+use App\Models\DeliverySetVisitor;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,7 +20,6 @@ class DeliverySet extends Model
     protected $fillable = [
         'mail_template_id',
         'name',
-        'data',
 //         'status',
     ];
 
@@ -49,7 +48,6 @@ class DeliverySet extends Model
      */
     protected $casts = [
         'id'     => 'integer',
-        'data'   => 'array',
 //         'status' => 'boolean',
 
     ];
@@ -67,13 +65,14 @@ class DeliverySet extends Model
     }
 
     /**
-     * 紐付く来場者を定義
+     * 紐付く来場者を取得
      *
+     * @param integer|null $visitorId
      * @return Builder
      */
-    public function visitors() : Builder
+    public function visitors($visitorId = null) : Builder
     {
-        return Visitor::whereIn('id', $this->data);
+        return DeliverySetVisitor::exists($this->mail_template_id, $this->id, $visitorId);
     }
 
 }
