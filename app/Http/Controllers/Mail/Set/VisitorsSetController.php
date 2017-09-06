@@ -119,7 +119,7 @@ class VisitorsSetController extends Controller
 
             if( (bool)$request->value ) {
                 if( ! is_null($DeliverySetVisitor) ) {
-                    \DB::table('delivery_set_visitors')->where('delivery_set_id', '=', $setId)->where('visitor_id', '=', $request->visitorId)->delete();// 複合主キーテーブルはモデルのdeleteが使用出来ないため
+                    $DeliverySetVisitor->forceDelete();
                     $message = 'Deleted.';
                 }
             } else {
