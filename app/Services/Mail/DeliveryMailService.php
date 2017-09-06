@@ -2,8 +2,8 @@
 
 namespace App\Services\Mail;
 
+use App\Mail\MailableInterface;
 use App\Models\Visitor;
-use App\Services\Mail\MailServiceInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Validator;
 
@@ -12,7 +12,7 @@ use Illuminate\Validation\Validator;
  *
  * @author Kuniyasu Wada
  */
-class DeliveryMailService implements MailServiceInterface
+class DeliveryMailService
 {
     /**
      * Create a new class instance.
@@ -25,13 +25,18 @@ class DeliveryMailService implements MailServiceInterface
     }
 
     /**
-     *
-     * {@inheritDoc}
-     * @see \App\Services\Mail\MailServiceInterface::send()
+     * @param MailableInterface $mailable
+     * @param Visitor $Visitor
+     * @return void
      */
-    public function send()
+    public function send(MailableInterface $mailable, $target)
     {
-        //
+        try {
+            \Mail::to($target)
+                ->send($mailable);
+        } catch (\Exception $e) {
+
+        }
     }
 
 }

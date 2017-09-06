@@ -3,30 +3,28 @@
 namespace App\Http\Controllers\Mail\Set;
 
 use App\Http\Controllers\Controller;
+use App\Mail\DeliveryMailable;
 use App\Models\DeliverySet;
 use App\Models\MailTemplate;
-use App\Services\Mail\MailServiceInterface;
+use App\Services\Mail\DeliveryMailService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class DeliveryController extends Controller
 {
-    private $MailServiceInterface;
-
     /**
      * Create a new controller instance.
      *
-     * @param MailServiceInterface $MailServiceInterface
+     * @param DeliveryMailService $DeliveryMailService
+     * @param MailableInterface $mailable
      * @return void
      */
-    public function __construct(MailServiceInterface $MailServiceInterface)
+    public function __construct()
     {
         $this->middleware('auth');
 
         parent::__construct();
-
-        $this->MailServiceInterface = $MailServiceInterface;
     }
 
     /**
@@ -34,12 +32,12 @@ class DeliveryController extends Controller
      *
      * @method PUT
      * @param Request $request
-     * @param MailServiceInterface $MailServiceInterface
+     * @param DeliveryMailService $DeliveryMailService
      * @param integer $id
      * @param integer $setId
      * @return RedirectResponse
      */
-    public function delivery(Request $request, int $id, int $setId) : RedirectResponse
+    public function delivery(Request $request, DeliveryMailService $DeliveryMailService, int $id, int $setId) : RedirectResponse
     {
         /** @var MailTemplate $MailTemplate */
         $MailTemplate = MailTemplate::findOrFail($id);
@@ -51,13 +49,10 @@ class DeliveryController extends Controller
          * 配信処理
          */
         foreach ($DeliverySet->visitors()->get() as $DeliverySetVisitor) {
-            $this->MailServiceInterface->send();
-//                 $DeliverySetVisitor->mailTemplate
-//                 $DeliverySetVisitor->deliverySet
-//                 $DeliverySetVisitor->visitor
+            $DeliveryMailService->send(new DeliveryMailable($DeliverySetVisitor->mailTemplate, $DeliverySetVisitor->visitor), $DeliverySetVisitor->visitor);
         }
 
-        dd('end');
+        dd('パス');
 
         \Flash::success('メールを配信しました。');
 

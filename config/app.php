@@ -183,7 +183,6 @@ return [
         App\Providers\ComposerServiceProvider::class,
         App\Providers\ValidatorServiceProvider::class,
         App\Providers\CsvServiceProvider::class,
-        App\Providers\MailServiceProvider::class,
 
     ],
 
