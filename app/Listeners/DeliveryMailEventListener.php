@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\PendingMail;
 
-class DeliveryMailEventListener
+class DeliveryMailEventListener implements ShouldQueue
 {
     private $mail;
 
