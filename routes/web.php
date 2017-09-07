@@ -73,6 +73,7 @@ Route::group([], function() {
             'namespace'  => 'Log',
         ], function() {
             Route::get( '/',            'ListController@index')->name('mail.log');
+            Route::get( '{id}/visitor', 'VisitorListController@index')->name('mail.log.visitor');
         });
 
         Route::group([

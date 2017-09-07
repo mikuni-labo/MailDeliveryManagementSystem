@@ -10,3 +10,15 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+/**
+ * App
+ */
+body { padding-top: 70px; }
+
+@media only screen and (min-width : 768px) {
+    /* デスクトップ表示ではホバー操作でドロップダウンを表示 */
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+}
