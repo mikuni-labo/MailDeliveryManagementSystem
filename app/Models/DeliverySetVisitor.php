@@ -84,31 +84,4 @@ class DeliverySetVisitor extends Model
         return $this->belongsTo('App\Models\Visitor');
     }
 
-    /**
-     * 条件に沿ったレコードを返す
-     *
-     * @param integer|null $templateId
-     * @param integer|null $setId
-     * @param integer|null $visitorId
-     * @return Builder
-     */
-    public static function exists($templateId = null, $setId = null, $visitorId = null) : Builder
-    {
-        $query = self::query();
-
-        if( is_numeric($templateId) ) {
-            $query->where('mail_template_id', '=', $templateId);
-        }
-
-        if( is_numeric($setId) ) {
-            $query->where('delivery_set_id', '=', $setId);
-        }
-
-        if( is_numeric($visitorId) ) {
-            $query->where('visitor_id', '=', $visitorId);
-        }
-
-        return $query;
-    }
-
 }

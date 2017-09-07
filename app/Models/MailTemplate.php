@@ -56,13 +56,23 @@ class MailTemplate extends Model
     protected $perPage = 20;
 
     /**
-     * 紐付く配信セットを定義
+     * 配信セットとのリレーションを定義
      *
      * @return HasMany
      */
     public function deliverySets() : HasMany
     {
         return $this->hasMany('App\Models\DeliverySet');
+    }
+
+    /**
+     * 配信セット来場者とのリレーションを定義
+     *
+     * @return HasMany
+     */
+    public function deliverySetVisitors() : HasMany
+    {
+        return $this->hasMany('App\Models\DeliverySetVisitor');
     }
 
     /**

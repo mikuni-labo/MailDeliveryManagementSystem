@@ -75,7 +75,7 @@
                                     <td class="text-center">
                                         @if( ! $row->deleted_at )
                                             <a href="{{ route('mail.set.visitor', [$MailTemplate->id, $row->id]) }}" class="btn btn-sm btn-default">
-                                                </span>&nbsp;<span class="badge">{{ $row->visitors()->count() }}</span>&nbsp;名
+                                                </span>&nbsp;<span class="badge">{{ $row->deliverySetVisitors()->count() }}</span>&nbsp;名
                                             </a>
                                         @endif
                                     </td>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class DeliverySet extends Model
 {
@@ -55,7 +56,7 @@ class DeliverySet extends Model
     protected $perPage = 20;
 
     /**
-     * 属するテンプレートを定義
+     * テンプレートとのリレーションを定義
      *
      * @return BelongsTo
      */
@@ -65,14 +66,13 @@ class DeliverySet extends Model
     }
 
     /**
-     * 紐付く来場者を取得
+     * 配信セット来場者とのリレーションを定義
      *
-     * @param integer|null $visitorId
-     * @return Builder
+     * @return HasMany
      */
-    public function visitors($visitorId = null) : Builder
+    public function deliverySetVisitors() : HasMany
     {
-        return DeliverySetVisitor::exists($this->mail_template_id, $this->id, $visitorId);
+        return $this->hasMany('App\Models\DeliverySetVisitor');
     }
 
 }
