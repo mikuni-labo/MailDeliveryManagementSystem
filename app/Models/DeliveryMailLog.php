@@ -2,17 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\DeliverySetVisitor;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class DeliverySet extends Model
+class DeliveryMailLog extends Model
 {
-    use SoftDeletes;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -20,8 +17,13 @@ class DeliverySet extends Model
      */
     protected $fillable = [
         'mail_template_id',
-        'name',
-//         'status',
+        'delivery_set_id',
+        'result',
+        'to',
+        'from',
+        'subject',
+        'content',
+        'message',
     ];
 
     /**
@@ -48,8 +50,10 @@ class DeliverySet extends Model
      * @var array
      */
     protected $casts = [
-        'id'     => 'integer',
-//         'status' => 'boolean',
+        'id'               => 'integer',
+        'mail_template_id' => 'integer',
+        'delivery_set_id'  => 'integer',
+        'result'           => 'boolean',
 
     ];
 
@@ -66,23 +70,23 @@ class DeliverySet extends Model
     }
 
     /**
-     * 配信セット来場者とのリレーションを定義
+     * 配信セットとのリレーションを定義
      *
-     * @return HasMany
+     * @return BelongsTo
      */
-    public function deliverySetVisitors() : HasMany
+    public function deliverySet() : BelongsTo
     {
-        return $this->hasMany('App\Models\DeliverySetVisitor');
+        return $this->belongsTo('App\Models\DeliverySet');
     }
 
     /**
-     * 配信ログとのリレーションを定義
+     * 同じメールアドレスを所持する来場者とのリレーションを定義
      *
-     * @return HasMany
+     * @return BelongsTo
      */
-    public function deliveryMailLogs() : HasMany
+    public function visitor() : BelongsTo
     {
-        return $this->hasMany('App\Models\DeliveryMailLog');
+        return $this->belongsTo('App\Models\Visitor', 'to', 'email');
     }
 
 }

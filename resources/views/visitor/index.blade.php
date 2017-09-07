@@ -104,7 +104,9 @@
                                     </td>
                                     <td class="text-center">
                                         @if( App::isLocal() )
-                                            <a href="#" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-time" data-toggle="tooltip" title="配信履歴"></span></a>
+                                            <a href="#" class="btn btn-sm btn-warning" <?php if( ! $row->deliveryMailLogs->count() ):?>onclick="return false;" disabled<?php endif;?>>
+                                                <span class="glyphicon glyphicon-time" data-toggle="tooltip" title="配信履歴"></span>
+                                            </a>
                                         @endif
                                     </td>
                                     <td class="text-center">

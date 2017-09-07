@@ -81,7 +81,7 @@
                                     </td>
                                     <td class="text-center">
                                         @if( ! $row->deleted_at )
-                                            <a href="{{ route('mail.set.delivery', [$MailTemplate->id, $row->id]) }}" class="btn btn-sm btn-primary" onclick="deliveryMail('{{ route('mail.set.delivery', [$MailTemplate->id, $row->id]) }}'); return false;">
+                                            <a href="{{ route('mail.set.delivery', [$MailTemplate->id, $row->id]) }}" class="btn btn-sm btn-primary" <?php if( $row->deliverySetVisitors()->count() ):?>onclick="deliveryMail('{{ route('mail.set.delivery', [$MailTemplate->id, $row->id]) }}'); return false;"<?php else:?>onclick="return false;" disabled<?php endif;?>>
                                                 <span class="glyphicon glyphicon-send" data-toggle="tooltip" title="メール配信"></span>
                                             </a>
                                         @endif
@@ -92,7 +92,9 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-time" data-toggle="tooltip" title="配信履歴"></span></a>
+                                        <a href="#" class="btn btn-sm btn-warning" <?php if( ! $row->deliveryMailLogs->count() ):?>onclick="return false;" disabled<?php endif;?>>
+                                            <span class="glyphicon glyphicon-time" data-toggle="tooltip" title="配信履歴"></span>
+                                        </a>
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at )

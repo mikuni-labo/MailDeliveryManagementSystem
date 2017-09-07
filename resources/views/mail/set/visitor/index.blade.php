@@ -127,16 +127,16 @@
                 data: {_token: "{{ csrf_token() }}", _method: "PUT", visitorId: visitorId, value: visitor.value},
                 timeout: 5000,
                 success: function(res, textStatus){
+                    visitor.value = visitor.value == 1 ? 0 : 1;
 //                     console.log(res);
 //                     console.log(textStatus);
-                    visitor.value = visitor.value == 1 ? 0 : 1;
                 },
                 error: function(xhr, textStatus, errorThrown){
+                    visitor.checked = visitor.value == 1 ? true : false;
                     alert('Ajaxエラーです。管理者にお問い合わせください。');
 //                     console.log(xhr);
 //                     console.log(textStatus);
 //                     console.log(errorThrown);
-                    visitor.checked = visitor.value == 1 ? true : false;
                 }
             })
         }
