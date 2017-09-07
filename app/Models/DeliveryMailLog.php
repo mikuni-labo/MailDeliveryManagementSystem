@@ -53,7 +53,7 @@ class DeliveryMailLog extends Model
 
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 30;
 
     /**
      * 来場者毎メール配信ログテーブルとのリレーションを定義

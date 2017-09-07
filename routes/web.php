@@ -69,6 +69,13 @@ Route::group([], function() {
         Route::patch( '{id}/restore',   'RestoreController@restore')->name('mail.restore');
 
         Route::group([
+            'prefix'     => 'log',
+            'namespace'  => 'Log',
+        ], function() {
+            Route::get( '/',            'ListController@index')->name('mail.log');
+        });
+
+        Route::group([
             'prefix'     => '{id}/set',
             'namespace'  => 'Set',
         ], function() {
