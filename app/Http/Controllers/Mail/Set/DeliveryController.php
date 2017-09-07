@@ -16,8 +16,6 @@ class DeliveryController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param DeliveryMailService $DeliveryMailService
-     * @param MailableInterface $mailable
      * @return void
      */
     public function __construct()
@@ -48,11 +46,12 @@ class DeliveryController extends Controller
         /**
          * 配信処理
          */
-        foreach ($DeliverySet->visitors()->get() as $DeliverySetVisitor) {
+        if( ! $DeliverySet->deliverySetVisitors->count() ) {
+            \Flash::info('配信対象がありません。');
+        } else foreach ( $DeliverySet->deliverySetVisitors as $DeliverySetVisitor ) {
             $DeliveryMailService->send(new DeliveryMailable($DeliverySetVisitor->mailTemplate, $DeliverySetVisitor->visitor));
+            \Flash::success('メールを配信しました。');
         }
-
-        \Flash::success('メールを配信しました。');
 
         return redirect()->route('mail.set', $id);
     }
