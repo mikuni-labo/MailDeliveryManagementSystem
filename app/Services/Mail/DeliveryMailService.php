@@ -34,6 +34,8 @@ class DeliveryMailService
         try {
             $this->mail->send($mailable);
 
+            dd($mailable);
+
             /**
              * TODO ログイベント
              */

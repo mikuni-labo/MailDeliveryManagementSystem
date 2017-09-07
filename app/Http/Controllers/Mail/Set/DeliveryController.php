@@ -49,7 +49,7 @@ class DeliveryController extends Controller
         if( ! $DeliverySet->deliverySetVisitors->count() ) {
             \Flash::info('配信対象がありません。');
         } else foreach ( $DeliverySet->deliverySetVisitors as $DeliverySetVisitor ) {
-            $DeliveryMailService->send(new DeliveryMailable($DeliverySetVisitor->mailTemplate, $DeliverySetVisitor->visitor));
+            $DeliveryMailService->send(new DeliveryMailable($DeliverySetVisitor->mailTemplate, $DeliverySetVisitor->deliverySet, $DeliverySetVisitor->visitor));
             \Flash::success('メールを配信しました。');
         }
 

@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\DeliverySet;
 use App\Models\MailTemplate;
 use App\Models\Visitor;
 use Illuminate\Bus\Queueable;
@@ -16,6 +17,9 @@ class DeliveryMailable extends Mailable
     /** @var MailTemplate */
     private $MailTemplate;
 
+    /** @var DeliverySet */
+    private $DeliverySet;
+
     /** @var Visitor */
     private $Visitor;
 
@@ -23,13 +27,15 @@ class DeliveryMailable extends Mailable
      * Create a new message instance.
      *
      * @param MailTemplate $MailTemplate
+     * @param DeliverySet $DeliverySet
      * @param Visitor $Visitor
      * @return void
      */
-    public function __construct(MailTemplate $MailTemplate, Visitor $Visitor)
+    public function __construct(MailTemplate $MailTemplate, DeliverySet $DeliverySet, Visitor $Visitor)
     {
         $this->MailTemplate = $MailTemplate;
-        $this->Visitor = $Visitor;
+        $this->DeliverySet  = $DeliverySet;
+        $this->Visitor      = $Visitor;
     }
 
     /**
