@@ -104,9 +104,9 @@ class VisitorsSetController extends Controller
             $message = 'The parameter of visitorId and value are reqired.';
         }
 
-        $MailTemplate = MailTemplate::findorFail($id);
-        $DeliverySet = DeliverySet::findorFail($setId);
-        $Visitor = Visitor::findorFail($request->visitorId);
+        $MailTemplate = MailTemplate::find($id);
+        $DeliverySet = DeliverySet::find($setId);
+        $Visitor = Visitor::find($request->visitorId);
 
         if( ! $MailTemplate || ! $DeliverySet || ! $Visitor) {
             $result = false;
@@ -114,8 +114,9 @@ class VisitorsSetController extends Controller
         }
 
         if( $result ) {
+
             /** @var DeliverySetVisitor $DeliverySetVisitor */
-            $DeliverySetVisitor = DeliverySetVisitor::exists($id, $setId, $request->visitorId)->first();
+            $DeliverySetVisitor = $Visitor->deliverySetVisitors()->where('delivery_set_id', '=', $setId)->first();
 
             if( (bool)$request->value ) {
                 if( ! is_null($DeliverySetVisitor) ) {

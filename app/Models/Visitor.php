@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 
@@ -66,6 +67,16 @@ class Visitor extends Model
     ];
 
     protected $perPage = 20;
+
+    /**
+     * 配信セット来場者とのリレーションを定義
+     *
+     * @return HasMany
+     */
+    public function deliverySetVisitors() : HasMany
+    {
+        return $this->hasMany('App\Models\DeliverySetVisitor');
+    }
 
     /**
      * Search
