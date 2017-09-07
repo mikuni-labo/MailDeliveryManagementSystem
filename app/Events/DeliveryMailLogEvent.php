@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Mail\DeliveryMailable;
+use App\Models\DeliveryMailLog;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -18,14 +19,24 @@ class DeliveryMailLogEvent
     /** @var DeliveryMailable */
     public $mailable;
 
+    /** @var DeliveryMailLog */
+    public $log;
+
+    /** @var string */
+    public $message;
+
     /**
      * Create a new event instance.
      *
+     * @param DeliveryMailable $mailable
+     * @param string $message
      * @return void
      */
-    public function __construct(DeliveryMailable $mailable)
+    public function __construct(DeliveryMailable $mailable, DeliveryMailLog $log, string $message)
     {
         $this->mailable = $mailable;
+        $this->log      = $log;
+        $this->message  = $message;
     }
 
     /**
@@ -35,6 +46,6 @@ class DeliveryMailLogEvent
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+//         return new PrivateChannel('channel-name');
     }
 }

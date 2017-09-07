@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\DeliveryMailLogEvent;
-use App\Models\DeliveryMailLog;
+use App\Models\DeliveryMailLogVisitor;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -27,25 +27,13 @@ class DeliveryMailLogEventListener
      */
     public function handle(DeliveryMailLogEvent $event)
     {
-        DeliveryMailLog::create([
-            'mail_template_id' => $event->mailable->getMailTemplate()->id,
-            'delivery_set_id'  => $event->mailable->getDeliverySet()->id,
-            'result'           => true,// TODO 要調整
-            'to'               => $event->mailable->getVisitor()->email,
-            'from'             => $this->buildFrom($event->mailable->from),// TODO 要調整
-            'subject'          => $event->mailable->subject,
-            'content'          => $event->mailable->viewData['content'],
-            'message'          => "test",// TODO 要調整
+        DeliveryMailLogVisitor::create([
+            'delivery_mail_log_id' => $event->log->id,
+            'to'                   => $event->mailable->getVisitor()->email,
+            'content'              => $event->mailable->viewData['content'],
+            'result'               => empty($event->message) ? true : false,
+            'message'              => $event->message,
         ]);
-    }
-
-    /**
-     * @param array $from
-     * @return string
-     */
-    private function buildFrom(array $from)
-    {
-        return "{$from[0]['name']} <{$from[0]['address']}>";
     }
 
 }

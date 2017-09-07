@@ -55,7 +55,7 @@ class DeliverySetVisitor extends Model
     protected $perPage = 20;
 
     /**
-     * テンプレートとのリレーションを定義
+     * テンプレートテーブルとのリレーションを定義
      *
      * @return BelongsTo
      */
@@ -65,7 +65,7 @@ class DeliverySetVisitor extends Model
     }
 
     /**
-     * 配信セットとのリレーションを定義
+     * 配信セットテーブルとのリレーションを定義
      *
      * @return BelongsTo
      */
@@ -75,7 +75,7 @@ class DeliverySetVisitor extends Model
     }
 
     /**
-     * 来場者とのリレーションを定義
+     * 配信セット毎来場者テーブルとのリレーションを定義
      *
      * @return BelongsTo
      */

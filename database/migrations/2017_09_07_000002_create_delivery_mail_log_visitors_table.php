@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeliveryMailLogsTable extends Migration
+class CreateDeliveryMailLogVisitorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,26 +13,21 @@ class CreateDeliveryMailLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery_mail_logs', function (Blueprint $table) {
+        Schema::create('delivery_mail_log_visitors', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('mail_template_id')->unsigned();
-            $table->integer('delivery_set_id')->unsigned();
-            $table->string('from');
-            $table->string('subject');
+            $table->integer('delivery_mail_log_id')->unsigned();
+            $table->string('to');
+            $table->text('content');
+            $table->boolean('result')->unsigned();
+            $table->text('message')->nullable();
             $table->timestamps();// updated_atは不要だが、モデルの自動記録機能を使用するため
 
             /**
              * 外部キー制約
              */
-            $table->foreign('mail_template_id')
+            $table->foreign('delivery_mail_log_id')
                 ->references('id')
-                ->on('mail_templates')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->foreign('delivery_set_id')
-                ->references('id')
-                ->on('delivery_sets')
+                ->on('delivery_mail_logs')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
@@ -45,6 +40,6 @@ class CreateDeliveryMailLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delivery_mail_logs');
+        Schema::dropIfExists('delivery_mail_log_visitors');
     }
 }
