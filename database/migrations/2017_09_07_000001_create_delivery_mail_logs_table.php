@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeliverySetVisitorsTable extends Migration
+class CreateDeliveryMailLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,17 @@ class CreateDeliverySetVisitorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery_set_visitors', function (Blueprint $table) {
-            $table->increments('id');// ※EloquentORMに複合主キーはあまり適さない、かつモデルのdelete()を使用したいため、サロゲートキーとして設定しておく
+        Schema::create('delivery_mail_logs', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('mail_template_id')->unsigned();
             $table->integer('delivery_set_id')->unsigned();
-            $table->integer('visitor_id')->unsigned();
+            $table->boolean('result')->unsigned();
+            $table->string('email');
+            $table->string('from');
+            $table->string('subject');
+            $table->text('content');
+            $table->text('message');
             $table->timestamps();// updated_atは不要だが、モデルの自動記録機能を使用するため
-
-            /**
-             * 複合ユニークキー
-             */
-            $table->unique([
-                'mail_template_id',
-                'delivery_set_id',
-                'visitor_id',
-            ], 'delivery_set_visitors_template_id_set_id_visitor_id_unique');// キーが長く怒られるので少し削って直接指定する
 
             /**
              * 外部キー制約
@@ -44,11 +40,6 @@ class CreateDeliverySetVisitorsTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('visitor_id')
-                ->references('id')
-                ->on('visitors')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
         });
     }
 
@@ -59,6 +50,6 @@ class CreateDeliverySetVisitorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delivery_set_visitors');
+        Schema::dropIfExists('delivery_mail_logs');
     }
 }
