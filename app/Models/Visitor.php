@@ -79,6 +79,16 @@ class Visitor extends Model
     }
 
     /**
+     * 配信ログとのリレーションを定義（保有メールアドレス）
+     *
+     * @return HasMany
+     */
+    public function deliveryMailLogs() : HasMany
+    {
+        return $this->hasMany('App\Models\DeliveryMailLog', 'to', 'email');
+    }
+
+    /**
      * Search
      *
      * @param Request $request

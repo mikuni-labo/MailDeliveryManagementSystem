@@ -75,4 +75,14 @@ class DeliverySet extends Model
         return $this->hasMany('App\Models\DeliverySetVisitor');
     }
 
+    /**
+     * 配信ログとのリレーションを定義
+     *
+     * @return HasMany
+     */
+    public function deliveryMailLogs() : HasMany
+    {
+        return $this->hasMany('App\Models\DeliveryMailLog');
+    }
+
 }
