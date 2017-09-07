@@ -2,7 +2,7 @@
 
 namespace App\Services\Mail;
 
-use App\Models\Visitor;
+use App\Events\DeliveryMailLogEvent;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\PendingMail;
 
@@ -34,18 +34,11 @@ class DeliveryMailService
         try {
             $this->mail->send($mailable);
 
-            dd($mailable);
-
-            /**
-             * TODO ログイベント
-             */
-
+            event(new DeliveryMailLogEvent($mailable));
         } catch (\Exception $e) {
-            /**
-             * TODO ログイベント
-             */
-
             dd( $e->getMessage() );
+
+//             event(new DeliveryMailLogEvent($mailable));
         }
     }
 

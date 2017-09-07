@@ -18,7 +18,7 @@ class CreateDeliveryMailLogsTable extends Migration
             $table->integer('mail_template_id')->unsigned();
             $table->integer('delivery_set_id')->unsigned();
             $table->boolean('result')->unsigned();
-            $table->string('email');
+            $table->string('to');
             $table->string('from');
             $table->string('subject');
             $table->text('content');

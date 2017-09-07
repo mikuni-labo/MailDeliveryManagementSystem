@@ -69,4 +69,29 @@ class DeliveryMailable extends Mailable
 
         return $str;
     }
+
+    /**
+     * @return MailTemplate
+     */
+    public function getMailTemplate() : MailTemplate
+    {
+        return $this->MailTemplate;
+    }
+
+    /**
+     * @return DeliverySet
+     */
+    public function getDeliverySet() : DeliverySet
+    {
+        return $this->DeliverySet;
+    }
+
+    /**
+     * @return Visitor
+     */
+    public function getVisitor() : Visitor
+    {
+        return $this->Visitor;
+    }
+
 }

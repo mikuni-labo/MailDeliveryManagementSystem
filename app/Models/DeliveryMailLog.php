@@ -19,7 +19,7 @@ class DeliveryMailLog extends Model
         'mail_template_id',
         'delivery_set_id',
         'result',
-        'email',
+        'to',
         'from',
         'subject',
         'content',
@@ -86,7 +86,7 @@ class DeliveryMailLog extends Model
      */
     public function visitor() : BelongsTo
     {
-        return $this->belongsTo('App\Models\Visitor', 'email', 'email');
+        return $this->belongsTo('App\Models\Visitor', 'to', 'email');
     }
 
 }
