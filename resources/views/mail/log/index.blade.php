@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('meta')
-    <title>配信ログ一覧｜{{ config('app.name') }}</title>
+    <title>配信履歴一覧｜{{ config('app.name') }}</title>
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
-                <div class="lead"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;配信ログ一覧</div>
+                <div class="lead"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;配信履歴一覧</div>
 
                 @include('flash::message')
 
@@ -20,15 +20,17 @@
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
+                                <col width="6%">
                                 <col width="15%">
                                 <col width="10%">
-                                <col width="10%">
-                                <col width="36%">
+                                <col width="8%">
+                                <col width="32%">
                                 <col width="25%">
                                 <col width="4%">
                             </colgroup>
 
                             <tr>
+                                <th class="text-center">ログID</th>
                                 <th class="text-center">処理日時</th>
                                 <th class="text-center">テンプレートID</th>
                                 <th class="text-center">セットID</th>
@@ -39,6 +41,7 @@
 
                             @foreach( $result as $row )
                                 <tr>
+                                    <td class="text-center">{{ $row->id }}</td>
                                     <td class="text-center">{{ $row->created_at }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('mail.edit', $row->mail_template_id) }}">{{ $row->mail_template_id }}</a>
@@ -51,7 +54,7 @@
                                         <code>{{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;</code>
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-th-list" data-toggle="tooltip" title="配信対象"></span></a>
+                                        <a href="{{ route('mail.log.visitor', $row->id) }}" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-th-list" data-toggle="tooltip" title="配信対象"></span></a>
                                     </td>
                                 </tr>
                             @endforeach
