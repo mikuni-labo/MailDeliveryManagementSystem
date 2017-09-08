@@ -70,7 +70,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ $deliverySetVisitors->has($row->id) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( $deliverySetVisitors->has($row->id) ):?>checked="checked" <?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" />
+                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ $deliverySetVisitors->has($row->id) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( $deliverySetVisitors->has($row->id) ):?>checked<?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" <?php if( ! $row->possible_delivery_flag ):?>disabled<?php endif;?> />
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at )
@@ -119,20 +119,24 @@
     <script type="text/javascript">
         function test(templateId, setId, visitorId){
             var visitor = document.getElementById('visitor_' + visitorId);
+            var value = visitor.checked ? 1 : 0;
 
             $.ajax({
                 url: '/mail/' + templateId + '/set/' + setId + '/visitor/ajax',
                 type: 'POST',
                 dataType: 'json',
-                data: {_token: "{{ csrf_token() }}", _method: "PUT", visitorId: visitorId, value: visitor.value},
+                data: {_token: "{{ csrf_token() }}", _method: "PUT", visitorId: visitorId, value: value},
                 timeout: 5000,
                 success: function(res, textStatus){
-                    visitor.value = visitor.value == 1 ? 0 : 1;
+                    if( res.message instanceof Object && !(res.message instanceof Array) && res.message.id === undefined ) {
+                        visitor.checked = false;
+                        alert('来場者の配信可否フラグが無効です。');
+                    }
 //                     console.log(res);
 //                     console.log(textStatus);
                 },
                 error: function(xhr, textStatus, errorThrown){
-                    visitor.checked = visitor.value == 1 ? true : false;
+                    visitor.checked = visitor.checked ? false : true;
                     alert('Ajaxエラーです。管理者にお問い合わせください。');
 //                     console.log(xhr);
 //                     console.log(textStatus);

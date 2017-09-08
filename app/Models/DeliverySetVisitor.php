@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\DeliverySetVisitorObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -53,6 +54,13 @@ class DeliverySetVisitor extends Model
     ];
 
     protected $perPage = 20;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::observe(DeliverySetVisitorObserver::class);
+    }
 
     /**
      * テンプレートテーブルとのリレーションを定義

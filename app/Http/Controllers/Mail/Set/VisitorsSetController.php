@@ -118,20 +118,19 @@ class VisitorsSetController extends Controller
             /** @var DeliverySetVisitor $DeliverySetVisitor */
             $DeliverySetVisitor = $Visitor->deliverySetVisitors()->where('delivery_set_id', '=', $setId)->first();
 
-            if( (bool)$request->value ) {
-                if( ! is_null($DeliverySetVisitor) ) {
-                    $DeliverySetVisitor->forceDelete();
-                    $message = 'Deleted.';
-                }
-            } else {
+            if( $request->value ) {
                 if( is_null($DeliverySetVisitor) ) {
                     $DeliverySetVisitor = DeliverySetVisitor::create([
                         'mail_template_id' => $id,
                         'delivery_set_id'  => $setId,
                         'visitor_id'       => $request->visitorId,
                     ]);
-
-                    $message = $DeliverySetVisitor->toJson();
+                    $message = $DeliverySetVisitor;
+                }
+            } else {
+                if( ! is_null($DeliverySetVisitor) ) {
+                    $DeliverySetVisitor->forceDelete();
+                    $message = 'Deleted.';
                 }
             }
         }
