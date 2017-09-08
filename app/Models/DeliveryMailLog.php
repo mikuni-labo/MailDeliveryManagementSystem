@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class DeliveryMailLog extends Model
@@ -62,7 +59,7 @@ class DeliveryMailLog extends Model
      */
     public function deliveryMailLogVisitors() : HasMany
     {
-        return $this->hasMany('App\Models\DeliveryMailLogVisitor');
+        return $this->hasMany(DeliveryMailLogVisitor::class);
     }
 
     /**
@@ -72,7 +69,7 @@ class DeliveryMailLog extends Model
      */
     public function mailTemplate() : BelongsTo
     {
-        return $this->belongsTo('App\Models\MailTemplate');
+        return $this->belongsTo(MailTemplate::class);
     }
 
     /**
@@ -82,7 +79,7 @@ class DeliveryMailLog extends Model
      */
     public function deliverySet() : BelongsTo
     {
-        return $this->belongsTo('App\Models\DeliverySet');
+        return $this->belongsTo(DeliverySet::class);
     }
 
 }

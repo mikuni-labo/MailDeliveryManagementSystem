@@ -77,24 +77,23 @@ class Visitor extends Model
     }
 
     /**
-     * 配信セット来場者とのリレーションを定義
+     * Define relationship with other model.
      *
      * @return HasMany
      */
     public function deliverySetVisitors() : HasMany
     {
-        return $this->hasMany('App\Models\DeliverySetVisitor');
+        return $this->hasMany(DeliverySetVisitor::class);
     }
 
     /**
-     * メール配信ログ来場者テーブルとのリレーションを定義
-     * （保有メールアドレス）
+     * Define relationship with other model.
      *
      * @return HasMany
      */
     public function deliveryMailLogs() : HasMany
     {
-        return $this->hasMany('App\Models\DeliveryMailLogVisitor', 'to', 'email');
+        return $this->hasMany(DeliveryMailLogVisitor::class, 'to', 'email');
     }
 
     /**

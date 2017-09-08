@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\DeliverySetVisitor;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -62,7 +60,7 @@ class DeliverySet extends Model
      */
     public function mailTemplate() : BelongsTo
     {
-        return $this->belongsTo('App\Models\MailTemplate');
+        return $this->belongsTo(MailTemplate::class);
     }
 
     /**
@@ -72,7 +70,7 @@ class DeliverySet extends Model
      */
     public function deliverySetVisitors() : HasMany
     {
-        return $this->hasMany('App\Models\DeliverySetVisitor');
+        return $this->hasMany(DeliverySetVisitor::class);
     }
 
     /**
@@ -82,7 +80,7 @@ class DeliverySet extends Model
      */
     public function deliveryMailLogs() : HasMany
     {
-        return $this->hasMany('App\Models\DeliveryMailLog');
+        return $this->hasMany(DeliveryMailLog::class);
     }
 
 }

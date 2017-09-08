@@ -3,11 +3,8 @@
 namespace App\Models;
 
 use App\Observers\DeliverySetVisitorObserver;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class DeliverySetVisitor extends Model
 {
@@ -69,7 +66,7 @@ class DeliverySetVisitor extends Model
      */
     public function mailTemplate() : BelongsTo
     {
-        return $this->belongsTo('App\Models\MailTemplate');
+        return $this->belongsTo(MailTemplate::class);
     }
 
     /**
@@ -79,7 +76,7 @@ class DeliverySetVisitor extends Model
      */
     public function deliverySet() : BelongsTo
     {
-        return $this->belongsTo('App\Models\DeliverySet');
+        return $this->belongsTo(DeliverySet::class);
     }
 
     /**
@@ -89,7 +86,7 @@ class DeliverySetVisitor extends Model
      */
     public function visitor() : BelongsTo
     {
-        return $this->belongsTo('App\Models\Visitor');
+        return $this->belongsTo(Visitor::class);
     }
 
 }
