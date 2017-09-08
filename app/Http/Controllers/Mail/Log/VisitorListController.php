@@ -37,7 +37,7 @@ class VisitorListController extends Controller
         $DeliveryMailLog = DeliveryMailLog::findOrFail($id);
 
         return view('mail.log.visitor')->with([
-            'breadcrumb'   => $this->setBreadcrumb('Log Visitor List', route('mail.log.visitor', $id)),
+            'breadcrumb'   => $this->setBreadcrumb('Visitor List', route('mail.log.visitor', $id)),
             'result'       => $DeliveryMailLog->deliveryMailLogVisitors()->paginate(),
         ]);
     }
