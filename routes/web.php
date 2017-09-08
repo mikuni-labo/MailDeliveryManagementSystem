@@ -42,6 +42,7 @@ Route::group([], function() {
         Route::put( '{id}/edit',        'EditController@update');
         Route::delete('{id}/delete',    'DeleteController@delete')->name('visitor.delete');
         Route::patch( '{id}/restore',   'RestoreController@restore')->name('visitor.restore');
+        Route::get( '{id}/log',         'LogListController@index')->name('visitor.log');
 
         Route::group([
             'prefix'     => 'csv',
@@ -67,6 +68,14 @@ Route::group([], function() {
         Route::put( '{id}/edit',        'EditController@update');
         Route::delete('{id}/delete',    'DeleteController@delete')->name('mail.delete');
         Route::patch( '{id}/restore',   'RestoreController@restore')->name('mail.restore');
+
+        Route::group([
+            'prefix'     => 'log',
+            'namespace'  => 'Log',
+        ], function() {
+            Route::get( '/',            'ListController@index')->name('mail.log');
+            Route::get( '{id}/visitor', 'VisitorListController@index')->name('mail.log.visitor');
+        });
 
         Route::group([
             'prefix'     => '{id}/set',

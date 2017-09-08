@@ -3,11 +3,6 @@
  *
 ========================================================= */
 
-/* Click Event Off on Images */
-img {
-    // pointer-events: none;
-}
-
 .attention {
     color: orange;
     margin-left: 3px;
@@ -97,11 +92,4 @@ img {
 }
 .mb-400 {
     margin-bottom: 400px;
-}
-
-@media only screen and (min-width : 768px) {
-    /* デスクトップ表示ではホバー操作でドロップダウンを表示 */
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
 }
