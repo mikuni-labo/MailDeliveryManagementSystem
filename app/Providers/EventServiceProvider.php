@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\Delivery\DeliveryMailEvent;
+use App\Events\Delivery\DeliveryMailLogEvent;
+use App\Listeners\Delivery\DeliveryMailEventListener;
+use App\Listeners\Delivery\DeliveryMailLogEventListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -13,11 +17,17 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\DeliveryMailEvent' => [
-            'App\Listeners\DeliveryMailEventListener',
+        /**
+         * DeliveryMail
+         */
+        DeliveryMailEvent::class => [
+            DeliveryMailEventListener::class,
         ],
-        'App\Events\DeliveryMailLogEvent' => [
-            'App\Listeners\DeliveryMailLogEventListener',
+        /**
+         * DeliveryMailLog
+         */
+        DeliveryMailLogEvent::class => [
+            DeliveryMailLogEventListener::class,
         ],
     ];
 

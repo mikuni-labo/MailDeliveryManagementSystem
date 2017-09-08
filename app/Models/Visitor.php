@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\VisitorObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -67,6 +68,13 @@ class Visitor extends Model
     ];
 
     protected $perPage = 20;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::observe(VisitorObserver::class);
+    }
 
     /**
      * 配信セット来場者とのリレーションを定義

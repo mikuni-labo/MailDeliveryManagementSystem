@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Mail\Set;
 
-use App\Events\DeliveryMailEvent;
+use App\Events\Delivery\DeliveryMailEvent;
 use App\Http\Controllers\Controller;
 use App\Mail\DeliveryMailable;
 use App\Models\DeliveryMailLog;

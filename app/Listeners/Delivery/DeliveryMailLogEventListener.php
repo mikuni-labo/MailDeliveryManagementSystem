@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Delivery;
 
-use App\Events\DeliveryMailLogEvent;
+use App\Events\Delivery\DeliveryMailLogEvent;
 use App\Models\DeliveryMailLogVisitor;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Delivery;
 
-use App\Events\DeliveryMailEvent;
-use App\Events\DeliveryMailLogEvent;
+use App\Events\Delivery\DeliveryMailEvent;
+use App\Events\Delivery\DeliveryMailLogEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\PendingMail;

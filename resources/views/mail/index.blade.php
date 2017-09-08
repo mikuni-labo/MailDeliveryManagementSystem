@@ -108,7 +108,7 @@
          * Delete a record.
          */
          function deleteRecord(url) {
-             if( confirm('本当に削除しますか？') ) {
+             if( confirm('本当に削除しますか？\n同時に配信セットも削除されます。') ) {
                  var form = document.getElementById('delete-form');
                  form.action = url;
                  form.submit();
