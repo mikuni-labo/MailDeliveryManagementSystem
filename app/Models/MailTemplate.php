@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\MailTemplateObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -54,6 +55,13 @@ class MailTemplate extends Model
     ];
 
     protected $perPage = 20;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::observe(MailTemplateObserver::class);
+    }
 
     /**
      * 配信セットとのリレーションを定義
