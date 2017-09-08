@@ -4,16 +4,25 @@ namespace App\Http\Requests\Auth;
 
 class ResendRequest extends AuthRequest
 {
+    /**
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
     }
 
+    /**
+     * @return boolean
+     */
     public function authorize()
     {
         return true;
     }
 
+    /**
+     * @return array
+     */
     public function rules()
     {
         return [
@@ -21,6 +30,10 @@ class ResendRequest extends AuthRequest
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     * @see \Illuminate\Foundation\Http\FormRequest::messages()
+     */
     public function messages()
     {
         return [

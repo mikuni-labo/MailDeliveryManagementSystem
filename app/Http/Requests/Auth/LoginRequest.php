@@ -4,6 +4,9 @@ namespace App\Http\Requests\Auth;
 
 class LoginRequest extends AuthRequest
 {
+    /**
+     * @return boolean
+     */
     public function authorize()
     {
         return true;

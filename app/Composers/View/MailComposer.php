@@ -6,6 +6,9 @@ use Illuminate\Contracts\View\View;
 
 class MailComposer
 {
+    /**
+     * @var array
+     */
     protected $mail;
 
     /**
@@ -20,6 +23,7 @@ class MailComposer
 
     /**
      * Bind data to the view.
+     *
      * @param View $view
      * @return void
      */

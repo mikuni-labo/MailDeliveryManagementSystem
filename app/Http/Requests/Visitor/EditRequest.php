@@ -6,11 +6,17 @@ use Illuminate\Validation\Rule;
 
 class EditRequest extends VisitorRequest
 {
+    /**
+     * @return boolean
+     */
     public function authorize()
     {
         return true;
     }
 
+    /**
+     * @return array
+     */
     public function rules()
     {
         $id = request()->id;
@@ -42,6 +48,10 @@ class EditRequest extends VisitorRequest
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     * @see \Illuminate\Foundation\Http\FormRequest::messages()
+     */
     public function messages()
     {
         return [

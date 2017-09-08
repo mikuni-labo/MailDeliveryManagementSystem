@@ -23,12 +23,18 @@ class Controller extends BaseController
         $this->setBreadcrumb('Home', route('home'));
     }
 
-    protected function setBreadcrumb($key, $value)
+    /**
+     * @return array
+     */
+    protected function setBreadcrumb($key, $value) : array
     {
         $this->breadcrumb[$key] = $value;
         return $this->breadcrumb;
     }
 
+    /**
+     * @return array|string
+     */
     protected function getBreadcrumb($key = null)
     {
         if( is_null($key) ) return $this->breadcrumb;

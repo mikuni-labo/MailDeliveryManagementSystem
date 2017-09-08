@@ -5,16 +5,9 @@ namespace App\Providers;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
-/**
- * ローカル環境サービスプロバイダ
- *
- * @author Kuniyasu Wada
- */
 class LocalServiceProvider extends ServiceProvider
 {
     /**
-     * localでのみ設定したいサービスプロバイダ
-     *
      * @var array
      */
     protected $providers = [
@@ -23,8 +16,6 @@ class LocalServiceProvider extends ServiceProvider
     ];
 
     /**
-     * localでのみ設定したいクラスエイリアス
-     *
      * @var array
      */
     protected $aliases = [
@@ -32,8 +23,6 @@ class LocalServiceProvider extends ServiceProvider
     ];
 
     /**
-     * アプリケーションサービスの初期化処理
-     *
      * @return void
      */
     public function boot()
@@ -42,8 +31,6 @@ class LocalServiceProvider extends ServiceProvider
     }
 
     /**
-     * アプリケーションサービスの登録
-     *
      * @return void
      */
     public function register()
@@ -56,8 +43,6 @@ class LocalServiceProvider extends ServiceProvider
     }
 
     /**
-     * サービスプロバイダーの登録
-     *
      * @return void
      */
     protected function registerProviders()
@@ -71,8 +56,6 @@ class LocalServiceProvider extends ServiceProvider
     }
 
     /**
-     * クラスエイリアスの登録
-     *
      * @return void
      */
     protected function registerAliases()

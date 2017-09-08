@@ -16,16 +16,21 @@ class DeliveryMailEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /** @var DeliveryMailable */
+    /**
+     * @var DeliveryMailable
+     */
     public $mailable;
 
-    /** @var DeliveryMailLog */
+    /**
+     * @var DeliveryMailLog
+     */
     public $log;
 
     /**
      * Create a new event instance.
      *
      * @param DeliveryMailable $mailable
+     * @param DeliveryMailLog $log
      * @return void
      */
     public function __construct(DeliveryMailable $mailable, DeliveryMailLog $log)

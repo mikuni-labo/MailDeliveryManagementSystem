@@ -4,16 +4,25 @@ namespace App\Http\Requests\Auth;
 
 class ResetRequest extends AuthRequest
 {
+    /**
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
     }
 
+    /**
+     * @return boolean
+     */
     public function authorize()
     {
         return true;
     }
 
+    /**
+     * @return array
+     */
     public function rules()
     {
         return [
@@ -22,6 +31,10 @@ class ResetRequest extends AuthRequest
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     * @see \Illuminate\Foundation\Http\FormRequest::messages()
+     */
     public function messages()
     {
         return [

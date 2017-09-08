@@ -4,11 +4,17 @@ namespace App\Http\Requests\Mail\Set;
 
 class StoreRequest extends DeliverySetRequest
 {
+    /**
+     * @return boolean
+     */
     public function authorize()
     {
         return true;
     }
 
+    /**
+     * @return array
+     */
     public function rules()
     {
         return [
@@ -18,6 +24,10 @@ class StoreRequest extends DeliverySetRequest
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     * @see \Illuminate\Foundation\Http\FormRequest::messages()
+     */
     public function messages()
     {
         return [

@@ -4,11 +4,17 @@ namespace App\Http\Requests\Mail;
 
 class EditRequest extends MailRequest
 {
+    /**
+     * @return boolean
+     */
     public function authorize()
     {
         return true;
     }
 
+    /**
+     * @return array
+     */
     public function rules()
     {
         return [
@@ -19,6 +25,10 @@ class EditRequest extends MailRequest
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     * @see \Illuminate\Foundation\Http\FormRequest::messages()
+     */
     public function messages()
     {
         return [
