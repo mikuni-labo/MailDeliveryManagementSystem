@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Delivery;
 
 use App\Mail\DeliveryMailable;
 use App\Models\DeliveryMailLog;
