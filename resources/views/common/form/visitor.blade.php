@@ -159,6 +159,7 @@
 <div class="form-group{{ $errors->has('possible_delivery_flag') ? ' has-error' : '' }}">
     <label for="possible_delivery_flag" class="col-md-2 control-label">配信可否フラグ
         @if( $mode === 'add' || $mode === 'edit' ) <span class="attention">*</span>@endif
+        @if( $mode === 'edit' ) <span class="glyphicon glyphicon-question-sign text-warning" data-toggle="tooltip" title="不可に切り替える場合は、配信セット登録も解除されます。"></span>@endif
     </label>
 
     <div class="col-md-4 form-control-static">
@@ -166,8 +167,8 @@
             <label for="possible_delivery_flag_on">{!! Form::checkbox('possible_delivery_flag_on', 1, isset($row->possible_delivery_flag_on), ['class' => '', 'id' => 'possible_delivery_flag_on', 'maxlength' => '1']) !!} <span class="text-success">可</span></label>&nbsp;&nbsp;&nbsp;
             <label for="possible_delivery_flag_off">{!! Form::checkbox('possible_delivery_flag_off', 1, isset($row->possible_delivery_flag_off), ['class' => '', 'id' => 'possible_delivery_flag_off', 'maxlength' => '1']) !!} <span class="text-danger">不可</span></label>
         @else
-            <label>{!! Form::radio('possible_delivery_flag', 1, true, ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-success">有効</span></label>&nbsp;&nbsp;&nbsp;
-            <label>{!! Form::radio('possible_delivery_flag', 0, isset($row->possible_delivery_flag) && ! $row->possible_delivery_flag , ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-danger">無効</span></label>
+            <label>{!! Form::radio('possible_delivery_flag', 1, true, ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-success">可</span></label>&nbsp;&nbsp;&nbsp;
+            <label>{!! Form::radio('possible_delivery_flag', 0, isset($row->possible_delivery_flag) && ! $row->possible_delivery_flag , ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-danger">不可</span></label>
         @endif
 
         @if( $errors->has('possible_delivery_flag') )

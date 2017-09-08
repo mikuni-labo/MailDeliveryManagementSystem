@@ -7,7 +7,7 @@ use App\Models\MailTemplate;
 class MailTemplateObserver
 {
     /**
-     * テンプレート削除イベントのリッスン
+     * Listening event on deleting.
      *
      * @param  MailTemplate $MailTemplate
      * @return void
