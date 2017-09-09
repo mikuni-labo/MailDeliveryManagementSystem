@@ -47,7 +47,7 @@
 <div class="form-group">
     <div class="col-md-9 col-md-offset-2">
         <a href="javascript:history.back();" class="btn btn-default">戻る</a>
-        <button type="submit" class="btn btn-primary">送信</button>
+        <button type="submit" class="btn btn-primary">登録</button>
 
         @if( $mode === 'edit' )
             <a href="{{ route('mail.set', $row->id) }}" class="btn btn-success">配信セット一覧</a>

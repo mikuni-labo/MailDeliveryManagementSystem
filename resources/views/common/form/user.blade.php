@@ -49,6 +49,6 @@
 <div class="form-group">
     <div class="col-md-6 col-md-offset-4">
         <a href="javascript:history.back();" class="btn btn-default">戻る</a>
-        <button type="submit" class="btn btn-primary">送信</button>
+        <button type="submit" class="btn btn-primary">登録</button>
     </div>
 </div>
