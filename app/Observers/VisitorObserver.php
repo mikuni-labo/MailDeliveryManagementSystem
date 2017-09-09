@@ -14,7 +14,7 @@ class VisitorObserver
      */
     public function updated(Visitor $Visitor)
     {
-        if( ! $Visitor->possible_delivery_flag ) {
+        if( ! $Visitor->possible_delivery_flag || ! $Visitor->failed_delivery_flag ) {
             $Visitor->deliverySetVisitors()->forceDelete();
         }
     }

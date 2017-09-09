@@ -177,6 +177,27 @@
     </div>
 </div>
 
+<div class="form-group{{ $errors->has('failed_delivery_flag') ? ' has-error' : '' }}">
+    <label for="failed_delivery_flag" class="col-md-2 control-label">送信エラーフラグ
+        @if( $mode === 'add' || $mode === 'edit' ) <span class="attention">*</span>@endif
+        @if( $mode === 'edit' ) <span class="glyphicon glyphicon-question-sign text-warning" data-toggle="tooltip" title="不可に切り替える場合は、配信セット登録も解除されます。"></span>@endif
+    </label>
+
+    <div class="col-md-4 form-control-static">
+        @if( $mode === 'search' || $mode === 'delivery_set_search' )
+            <label for="failed_delivery_flag_on">{!! Form::checkbox('failed_delivery_flag_on', 1, isset($row->failed_delivery_flag_on), ['class' => '', 'id' => 'failed_delivery_flag_on', 'maxlength' => '1']) !!} <span class="text-success">OK</span></label>&nbsp;&nbsp;&nbsp;
+            <label for="failed_delivery_flag_off">{!! Form::checkbox('failed_delivery_flag_off', 1, isset($row->failed_delivery_flag_off), ['class' => '', 'id' => 'failed_delivery_flag_off', 'maxlength' => '1']) !!} <span class="text-danger">NG</span></label>
+        @else
+            <label>{!! Form::radio('failed_delivery_flag', 1, true, ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-success">OK</span></label>&nbsp;&nbsp;&nbsp;
+            <label>{!! Form::radio('failed_delivery_flag', 0, isset($row->failed_delivery_flag) && ! $row->failed_delivery_flag , ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-danger">NG</span></label>
+        @endif
+
+        @if( $errors->has('failed_delivery_flag') )
+            <span class="help-block"><strong>{{ $errors->first('failed_delivery_flag') }}</strong></span>
+        @endif
+    </div>
+</div>
+
 <div class="form-group{{ $errors->has('exhibitor_type') ? ' has-error' : '' }}">
     <label for="exhibitor_type" class="col-md-2 control-label">出展者タイプ</label>
 

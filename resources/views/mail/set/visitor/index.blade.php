@@ -50,7 +50,7 @@
 
                             <tr>
                                 <th class="text-center">ID</th>
-                                <th class="text-center">配信&nbsp;<span class="glyphicon glyphicon-question-sign text-warning" data-toggle="tooltip" title="チェックボックスを切り替えると自動的に反映されます。"></span></th>
+                                <th class="text-center">配信&nbsp;<span class="glyphicon glyphicon-question-sign text-warning" data-toggle="tooltip" title="<p class='text-left'>チェックボックスを切り替えると自動的に反映されます。</p><p class='text-left'>※以下の場合は追加できません。</p><p><ul><li class='text-left'>配信可否フラグが無効</li><li class='text-left'>来場者の送信エラーフラグが立っている</li></ul></p>"></span></th>
                                 <th class="text-center">メールアドレス</th>
                                 <th class="text-center">氏名</th>
                                 <th class="text-center">組織名</th>
@@ -70,7 +70,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ $deliverySetVisitors->has($row->id) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( $deliverySetVisitors->has($row->id) ):?>checked<?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" <?php if( ! $row->possible_delivery_flag ):?>disabled<?php endif;?> />
+                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ $deliverySetVisitors->has($row->id) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( $deliverySetVisitors->has($row->id) ):?>checked<?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" <?php if( ! $row->possible_delivery_flag || ! $row->failed_delivery_flag ):?>disabled<?php endif;?> />
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at )
@@ -130,7 +130,7 @@
                 success: function(res, textStatus){
                     if( res.message instanceof Object && !(res.message instanceof Array) && res.message.id === undefined ) {
                         visitor.checked = false;
-                        alert('来場者の配信可否フラグが無効です。');
+                        alert('来場者の送信エラーフラグが立っているか、配信可否フラグが無効です。');
                     }
 //                     console.log(res);
 //                     console.log(textStatus);
