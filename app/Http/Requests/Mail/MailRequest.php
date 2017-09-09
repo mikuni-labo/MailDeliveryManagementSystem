@@ -24,7 +24,6 @@ class MailRequest extends Request
             'subject'  => '題名',
             'from'     => '差出人',
             'content'  => '本文',
-//             'status'   => 'ステータス',
         ];
     }
 

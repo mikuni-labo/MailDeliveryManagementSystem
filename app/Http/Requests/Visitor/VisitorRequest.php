@@ -47,7 +47,6 @@ class VisitorRequest extends Request
             'address'       => '住所',
             'tel'           => 'TEL',
             'fax'           => 'FAX',
-//             'status'        => 'ステータス',
             'possible_delivery_flag' => '配信可否フラグ',
             'failed_delivery_flag'   => '送信エラーフラグ',
             'exhibitor_type'         => '出展者タイプ',

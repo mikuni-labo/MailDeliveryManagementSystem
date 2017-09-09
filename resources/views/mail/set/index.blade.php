@@ -62,15 +62,6 @@
                                         @endif
                                     </td>
                                     <td class="text-center">{{ $row->name }}</td>
-                                    @if(false)
-                                        <td class="text-center">
-                                            @if( $row->status )
-                                                <span class="text-success">有効</span>
-                                            @else
-                                                <span class="text-danger">無効</span>
-                                            @endif
-                                        </td>
-                                    @endif
                                     <td class="text-center">{{ $row->updated_at }}</td>
                                     <td class="text-center">
                                         @if( ! $row->deleted_at )

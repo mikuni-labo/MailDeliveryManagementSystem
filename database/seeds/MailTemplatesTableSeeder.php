@@ -23,10 +23,8 @@ class MailTemplatesTableSeeder extends Seeder
                 'subject'      => 'テスト題名',
                 'content'      => 'テスト本文',
                 'from'         => 1,
-                'status'       => true,
                 'created_at'   => Carbon::now(),
                 'updated_at'   => Carbon::now(),
-//                 'deleted_at'   => Carbon::now(),
             ],
         ]);
     }

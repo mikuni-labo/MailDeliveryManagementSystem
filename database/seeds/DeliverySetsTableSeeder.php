@@ -22,10 +22,8 @@ class DeliverySetsTableSeeder extends Seeder
                 'id'               => 1,
                 'mail_template_id' => 1,
                 'name'             => 'セット1',
-                'status'           => true,
                 'created_at'   => Carbon::now(),
                 'updated_at'   => Carbon::now(),
-//                 'deleted_at'   => Carbon::now(),
             ],
         ]);
     }

@@ -70,7 +70,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ $deliverySetVisitors->has($row->id) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( $deliverySetVisitors->has($row->id) ):?>checked<?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" <?php if( ! $row->possible_delivery_flag || ! $row->failed_delivery_flag ):?>disabled<?php endif;?> />
+                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ $deliverySetVisitors->has($row->id) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( $deliverySetVisitors->has($row->id) ):?>checked<?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" <?php if( ! $row->possible_delivery_flag || $row->failed_delivery_flag ):?>disabled<?php endif;?> />
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at )
@@ -83,15 +83,6 @@
                                     <td class="text-center">{{ $row->organization }}</td>
                                     <td class="text-center">{{ $row->department }}</td>
                                     <td class="text-center">{{ $row->position }}</td>
-                                    @if(false)
-                                        <td class="text-center">
-                                            @if( $row->status )
-                                                <span class="text-success">有効</span>
-                                            @else
-                                                <span class="text-danger">無効</span>
-                                            @endif
-                                        </td>
-                                    @endif
                                     <td class="text-center">
                                         @if( $row->possible_delivery_flag )
                                             <span class="text-success">可</span>

@@ -20,7 +20,6 @@ class EditRequest extends DeliverySetRequest
         return [
             'mail_template_id' => 'required|exists:mail_templates,id',
             'name'             => 'required|string|max:191',
-//             'status'           => 'required|boolean',
         ];
     }
 

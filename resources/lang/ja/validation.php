@@ -78,26 +78,6 @@ return [
     'unique'               => '指定の :attribute は既に使用されています。',
     'url'                  => ':attribute は、有効なURL形式で指定してください。',
 
-    /**
-     * Custom Validate Rules...
-     */
-//     'jp_zip_code'           => ':attribute を正しい形式で入力して下さい。',
-//     'card_number'           => ':attribute を正しい形式で入力して下さい。',
-//     'card_holder_name'      => ':attribute を正しい形式で入力して下さい。',
-//     'security_code'         => ':attribute を正しい形式で入力して下さい。',
-//     'card_expire'           => ':attribute を正しい形式で入力して下さい。',
-//     'account_name_kana'     => ':attribute は全角カナのみを入力して下さい。',
-//     'only_hankaku'          => ':attribute は半角文字のみを入力して下さい。',
-//     'only_zenkaku'          => ':attribute は全角文字のみを入力して下さい。',
-//     'mime_images'           => ':attribute の対応拡張子は [.jpg] [.jpeg] [.gif] [.png] です。',
-//     'mime_csv'              => ':attribute の対応拡張子は [.csv] です。',
-//     'role_name'             => ':attribute の名称が不正です。',
-//     'input_status'          => ':attribute を変更する権限が無いか、値が不正です。',
-//     'video_scale'           => ':attribute を正しい形式で入力して下さい。',
-//     'exists_file'           => ':attribute のファイル名が正しくないか、存在しません。',
-//     'program_type'          => ':attribute を正しく選択してください。',
-//     'program_delivery_type' => ':attribute を正しく選択してください。',
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

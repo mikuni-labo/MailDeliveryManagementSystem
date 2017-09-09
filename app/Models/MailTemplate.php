@@ -20,7 +20,6 @@ class MailTemplate extends Model
         'subject',
         'content',
         'from',
-//         'status',
     ];
 
     /**
@@ -49,7 +48,6 @@ class MailTemplate extends Model
     protected $casts = [
         'id'     => 'integer',
         'from'   => 'integer',
-//         'status' => 'boolean',
 
     ];
 
