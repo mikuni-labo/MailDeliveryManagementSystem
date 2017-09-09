@@ -225,7 +225,12 @@
 <div class="form-group">
     <div class="col-md-9 col-md-offset-2">
         <a href="javascript:history.back();" class="btn btn-default">戻る</a>
-        <button type="submit" class="btn btn-primary">送信</button>
+
+        @if( $mode === 'search' || $mode === 'delivery_set_search' )
+            <button type="submit" class="btn btn-primary">検索</button>
+        @else
+            <button type="submit" class="btn btn-primary">登録</button>
+        @endif
 
         @if( $mode === 'edit' )
             <a href="#" class="btn btn-warning">配信履歴</a>

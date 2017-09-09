@@ -13,7 +13,7 @@
 <div class="form-group">
     <div class="col-md-8 col-md-offset-3">
         <a href="javascript:history.back();" class="btn btn-default">戻る</a>
-        <button type="submit" class="btn btn-primary">送信</button>
+        <button type="submit" class="btn btn-primary">登録</button>
 
         @if( $mode === 'edit' )
             <a href="{{ route('mail.set.delete', [$MailTemplate->id, $row->id]) }}" class="btn btn-danger" onclick="deleteRecord('{{ route('mail.set.delete', [$MailTemplate->id, $row->id]) }}'); return false;">削除</a>
