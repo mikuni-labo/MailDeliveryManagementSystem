@@ -134,28 +134,6 @@
     </div>
 </div>
 
-@if(false)
-    <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-        <label for="status" class="col-md-2 control-label">ステータス
-            @if( $mode === 'add' || $mode === 'edit' ) <span class="attention">*</span>@endif
-        </label>
-
-        <div class="col-md-4 form-control-static">
-            @if( $mode === 'search' || $mode === 'delivery_set_search' )
-                <label for="status_on">{!! Form::checkbox('status_on', 1, isset($row->status_on), ['class' => '', 'id' => 'status_on', 'maxlength' => '1']) !!} <span class="text-success">有効</span></label>&nbsp;&nbsp;&nbsp;
-                <label for="status_off">{!! Form::checkbox('status_off', 1, isset($row->status_off), ['class' => '', 'id' => 'status_off', 'maxlength' => '1']) !!} <span class="text-danger">無効</span></label>
-            @else
-                <label>{!! Form::radio('status', 1, true, ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-success">有効</span></label>&nbsp;&nbsp;&nbsp;
-                <label>{!! Form::radio('status', 0, isset($row->status) && ! $row->status , ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-danger">無効</span></label>
-            @endif
-
-            @if( $errors->has('status') )
-                <span class="help-block"><strong>{{ $errors->first('status') }}</strong></span>
-            @endif
-        </div>
-    </div>
-@endif
-
 <div class="form-group{{ $errors->has('possible_delivery_flag') ? ' has-error' : '' }}">
     <label for="possible_delivery_flag" class="col-md-2 control-label">配信可否フラグ
         @if( $mode === 'add' || $mode === 'edit' ) <span class="attention">*</span>@endif

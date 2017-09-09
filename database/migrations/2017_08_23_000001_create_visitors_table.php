@@ -24,7 +24,6 @@ class CreateVisitorsTable extends Migration
             $table->string('email')->unique();
             $table->string('tel', 15)->nullable();
             $table->string('fax', 15)->nullable();
-            $table->boolean('status')->unsigned()->default(true);
             $table->boolean('possible_delivery_flag')->unsigned()->default(true);
             $table->boolean('failed_delivery_flag')->unsigned()->default(true);
             $table->smallInteger('exhibitor_type')->unsigned()->nullable();

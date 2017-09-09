@@ -19,7 +19,6 @@ class DeliverySet extends Model
     protected $fillable = [
         'mail_template_id',
         'name',
-//         'status',
     ];
 
     /**
@@ -47,7 +46,6 @@ class DeliverySet extends Model
      */
     protected $casts = [
         'id'     => 'integer',
-//         'status' => 'boolean',
 
     ];
 

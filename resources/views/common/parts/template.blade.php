@@ -35,15 +35,6 @@
                                     {{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;
                                 @if( ! $MailTemplate->deleted_at ) </code> @endif
                             </td>
-                            @if(false)
-                                <td class="text-center">
-                                    @if( $MailTemplate->status )
-                                        <span class="text-success">有効</span>
-                                    @else
-                                        <span class="text-danger">無効</span>
-                                    @endif
-                                </td>
-                            @endif
                             <td class="text-center">{{ $MailTemplate->updated_at }}</td>
                             <td class="text-center">
                                 <a href="{{ route('mail.set.add', $MailTemplate->id) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus" data-toggle="tooltip" title="登録"></span></a>

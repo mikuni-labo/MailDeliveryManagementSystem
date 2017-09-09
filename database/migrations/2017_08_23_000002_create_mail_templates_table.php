@@ -18,7 +18,6 @@ class CreateMailTemplatesTable extends Migration
             $table->string('subject');
             $table->text('content');
             $table->tinyInteger('from')->unsigned()->default(1);
-            $table->boolean('status')->unsigned()->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

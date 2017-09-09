@@ -80,15 +80,6 @@
                                     <td class="text-center">{{ $row->organization }}</td>
                                     <td class="text-center">{{ $row->department }}</td>
                                     <td class="text-center">{{ $row->position }}</td>
-                                    @if(false)
-                                        <td class="text-center">
-                                            @if( $row->status )
-                                                <span class="text-success">有効</span>
-                                            @else
-                                                <span class="text-danger">無効</span>
-                                            @endif
-                                        </td>
-                                    @endif
                                     <td class="text-center">
                                         @if( $row->possible_delivery_flag )
                                             <span class="text-success">可</span>
