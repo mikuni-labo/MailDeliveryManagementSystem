@@ -4,11 +4,17 @@ namespace App\Http\Requests\Auth;
 
 class ModifyRequest extends AuthRequest
 {
+    /**
+     * @return boolean
+     */
     public function authorize()
     {
         return true;
     }
 
+    /**
+     * @return array
+     */
     public function rules()
     {
         $id = auth()->user()->id;
@@ -20,6 +26,10 @@ class ModifyRequest extends AuthRequest
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     * @see \Illuminate\Foundation\Http\FormRequest::messages()
+     */
     public function messages()
     {
         return [

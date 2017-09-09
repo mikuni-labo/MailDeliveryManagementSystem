@@ -16,19 +16,26 @@ class DeliveryMailLogEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /** @var DeliveryMailable */
+    /**
+     * @var DeliveryMailable
+     */
     public $mailable;
 
-    /** @var DeliveryMailLog */
+    /**
+     * @var DeliveryMailLog
+     */
     public $log;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $message;
 
     /**
      * Create a new event instance.
      *
      * @param DeliveryMailable $mailable
+     * @param DeliveryMailLog $log
      * @param string $message
      * @return void
      */

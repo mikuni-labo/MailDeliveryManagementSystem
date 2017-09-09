@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Observers\MailTemplateObserver;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -70,7 +69,7 @@ class MailTemplate extends Model
      */
     public function deliverySets() : HasMany
     {
-        return $this->hasMany('App\Models\DeliverySet');
+        return $this->hasMany(DeliverySet::class);
     }
 
     /**
@@ -80,7 +79,7 @@ class MailTemplate extends Model
      */
     public function deliverySetVisitors() : HasMany
     {
-        return $this->hasMany('App\Models\DeliverySetVisitor');
+        return $this->hasMany(DeliverySetVisitor::class);
     }
 
     /**
@@ -90,41 +89,7 @@ class MailTemplate extends Model
      */
     public function deliveryMailLogs() : HasMany
     {
-        return $this->hasMany('App\Models\DeliveryMailLog');
+        return $this->hasMany(DeliveryMailLog::class);
     }
 
-    /**
-     * Search
-     *
-     * @param array $search
-     * @return Builder
-     */
-    public static function search(array $search = []) : Builder
-    {
-        $query = self::query();
-
-        $query->select( \DB::raw('
-            mail_templates.id,
-            mail_templates.subject,
-            mail_templates.from,
-            mail_templates.content,
-            mail_templates.status,
-            mail_templates.created_at,
-            mail_templates.updated_at,
-            mail_templates.deleted_at
-        '));
-
-        // ID
-        if( !empty($search['id']) ) {
-            $query->where('mail_templates.id', '=', $search['id']);
-        }
-
-        $query->orderBy('mail_templates.created_at', 'DESC');
-
-        if( app()->isLocal() ) {
-            $query->withTrashed();
-        }
-
-        return $query;
-    }
 }

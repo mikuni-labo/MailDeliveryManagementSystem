@@ -14,13 +14,19 @@ class DeliveryMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /** @var MailTemplate */
+    /**
+     * @var MailTemplate
+     */
     private $MailTemplate;
 
-    /** @var DeliverySet */
+    /**
+     * @var DeliverySet
+     */
     private $DeliverySet;
 
-    /** @var Visitor */
+    /**
+     * @var Visitor
+     */
     private $Visitor;
 
     /**

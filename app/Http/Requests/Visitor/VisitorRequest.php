@@ -6,12 +6,19 @@ use App\Http\Requests\Request;
 
 class VisitorRequest extends Request
 {
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $exhibitorType;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $enterpriseType;
 
+    /**
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
@@ -23,6 +30,11 @@ class VisitorRequest extends Request
         array_unshift($this->enterpriseType, '');
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     * @see \Illuminate\Foundation\Http\FormRequest::attributes()
+     */
     public function attributes()
     {
         return [

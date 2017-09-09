@@ -9,11 +9,6 @@ use App\Services\Csv\CsvServiceInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Validator;
 
-/**
- * 来場者CSVアップロードサービス
- *
- * @author Kuniyasu Wada
- */
 class UploadCsvService implements CsvServiceInterface
 {
     private $Csv;

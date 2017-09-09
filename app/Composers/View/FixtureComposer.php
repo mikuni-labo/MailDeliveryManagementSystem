@@ -6,6 +6,9 @@ use Illuminate\Contracts\View\View;
 
 class FixtureComposer
 {
+    /**
+     * @var array
+     */
     protected $fixture;
 
     /**
@@ -20,6 +23,7 @@ class FixtureComposer
 
     /**
      * Bind data to the view.
+     *
      * @param View $view
      * @return void
      */

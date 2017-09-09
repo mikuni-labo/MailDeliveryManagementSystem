@@ -34,7 +34,8 @@ class ListController extends Controller
     {
         return view('mail.index')->with([
             'breadcrumb' => $this->getBreadcrumb(),
-            'result'     => MailTemplate::search()->paginate(),
+            'result'     => app()->isLocal() ? MailTemplate::query()->withTrashed()->paginate()
+                                                : MailTemplate::query()->paginate(),
         ]);
     }
 

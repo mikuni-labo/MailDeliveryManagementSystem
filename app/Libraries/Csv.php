@@ -6,14 +6,16 @@ use Illuminate\Support\Collection;
 use League\Csv\Reader;
 use League\Csv\Writer;
 
-/**
- * CSVライブラリ操作クラス
- *
- * @author Kuniyasu Wada
- */
 class Csv
 {
+    /**
+     * @var Reader
+     */
     private $Reader;
+
+    /**
+     * @var Writer
+     */
     private $Writer;
 
     public function __construct()
@@ -22,8 +24,6 @@ class Csv
     }
 
     /**
-     * ファイルパスからReaderインスタンスをセット
-     *
      * @param  string $path
      * @param  string $open_mode
      * @return void
@@ -34,8 +34,6 @@ class Csv
     }
 
     /**
-     * ファイルオブジェクトからReaderインスタンスをセット
-     *
      * @param \SplTempFileObject $file
      * @return void
      */
@@ -45,8 +43,6 @@ class Csv
     }
 
     /**
-     * Writerインスタンスをセット
-     *
      * @param  string $path
      * @param  string $open_mode
      * @return void
@@ -57,8 +53,6 @@ class Csv
     }
 
     /**
-     * Writerインスタンスをセット
-     *
      * @param \SplTempFileObject $file
      * @return void
      */
@@ -68,8 +62,6 @@ class Csv
     }
 
     /**
-     * レコード有無、列数の正当性チェック
-     *
      * @param Collection $Collection
      * @param Collection $columns
      * @return bool
@@ -84,8 +76,6 @@ class Csv
     }
 
     /**
-     * カラム名を割り当てながら取り込み処理を実施
-     *
      * @param  Collection $columns
      * @param  Collection $columns
      * @param  bool $isSkip
@@ -109,11 +99,17 @@ class Csv
         return collect($result);
     }
 
+    /**
+     * @return Reader
+     */
     public function getReader() : Reader
     {
         return $this->Reader;
     }
 
+    /**
+     * @return Writer
+     */
     public function getWriter() : Writer
     {
         return $this->Writer;

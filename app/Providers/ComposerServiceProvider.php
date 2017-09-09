@@ -5,11 +5,6 @@ namespace App\Providers;
 use View;
 use Illuminate\Support\ServiceProvider;
 
-/**
- * コンポーザサービス
- *
- * @author Kuniyasu Wada
- */
 class ComposerServiceProvider extends ServiceProvider
 {
     /**

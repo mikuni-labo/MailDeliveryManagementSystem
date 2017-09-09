@@ -6,11 +6,18 @@ use App\Http\Requests\Request;
 
 class UploadRequest extends Request
 {
+    /**
+     * @return boolean
+     */
     public function authorize()
     {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     * @see \Illuminate\Foundation\Http\FormRequest::attributes()
+     */
     public function attributes()
     {
         return [
@@ -18,6 +25,9 @@ class UploadRequest extends Request
         ];
     }
 
+    /**
+     * @return array
+     */
     public function rules()
     {
         return [
@@ -25,6 +35,10 @@ class UploadRequest extends Request
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     * @see \Illuminate\Foundation\Http\FormRequest::messages()
+     */
     public function messages()
     {
         return [

@@ -10,6 +10,9 @@ use Illuminate\Mail\PendingMail;
 
 class DeliveryMailEventListener implements ShouldQueue
 {
+    /**
+     * @var PendingMail
+     */
     private $mail;
 
     /**

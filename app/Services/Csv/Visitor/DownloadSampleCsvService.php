@@ -9,11 +9,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Validator;
 
-/**
- * 来場者CSVアップロードサービス
- *
- * @author Kuniyasu Wada
- */
 class DownloadSampleCsvService implements CsvServiceInterface
 {
     private $Csv;
