@@ -187,6 +187,14 @@ class Visitor extends Model
             $query->where('visitors.possible_delivery_flag', '=', 0);
         });
 
+        $query->when($request->has('failed_delivery_flag_on'), function($query) {
+            $query->where('visitors.failed_delivery_flag', '=', 1);
+        });
+
+        $query->when($request->has('failed_delivery_flag_off'), function($query) {
+            $query->where('visitors.failed_delivery_flag', '=', 0);
+        });
+
         $query->when(!empty($request->get('exhibitor_type')), function($query) use ($request) {
             $query->where('visitors.exhibitor_type', '=', $request->get('exhibitor_type'));
         });
