@@ -18,6 +18,18 @@
             @endif
         </div>
     </div>
+
+    <div class="form-group{{ $errors->has('except_id') ? ' has-error' : '' }}">
+        <label for="except_id" class="col-md-2 control-label">除外ID</label>
+
+        <div class="col-md-9 form-control-static">
+            {!! Form::tel('except_id', isset($row->except_id) ? $row->except_id : null, ['class' => 'form-control', 'id' => 'except_id', 'maxlength' => '1000', 'placeholder' => '半角カンマ区切り']) !!}
+
+            @if( $errors->has('except_id') )
+                <span class="help-block"><strong>{{ $errors->first('except_id') }}</strong></span>
+            @endif
+        </div>
+    </div>
 @endif
 
 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

@@ -133,6 +133,10 @@ class Visitor extends Model
             $query->where('visitors.id', '<=', $request->get('id_e'));
         });
 
+        $query->when($request->has('except_id') && is_string($request->get('except_id')), function($query) use ($request) {
+            $query->whereNotIn('visitors.id', explode(',', $request->get('except_id')));
+        });
+
         $query->when($request->has('name'), function($query) use ($request) {
             $query->where('visitors.name', 'like', "%{$request->get('name')}%");
         });
