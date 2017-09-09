@@ -14,7 +14,7 @@ class DeliverySetVisitorObserver
      */
     public function creating(DeliverySetVisitor $DeliverySetVisitor)
     {
-        if( ! $DeliverySetVisitor->visitor->possible_delivery_flag ) {
+        if( ! $DeliverySetVisitor->visitor->possible_delivery_flag || ! $DeliverySetVisitor->visitor->failed_delivery_flag ) {
             return false;
         }
     }

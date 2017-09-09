@@ -32,6 +32,7 @@ class Visitor extends Model
         'fax',
 //         'status',
         'possible_delivery_flag',
+        'failed_delivery_flag',
         'exhibitor_type',
         'enterprise_type',
     ];
@@ -63,6 +64,7 @@ class Visitor extends Model
         'id'                     => 'integer',
 //         'status'                 => 'boolean',
         'possible_delivery_flag' => 'boolean',
+        'failed_delivery_flag'   => 'boolean',
         'exhibitor_type'         => 'integer',
         'enterprise_type'        => 'integer',
     ];
@@ -202,4 +204,13 @@ class Visitor extends Model
         return $query;
     }
 
+    public function setExhibitorTypeAttribute($value)
+    {
+        $this->attributes['exhibitor_type'] = !empty($value) ? $value : null;
+    }
+
+    public function setEnterpriseTypeAttribute($value)
+    {
+        $this->attributes['enterprise_type'] = !empty($value) ? $value : null;
+    }
 }

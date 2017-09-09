@@ -49,6 +49,7 @@ class VisitorRequest extends Request
             'fax'           => 'FAX',
 //             'status'        => 'ステータス',
             'possible_delivery_flag' => '配信可否フラグ',
+            'failed_delivery_flag'   => '送信エラーフラグ',
             'exhibitor_type'         => '出展者タイプ',
             'enterprise_type'        => '企業タイプ',
         ];

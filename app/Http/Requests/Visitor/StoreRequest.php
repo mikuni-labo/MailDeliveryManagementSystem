@@ -31,6 +31,7 @@ class StoreRequest extends VisitorRequest
             'fax'                    => 'nullable|numeric|digits_between:1,15',
 //             'status'                 => 'required|boolean',
             'possible_delivery_flag' => 'required|boolean',
+            'failed_delivery_flag'   => 'required|boolean',
             'exhibitor_type' => [
                 'nullable',
                 'numeric',
