@@ -70,7 +70,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ $deliverySetVisitors->has($row->id) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( $deliverySetVisitors->has($row->id) ):?>checked<?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" <?php if( ! $row->possible_delivery_flag || ! $row->failed_delivery_flag ):?>disabled<?php endif;?> />
+                                        <input type="checkbox" name="target[{{ $row->id }}]" value="{{ $deliverySetVisitors->has($row->id) ? 1 : 0 }}" id="visitor_{{ $row->id }}" <?php if( $deliverySetVisitors->has($row->id) ):?>checked<?php endif;?> onchange="test('{{ $MailTemplate->id }}', '{{ $DeliverySet->id }}', '{{ $row->id }}');" <?php if( ! $row->possible_delivery_flag || $row->failed_delivery_flag ):?>disabled<?php endif;?> />
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at )

@@ -163,11 +163,11 @@
 
     <div class="col-md-4 form-control-static">
         @if( $mode === 'search' || $mode === 'delivery_set_search' )
-            <label for="failed_delivery_flag_on">{!! Form::checkbox('failed_delivery_flag_on', 1, isset($row->failed_delivery_flag_on), ['class' => '', 'id' => 'failed_delivery_flag_on', 'maxlength' => '1']) !!} <span class="text-success">OK</span></label>&nbsp;&nbsp;&nbsp;
-            <label for="failed_delivery_flag_off">{!! Form::checkbox('failed_delivery_flag_off', 1, isset($row->failed_delivery_flag_off), ['class' => '', 'id' => 'failed_delivery_flag_off', 'maxlength' => '1']) !!} <span class="text-danger">NG</span></label>
+            <label for="failed_delivery_flag_off">{!! Form::checkbox('failed_delivery_flag_off', 1, isset($row->failed_delivery_flag_off), ['class' => '', 'id' => 'failed_delivery_flag_off', 'maxlength' => '1']) !!} <span class="text-success">OK</span></label>&nbsp;&nbsp;&nbsp;
+            <label for="failed_delivery_flag_on">{!! Form::checkbox('failed_delivery_flag_on', 1, isset($row->failed_delivery_flag_on), ['class' => '', 'id' => 'failed_delivery_flag_on', 'maxlength' => '1']) !!} <span class="text-danger">NG</span></label>
         @else
-            <label>{!! Form::radio('failed_delivery_flag', 1, true, ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-success">OK</span></label>&nbsp;&nbsp;&nbsp;
-            <label>{!! Form::radio('failed_delivery_flag', 0, isset($row->failed_delivery_flag) && ! $row->failed_delivery_flag , ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-danger">NG</span></label>
+            <label>{!! Form::radio('failed_delivery_flag', 0, true, ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-success">OK</span></label>&nbsp;&nbsp;&nbsp;
+            <label>{!! Form::radio('failed_delivery_flag', 1, isset($row->failed_delivery_flag) && $row->failed_delivery_flag, ['required', 'class' => '', 'id' => '', 'maxlength' => '1']) !!} <span class="text-danger">NG</span></label>
         @endif
 
         @if( $errors->has('failed_delivery_flag') )
