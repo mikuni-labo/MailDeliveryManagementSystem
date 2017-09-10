@@ -30,6 +30,11 @@ class DeliveryMailable extends Mailable
     private $Visitor;
 
     /**
+     * @var array
+     */
+    private $templateTags;
+
+    /**
      * Create a new message instance.
      *
      * @param MailTemplate $MailTemplate
@@ -42,6 +47,8 @@ class DeliveryMailable extends Mailable
         $this->MailTemplate = $MailTemplate;
         $this->DeliverySet  = $DeliverySet;
         $this->Visitor      = $Visitor;
+
+        $this->templateTags = config('mail.template_tags');
     }
 
     /**
@@ -56,24 +63,28 @@ class DeliveryMailable extends Mailable
             ->from(config('mail.from.address'), config('mail.from.name'))// TODO fromの設定方法を決める
             ->subject($this->MailTemplate->subject)
             ->text('emails.blank', [
-                'content' => $this->replaceContent(),
+                'content' => $this->replaceContent($this->MailTemplate->content, $this->Visitor),
             ]);
     }
 
     /**
-     * Replace the content.
+     * Replace the content from template tags.
      *
+     * @param string $content
+     * @param Visitor $Visitor
      * @return string
      */
-    private function replaceContent()
+    private function replaceContent(string $content, Visitor $Visitor)
     {
-        $str = $this->MailTemplate->content;
+        if( count($this->templateTags) ) {
+            foreach ($this->templateTags as $key => $val) {
+                if( !empty($Visitor->{$key}) ) {
+                    $content = str_replace("[##{$key}##]", $Visitor->{$key}, $content);
+                }
+            }
+        }
 
-        /**
-         * TODO ここで置換処理
-         */
-
-        return $str;
+        return $content;
     }
 
     /**
