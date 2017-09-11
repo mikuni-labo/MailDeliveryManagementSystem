@@ -83,7 +83,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-sm btn-warning" <?php if( ! $row->deliveryMailLogs->count() ):?>onclick="return false;" disabled<?php endif;?>>
+                                        <a href="{{ route('mail.log', ['setId' => $row->id]) }}" class="btn btn-sm btn-warning" <?php if( ! $row->deliveryMailLogs->count() ):?>onclick="return false;" disabled<?php endif;?>>
                                             <span class="glyphicon glyphicon-time" data-toggle="tooltip" title="配信履歴"></span>
                                         </a>
                                     </td>

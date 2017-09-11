@@ -21,10 +21,11 @@
                         <table class="table table-hover table-striped table-condensed">
                             <colgroup>
                                 <col width="10%">
-                                <col width="24%">
-                                <col width="33%">
+                                <col width="22%">
+                                <col width="31%">
                                 <col width="15%">
                                 <col width="10%">
+                                <col width="4%">
                                 <col width="4%">
                                 <col width="4%">
                             </colgroup>
@@ -36,6 +37,7 @@
                                 <th class="text-center">更新日時</th>
                                 <th class="text-center">配信セット</th>
                                 <th class="text-center">編集</th>
+                                <th class="text-center">履歴</th>
                                 <th class="text-center">削除</th>
                             </tr>
 
@@ -66,6 +68,11 @@
                                         @if( ! $row->deleted_at )
                                             <a href="{{ route('mail.edit', $row->id) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="編集"></span></a>
                                         @endif
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{ route('mail.log', ['templateId' => $row->id]) }}" class="btn btn-sm btn-warning" <?php if( ! $row->deliveryMailLogs->count() ):?>onclick="return false;" disabled<?php endif;?>>
+                                            <span class="glyphicon glyphicon-time" data-toggle="tooltip" title="配信履歴"></span>
+                                        </a>
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at )

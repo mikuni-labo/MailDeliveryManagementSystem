@@ -42,7 +42,6 @@ Route::group([], function() {
         Route::put( '{id}/edit',        'EditController@update');
         Route::delete('{id}/delete',    'DeleteController@delete')->name('visitor.delete');
         Route::patch( '{id}/restore',   'RestoreController@restore')->name('visitor.restore');
-        Route::get( '{id}/log',         'LogListController@index')->name('visitor.log');
 
         Route::group([
             'prefix'     => 'csv',
