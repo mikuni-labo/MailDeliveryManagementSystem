@@ -7,7 +7,7 @@ class EditRequest extends DeliverySetRequest
     /**
      * @return boolean
      */
-    public function authorize()
+    public function authorize() : bool
     {
         return true;
     }
@@ -15,7 +15,7 @@ class EditRequest extends DeliverySetRequest
     /**
      * @return array
      */
-    public function rules()
+    public function rules() : array
     {
         return [
             'mail_template_id' => 'required|exists:mail_templates,id',
@@ -27,7 +27,7 @@ class EditRequest extends DeliverySetRequest
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::messages()
      */
-    public function messages()
+    public function messages() : array
     {
         return [
             //
