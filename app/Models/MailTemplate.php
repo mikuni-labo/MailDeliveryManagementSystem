@@ -61,7 +61,7 @@ class MailTemplate extends Model
     }
 
     /**
-     * 配信セットとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return HasMany
      */
@@ -71,7 +71,7 @@ class MailTemplate extends Model
     }
 
     /**
-     * 配信セット来場者テーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return HasMany
      */
@@ -81,7 +81,7 @@ class MailTemplate extends Model
     }
 
     /**
-     * メール配信ログテーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return HasMany
      */

@@ -53,7 +53,7 @@ class DeliveryMailLog extends Model
     protected $perPage = 30;
 
     /**
-     * 来場者毎メール配信ログテーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return BelongsTo
      */
@@ -63,7 +63,7 @@ class DeliveryMailLog extends Model
     }
 
     /**
-     * テンプレートテーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return BelongsTo
      */
@@ -73,7 +73,7 @@ class DeliveryMailLog extends Model
     }
 
     /**
-     * 配信セットテーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return BelongsTo
      */
