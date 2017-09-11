@@ -20,8 +20,16 @@ class MailTemplatesTableSeeder extends Seeder
         DB::table('mail_templates')->insert([
             [
                 'id'           => 1,
-                'subject'      => 'テスト題名',
-                'content'      => 'テスト本文',
+                'subject'      => 'テンプレート1の題名',
+                'content'      => 'テンプレート1の本文',
+                'from'         => 1,
+                'created_at'   => Carbon::now(),
+                'updated_at'   => Carbon::now(),
+            ],
+            [
+                'id'           => 2,
+                'subject'      => 'テンプレート2の題名',
+                'content'      => 'テンプレート2の本文',
                 'from'         => 1,
                 'created_at'   => Carbon::now(),
                 'updated_at'   => Carbon::now(),

@@ -94,11 +94,9 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        @if( App::isLocal() )
-                                            <a href="#" class="btn btn-sm btn-warning" <?php if( ! $row->deliveryMailLogs->count() ):?>onclick="return false;" disabled<?php endif;?>>
-                                                <span class="glyphicon glyphicon-time" data-toggle="tooltip" title="配信履歴"></span>
-                                            </a>
-                                        @endif
+                                        <a href="{{ route('mail.log', ['visitorId' => $row->id]) }}" class="btn btn-sm btn-warning" <?php if( ! $row->deliveryMailLogs->count() ):?>onclick="return false;" disabled<?php endif;?>>
+                                            <span class="glyphicon glyphicon-time" data-toggle="tooltip" title="配信履歴"></span>
+                                        </a>
                                     </td>
                                     <td class="text-center">
                                         @if( $row->deleted_at )

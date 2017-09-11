@@ -25,6 +25,20 @@ class DeliverySetsTableSeeder extends Seeder
                 'created_at'   => Carbon::now(),
                 'updated_at'   => Carbon::now(),
             ],
+            [
+                'id'               => 2,
+                'mail_template_id' => 1,
+                'name'             => 'セット2',
+                'created_at'   => Carbon::now(),
+                'updated_at'   => Carbon::now(),
+            ],
+            [
+                'id'               => 3,
+                'mail_template_id' => 1,
+                'name'             => 'セット3',
+                'created_at'   => Carbon::now(),
+                'updated_at'   => Carbon::now(),
+            ],
         ]);
     }
 
