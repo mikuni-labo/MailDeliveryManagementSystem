@@ -51,7 +51,7 @@
                                     </td>
                                     <td class="text-center">{{ $row->subject }}</td>
                                     <td class="text-center">
-                                        <code>{{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;</code>
+                                        <code>{{ $row->from_name }} &lt;{{ $row->from_address }}&gt;</code>
                                     </td>
                                     <td class="text-center">
                                         <a href="{{ route('mail.log.visitor', $row->id) }}" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-th-list" data-toggle="tooltip" title="配信対象"></span></a>

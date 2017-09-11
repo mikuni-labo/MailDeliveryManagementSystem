@@ -17,8 +17,9 @@ class CreateDeliveryMailLogsTable extends Migration
             $table->increments('id');
             $table->integer('mail_template_id')->unsigned();
             $table->integer('delivery_set_id')->unsigned();
-            $table->string('from');
-            $table->string('subject');
+            $table->string('from_name')->nullable();
+            $table->string('from_address');
+            $table->string('subject')->nullable();
             $table->timestamps();// updated_atは不要だが、モデルの自動記録機能を使用するため
 
             /**

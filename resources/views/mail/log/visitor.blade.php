@@ -23,7 +23,8 @@
                                 <col width="6%">
                                 <col width="15%">
                                 <col width="30%">
-                                <col width="30%">
+                                <col width="10%">
+                                <col width="20%">
                                 <col width="4%">
                                 <col width="15%">
                             </colgroup>
@@ -31,7 +32,8 @@
                             <tr>
                                 <th class="text-center">ログID</th>
                                 <th class="text-center">配信日時</th>
-                                <th class="text-center">配信先</th>
+                                <th class="text-center">宛先</th>
+                                <th class="text-center">名前</th>
                                 <th class="text-center">本文</th>
                                 <th class="text-center">結果</th>
                                 <th class="text-center">メッセージ</th>
@@ -42,6 +44,7 @@
                                     <td class="text-center">{{ $row->delivery_mail_log_id }}</td>
                                     <td class="text-center">{{ $row->created_at }}</td>
                                     <td class="text-center"><code>{{ $row->to }}</code></td>
+                                    <td class="text-center">{{ $row->name }}</td>
                                     <td class="text-center">{{ $row->content }}</td>
                                     <td class="text-center">
                                         @if( $row->result )

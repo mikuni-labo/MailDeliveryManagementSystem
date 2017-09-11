@@ -14,9 +14,9 @@
     <label for="from" class="col-md-2 control-label">差出人<span class="attention">*</span></label>
 
     <div class="col-md-9 form-control-static">
-        <select name="from" class="form-control" id="from">
-            <option value="1"<?php if($mode === 'edit'): ?> selected="selected"<?php endif; ?>>
-                <code>{{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;</code>
+        <select name="from" class="form-control" id="from" required>
+            <option value="1" selected>
+                {{ $MailComposer['from']['name'] }} &lt;{{ $MailComposer['from']['address'] }}&gt;
             </option>
         </select>
 

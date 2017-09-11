@@ -17,8 +17,9 @@ class CreateDeliveryMailLogVisitorsTable extends Migration
             $table->increments('id');
             $table->integer('delivery_mail_log_id')->unsigned();
             $table->integer('visitor_id')->unsigned();
+            $table->string('name');
             $table->string('to');
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->boolean('result')->unsigned();
             $table->text('message')->nullable();
             $table->timestamps();// updated_atは不要だが、モデルの自動記録機能を使用するため

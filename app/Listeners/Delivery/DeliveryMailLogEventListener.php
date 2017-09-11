@@ -30,6 +30,7 @@ class DeliveryMailLogEventListener
         DeliveryMailLogVisitor::create([
             'delivery_mail_log_id' => $event->log->id,
             'visitor_id'           => $event->mailable->getVisitor()->id,
+            'name'                 => $event->mailable->getVisitor()->name,
             'to'                   => $event->mailable->getVisitor()->email,
             'content'              => $event->mailable->viewData['content'],
             'result'               => empty($event->message) ? true : false,

@@ -43,7 +43,7 @@ class DeliveryController extends Controller
         /** @var DeliverySet $DeliverySet */
         $DeliverySet = DeliverySet::findOrFail($setId);
 
-        \Flash::success('メールを配信しました。');
+        \Flash::success('メール配信処理を行いました。');
 
         /**
          * 配信処理
@@ -54,7 +54,8 @@ class DeliveryController extends Controller
             $DeliveryMailLog = DeliveryMailLog::create([
                 'mail_template_id' => $MailTemplate->id,
                 'delivery_set_id'  => $DeliverySet->id,
-                'from'             => config('mail.from.name') . "<" . config('mail.from.address') . ">",// TODO 要確認・調整
+                'from_name'        => config('mail.from.name'),
+                'from_address'     => config('mail.from.address'),
                 'subject'          => $MailTemplate->subject,
             ]);
 

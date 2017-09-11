@@ -16,7 +16,8 @@ class DeliveryMailLog extends Model
     protected $fillable = [
         'mail_template_id',
         'delivery_set_id',
-        'from',
+        'from_name',
+        'from_address',
         'subject',
     ];
 

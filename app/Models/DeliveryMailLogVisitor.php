@@ -15,6 +15,7 @@ class DeliveryMailLogVisitor extends Model
     protected $fillable = [
         'delivery_mail_log_id',
         'visitor_id',
+        'name',
         'to',
         'content',
         'result',
