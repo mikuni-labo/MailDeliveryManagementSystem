@@ -31,27 +31,42 @@ class VisitorRequest extends Request
     }
 
     /**
-     *
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::attributes()
      */
-    public function attributes()
+    public function attributes() : array
     {
         return [
-            'name'          => '氏名',
-            'organization'  => '組織名',
-            'department'    => '部署名',
-            'position'      => '役職',
-            'postcode'      => '郵便番号',
-            'email'         => 'メールアドレス',
-            'address'       => '住所',
-            'tel'           => 'TEL',
-            'fax'           => 'FAX',
+            'name'                   => '氏名',
+            'organization'           => '組織名',
+            'department'             => '部署名',
+            'position'               => '役職',
+            'postcode'               => '郵便番号',
+            'email'                  => 'メールアドレス',
+            'address'                => '住所',
+            'tel'                    => 'TEL',
+            'fax'                    => 'FAX',
             'possible_delivery_flag' => '配信可否フラグ',
             'failed_delivery_flag'   => '送信エラーフラグ',
             'exhibitor_type'         => '出展者タイプ',
             'enterprise_type'        => '企業タイプ',
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getExhibitorType() : array
+    {
+        return $this->exhibitorType;
+    }
+
+    /**
+     * @return array
+     */
+    public function getEnterpriseType() : array
+    {
+        return $this->enterpriseType;
     }
 
 }

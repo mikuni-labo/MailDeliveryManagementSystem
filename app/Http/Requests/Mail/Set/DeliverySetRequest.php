@@ -18,7 +18,7 @@ class DeliverySetRequest extends Request
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::attributes()
      */
-    public function attributes()
+    public function attributes() : array
     {
         return [
             'name'     => '名称',

@@ -189,7 +189,7 @@ class Visitor extends Model
             $query->withTrashed();
         });
 
-        $query->orderBy('visitors.created_at', 'DESC');
+        $query->latest();
 
         return $query;
     }

@@ -7,7 +7,7 @@ class StoreRequest extends MailRequest
     /**
      * @return boolean
      */
-    public function authorize()
+    public function authorize() : bool
     {
         return true;
     }
@@ -15,7 +15,7 @@ class StoreRequest extends MailRequest
     /**
      * @return array
      */
-    public function rules()
+    public function rules() : array
     {
         return [
             'subject'  => 'required|string|max:191',
@@ -28,7 +28,7 @@ class StoreRequest extends MailRequest
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::messages()
      */
-    public function messages()
+    public function messages() : array
     {
         return [
             //

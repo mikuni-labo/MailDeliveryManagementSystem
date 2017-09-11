@@ -26,6 +26,9 @@ class DownloadSampleCsvService implements CsvServiceInterface
         'email',
         'tel',
         'fax',
+        'possible_delivery_flag',
+        'exhibitor_type',
+        'enterprise_type',
     ];
 
     /**

@@ -9,7 +9,7 @@ class UploadRequest extends Request
     /**
      * @return boolean
      */
-    public function authorize()
+    public function authorize() : bool
     {
         return true;
     }
@@ -18,7 +18,7 @@ class UploadRequest extends Request
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::attributes()
      */
-    public function attributes()
+    public function attributes() : array
     {
         return [
             'upload_csv' => '一括登録用CSV',
@@ -28,7 +28,7 @@ class UploadRequest extends Request
     /**
      * @return array
      */
-    public function rules()
+    public function rules() : array
     {
         return [
             "upload_csv"   => 'required|mime_csv|max:1024',// 1MB
@@ -39,7 +39,7 @@ class UploadRequest extends Request
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::messages()
      */
-    public function messages()
+    public function messages() : array
     {
         return [
             //
