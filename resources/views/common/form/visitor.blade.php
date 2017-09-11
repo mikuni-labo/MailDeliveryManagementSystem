@@ -233,7 +233,6 @@
         @endif
 
         @if( $mode === 'edit' )
-            <a href="#" class="btn btn-warning">配信履歴</a>
             <a href="{{ route('visitor.delete', $row->id) }}" class="btn btn-danger" onclick="deleteRecord('{{ route('visitor.delete', $row->id) }}'); return false;">削除</a>
         @endif
 

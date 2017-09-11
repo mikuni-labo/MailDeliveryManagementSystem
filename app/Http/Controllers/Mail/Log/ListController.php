@@ -34,7 +34,7 @@ class ListController extends Controller
     {
         return view('mail.log.index')->with([
             'breadcrumb'   => $this->setBreadcrumb('Log', route('mail.log')),
-            'result'       => DeliveryMailLog::query()->latest()->paginate(),
+            'result'       => DeliveryMailLog::search($request)->paginate(),
         ]);
     }
 

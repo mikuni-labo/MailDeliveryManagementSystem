@@ -104,7 +104,14 @@ class Visitor extends Model
      */
     public static function search(Request $request) : Builder
     {
+        /**
+         * @var Builder $query
+         */
         $query = self::query();
+
+        $query->select([
+            'visitors.*',
+        ]);
 
         $query->when($request->has('id_s'), function($query) use ($request) {
             $query->where('visitors.id', '>=', $request->get('id_s'));
