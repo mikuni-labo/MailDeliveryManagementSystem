@@ -53,8 +53,6 @@ class User extends Authenticatable
     protected $perPage = 20;
 
     /**
-     * パスワードリセット用通知クラスをオーバーライド
-     *
      * {@inheritDoc}
      * @see \Illuminate\Contracts\Auth\CanResetPassword::sendPasswordResetNotification()
      */

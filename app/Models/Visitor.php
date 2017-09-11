@@ -93,7 +93,7 @@ class Visitor extends Model
      */
     public function deliveryMailLogs() : HasMany
     {
-        return $this->hasMany(DeliveryMailLogVisitor::class, 'to', 'email');
+        return $this->hasMany(DeliveryMailLogVisitor::class);
     }
 
     /**

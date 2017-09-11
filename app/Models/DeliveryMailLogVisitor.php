@@ -14,6 +14,7 @@ class DeliveryMailLogVisitor extends Model
      */
     protected $fillable = [
         'delivery_mail_log_id',
+        'visitor_id',
         'to',
         'content',
         'result',
@@ -53,7 +54,7 @@ class DeliveryMailLogVisitor extends Model
     protected $perPage = 20;
 
     /**
-     * メール配信ログテーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return BelongsTo
      */
@@ -63,7 +64,7 @@ class DeliveryMailLogVisitor extends Model
     }
 
     /**
-     * テンプレートテーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return BelongsTo
      */
@@ -73,7 +74,7 @@ class DeliveryMailLogVisitor extends Model
     }
 
     /**
-     * 配信セットテーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return BelongsTo
      */
@@ -83,14 +84,13 @@ class DeliveryMailLogVisitor extends Model
     }
 
     /**
-     * 来場者テーブルとのリレーションを定義
-     * （保有メールアドレス）
+     * Define relationship with other model.
      *
      * @return BelongsTo
      */
     public function visitor() : BelongsTo
     {
-        return $this->belongsTo(Visitor::class, 'to', 'email');
+        return $this->belongsTo(Visitor::class);
     }
 
 }

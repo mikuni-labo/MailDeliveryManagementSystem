@@ -60,7 +60,7 @@ class DeliverySetVisitor extends Model
     }
 
     /**
-     * テンプレートテーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return BelongsTo
      */
@@ -70,7 +70,7 @@ class DeliverySetVisitor extends Model
     }
 
     /**
-     * 配信セットテーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return BelongsTo
      */
@@ -80,7 +80,7 @@ class DeliverySetVisitor extends Model
     }
 
     /**
-     * 配信セット毎来場者テーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return BelongsTo
      */

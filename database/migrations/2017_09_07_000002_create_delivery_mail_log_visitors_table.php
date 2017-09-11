@@ -16,6 +16,7 @@ class CreateDeliveryMailLogVisitorsTable extends Migration
         Schema::create('delivery_mail_log_visitors', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('delivery_mail_log_id')->unsigned();
+            $table->integer('visitor_id')->unsigned();
             $table->string('to');
             $table->text('content');
             $table->boolean('result')->unsigned();
@@ -28,6 +29,12 @@ class CreateDeliveryMailLogVisitorsTable extends Migration
             $table->foreign('delivery_mail_log_id')
                 ->references('id')
                 ->on('delivery_mail_logs')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('visitor_id')
+                ->references('id')
+                ->on('visitors')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

@@ -52,7 +52,7 @@ class DeliverySet extends Model
     protected $perPage = 20;
 
     /**
-     * テンプレートテーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return BelongsTo
      */
@@ -62,7 +62,7 @@ class DeliverySet extends Model
     }
 
     /**
-     * 配信セット毎来場者テーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return HasMany
      */
@@ -72,7 +72,7 @@ class DeliverySet extends Model
     }
 
     /**
-     * メール配信ログテーブルとのリレーションを定義
+     * Define relationship with other model.
      *
      * @return HasMany
      */
