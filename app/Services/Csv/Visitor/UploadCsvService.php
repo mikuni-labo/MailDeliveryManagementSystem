@@ -2,20 +2,45 @@
 
 namespace App\Services\Csv\Visitor;
 
-use App\Http\Requests\Visitor\EditRequest;
+use App\Http\Requests\Visitor\StoreRequest;
 use App\Libraries\Csv;
 use App\Models\Visitor;
 use App\Services\Csv\CsvServiceInterface;
 use Illuminate\Support\Collection;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
 
 class UploadCsvService implements CsvServiceInterface
 {
+    /**
+     * @var Csv
+     */
     private $Csv;
+
+    /**
+     * @var Collection
+     */
     private $columns;
+
+    /**
+     * @var Collection
+     */
     private $Collection;
+
+    /**
+     * @var boolean
+     */
     private $skipHeader = true;
+
+    /**
+     * @var object
+     */
     private $file;
+
+    /**
+     * @var StoreRequest
+     */
+    private $visitorRequest;
 
     const CSV_COLUMNS = [
         'name',
@@ -27,6 +52,9 @@ class UploadCsvService implements CsvServiceInterface
         'email',
         'tel',
         'fax',
+        'possible_delivery_flag',
+        'exhibitor_type',
+        'enterprise_type',
     ];
 
     /**
@@ -39,6 +67,7 @@ class UploadCsvService implements CsvServiceInterface
     {
         $this->Csv = $Csv;
         $this->columns = collect(self::CSV_COLUMNS);
+        $this->visitorRequest = new StoreRequest;
     }
 
     /**
@@ -133,15 +162,18 @@ class UploadCsvService implements CsvServiceInterface
         return \Validator::make(
             $Collection->toArray(),
             [
-                '*.name'         => 'nullable',
-                '*.organization' => 'nullable',
-                '*.department'   => 'nullable',
-                '*.position'     => 'nullable',
-                '*.postcode'     => 'nullable',
-                '*.address'      => 'nullable',
-                '*.email'        => 'required|string|email|max:191|unique:visitors',
-                '*.tel'          => 'nullable',
-                '*.fax'          => 'nullable',
+                '*.name'                   => $this->visitorRequest->rules()['name'],
+                '*.organization'           => $this->visitorRequest->rules()['organization'],
+                '*.department'             => $this->visitorRequest->rules()['department'],
+                '*.position'               => $this->visitorRequest->rules()['position'],
+                '*.postcode'               => $this->visitorRequest->rules()['postcode'],
+                '*.address'                => $this->visitorRequest->rules()['address'],
+                '*.email'                  => $this->visitorRequest->rules()['email'],
+                '*.tel'                    => $this->visitorRequest->rules()['tel'],
+                '*.fax'                    => $this->visitorRequest->rules()['fax'],
+                '*.possible_delivery_flag' => $this->visitorRequest->rules()['possible_delivery_flag'],
+                '*.exhibitor_type'         => $this->visitorRequest->rules()['exhibitor_type'],
+                '*.enterprise_type'        => $this->visitorRequest->rules()['enterprise_type'],
             ],
             [
                 //
@@ -181,9 +213,7 @@ class UploadCsvService implements CsvServiceInterface
      */
     private function getVisitorAttributes() : array
     {
-        $arr = (new EditRequest)->attributes();
-
-        foreach ($arr as $key => $val) {
+        foreach ($this->visitorRequest->attributes() as $key => $val) {
             $arr["*.$key"] = $val;
             unset($arr[$key]);
         }

@@ -9,7 +9,7 @@ class StoreRequest extends VisitorRequest
     /**
      * @return boolean
      */
-    public function authorize()
+    public function authorize() : bool
     {
         return true;
     }
@@ -17,7 +17,7 @@ class StoreRequest extends VisitorRequest
     /**
      * @return array
      */
-    public function rules()
+    public function rules() : array
     {
         return [
             'name'                   => 'nullable|string|max:191',
@@ -50,7 +50,7 @@ class StoreRequest extends VisitorRequest
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::messages()
      */
-    public function messages()
+    public function messages() : array
     {
         return [
             //
