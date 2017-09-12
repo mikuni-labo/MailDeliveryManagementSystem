@@ -20,3 +20,4 @@ mix-manifest.json
 /public/js/vendor.js
 /public/js/app.js
 /public/js/mail.js
+/public/js/visitor.js
