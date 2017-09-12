@@ -9,9 +9,8 @@
 (function($){
     $('#search_area').css('display', 'none');
 
-    // 製品検索エリアのToggleEvent
-    $('#search_toggle').click(function()
-    {
+    // 検索エリアのToggleEvent
+    $('#search_toggle').click(function() {
         $('#search_area').toggle();
 
         if($('#search_area').css('display') === 'none')
